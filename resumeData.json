@@ -1,0 +1,211 @@
+{
+  "main": {
+    "name": "Rashmil Panchani",
+    "occupation": "undergraduate TE Computer Engineering student studying in Dwarkadas J. Sanghvi College of Engineering",
+    "description": "Always looking for an opportunity to do something exceptional. Learning and experimenting new technologies. With the aim of knowledge transfer I am mentoring juniors at a society called Unicode in the college",
+    "image": "profilepic.jpg",
+    "bio": "I am an athlete at heart, with an entrepreneurial spirit and always up for learning new things. Being able to adjust to situations makes me very flexible asset to anyone who hires me and to my collegues.\n My passion lies in creating and developing new things which includes WebApps, Embedded Systems and applying Machine/Deep learning models in various projects. I have a 3 month experience at Phionike Solutions as R&D intern. I am also a photographer(Long-exposures being my favourite). I'll add the gallery soon.",
+    "contactmessage": "Have a project for me? Think I'd be a good fit for your team? I'd love to hear from you, give me a shout by email.",
+    "email": "rashmilp833@gmail.com",
+    "phone": "Mobile: (+91) 9869010739",
+    "address": {
+      "street": "",
+      "city": "",
+      "state": "",
+      "zip": ""
+    },
+    "website": "",
+    "resumedownload": "",
+    "social": [
+      {
+        "name": "linkedin",
+        "url": "https://www.linkedin.com/in/rashmil-panchani-67587a14b/",
+        "className": "fa fa-linkedin"
+      },
+      {
+        "name": "instagram",
+        "url": "http://instagram.com/rashmeeeeel_",
+        "className": "fa fa-instagram"
+      },
+      {
+        "name": "github",
+        "url": "http://github.com/Rashmil-1999",
+        "className": "fa fa-github"
+      }
+    ]
+  },
+  "resume": {
+    "skillmessage": "Check out my Skills.",
+    "education": [
+      {
+        "school": "DWARKADAS J. SANGHVI COLLEGE OF ENGINEERING",
+        "degree": "Bachelors in Computer Engineering",
+        "graduated": "2021-2017",
+        "description": "Mentor at Dj Unicode, Pointer: 9.945 (9.78 + 10 + 10 + 10)"
+      },
+      {
+        "school": "ST. Rocks College Of Science and Commerce",
+        "degree": "HSC Maharashtra 11th-12th",
+        "graduated": "2017-2015",
+        "description": "Finals:89.4% , JEE mains :22000 rank, JEE Advanced :7500 rank."
+      },
+      {
+        "school": "ST. Francis ICSE School",
+        "degree": "ICSE School",
+        "graduated": "2015-2010",
+        "description": "Finals: 92.5%"
+      }
+    ],
+    "work": [
+      {
+        "company": "Phionike Solutions.",
+        "title": "Research and Development Intern",
+        "years": "May 2019 - July 2019",
+        "description": "I was the one who helped the company lay the foundation of the Research & Development of AI department in the company. During my time there I did a research in the VUI(Voice user interface) sector and what impact does it have on the various sections of the society. I basically researched about how a VUI system works and to do that I studied how the famous Amazon's Alexa works. I also built a skill which fetches blogs and reads them aloud for you."
+      },
+      {
+        "company": "peAR Technologies.",
+        "title": "Photographer",
+        "years": "January 2019",
+        "description": "Worked here as a photographer. My job was to provide them with images of food dishes from various angles so that they can render those images and build a 3D model (Virtual/Augmented Reality). Brings your food to life."
+      }
+    ],
+    "skills": {
+      "OS": [
+        {
+          "name": "Windows",
+          "image": "devicon-windows8-original colored"
+        },
+        {
+          "name": "Linux",
+          "image": "devicon-linux-plain colored"
+        },
+        {
+          "name": "OSX",
+          "image": "devicon-apple-original colored"
+        }
+      ],
+      "backend": [
+        {
+          "name": "NodeJs",
+          "image": "devicon-nodejs-plain-wordmark colored"
+        },
+        {
+          "name": "Django",
+          "image": "devicon-django-plain-wordmark colored"
+        },
+        {
+          "name": "Django Rest FrameWork",
+          "image": "devicon-django-plain-wordmark colored"
+        },
+
+        {
+          "name": "MySQL",
+          "image": "devicon-mysql-plain-wordmark colored"
+        }
+      ],
+      "frontend": [
+        {
+          "name": "ReactJs",
+          "image": "devicon-react-original-wordmark colored"
+        },
+        {
+          "name": "HTML5",
+          "image": "devicon-html5-plain-wordmark colored"
+        },
+        {
+          "name": "CSS",
+          "image": "devicon-css3-plain-wordmark colored"
+        },
+        {
+          "name": "Bootstrap",
+          "image": "devicon-bootstrap-plain-wordmark colored"
+        }
+      ],
+      "languages": [
+        {
+          "name": "C++",
+          "image": "devicon-cplusplus-plain-wordmark colored"
+        },
+        {
+          "name": "Java",
+          "image": "devicon-java-plain-wordmark colored"
+        },
+        {
+          "name": "Python",
+          "image": "devicon-python-plain-wordmark colored"
+        },
+        {
+          "name": "JavaScript",
+          "image": "devicon-javascript-plain colored"
+        }
+      ],
+      "frameworks": [
+        {
+          "name": "NumPy",
+          "image": ""
+        },
+        {
+          "name": "Keras",
+          "image": ""
+        },
+        {
+          "name": "Tensorflow",
+          "image": ""
+        },
+        {
+          "name": "OpenCV",
+          "image": ""
+        }
+      ],
+      "VCS": [
+        {
+          "name": "Git",
+          "image": "devicon-git-plain-wordmark colored"
+        }
+      ]
+    }
+  },
+  "portfolio": {
+    "projects": [
+      {
+        "title": "Canadian Wanderlust",
+        "category": "My Travel Blog for my post-university travels",
+        "image": "canadian-wanderlust.jpg",
+        "url": "https://www.canadianwanderlust.com"
+      },
+      {
+        "title": "Fury Fighting Gear",
+        "category": "(offline now) A fighting gear company I started",
+        "image": "fury-fighting-gear.jpg",
+        "url": "http://www.timbakerdev.com"
+      },
+      {
+        "title": "Original Thai Food",
+        "category": "Website I built for a restaurant I like in Thailand",
+        "image": "original-thai-food.jpg",
+        "url": "http://www.timbakerdev.com/originalthaifood.github.io"
+      },
+      {
+        "title": "Resume Website",
+        "category": "A React based resume website template",
+        "image": "resume-website.jpg",
+        "url": "http://www.timbakerdev.com"
+      },
+      {
+        "title": "Smirkspace",
+        "category": "(MVP Only) A React and Meteor based chat University project.",
+        "image": "smirkspace.jpg",
+        "url": "http://www.smirkspace.com"
+      }
+    ]
+  },
+  "testimonials": {
+    "testimonials": [
+      {
+        "text": "His sincere contribution and innovative thinking helped us come up with some great solutions for our project. During his internship period he worked on forming ML division in Phionike and also worked on creating and deploying Amazon Alexa Skill. He is a good team player and a great asset to the team.",
+        "user": "Roopam Mishra, Founder of Phionike Solutions."
+      }
+    ]
+  }
+}
