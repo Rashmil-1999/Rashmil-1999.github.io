@@ -2,18 +2,36 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
     <meta
-      name="description"
-      content="Web site created using create-react-app"
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
+    <meta name="description" content="Personal Website" />
+    <meta name="author" content="Rashmil Panchani" />
+    <title>Rashmil Panchani</title>
+    <link rel="icon" type="image/x-icon" href="%PUBLIC_URL%/favicon.png" />
+    <!-- Font Awesome icons (free version)-->
+    <script
+      src="https://use.fontawesome.com/releases/v5.13.0/js/all.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Google fonts-->
+    <link
+      href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <!-- Devicon -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/devicons/devicon@master/devicon.min.css"
+    />
+
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
@@ -24,9 +42,8 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
   </head>
-  <body>
+  <body id="page-top">
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <!--
@@ -39,5 +56,54 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <!-- Bootstrap core JS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+    <!-- Third party plugin JS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="">
+      /*!
+       * Author: Rashmil Pachani
+       */
+      (function ($) {
+        "use strict"; // Start of use strict
+
+        // Smooth scrolling using jQuery easing
+        $('a.js-scroll-trigger[href*="#"]:not([href="#"])').click(function () {
+          if (
+            location.pathname.replace(/^\//, "") ==
+              this.pathname.replace(/^\//, "") &&
+            location.hostname == this.hostname
+          ) {
+            var target = $(this.hash);
+            target = target.length
+              ? target
+              : $("[name=" + this.hash.slice(1) + "]");
+            if (target.length) {
+              $("html, body").animate(
+                {
+                  scrollTop: target.offset().top,
+                },
+                1000,
+                "easeInOutExpo"
+              );
+              return false;
+            }
+          }
+        });
+
+        // Closes responsive menu when a scroll trigger link is clicked
+        $(".js-scroll-trigger").click(function () {
+          $(".navbar-collapse").collapse("hide");
+        });
+
+        // Activate scrollspy to add active class to navbar items on scroll
+        $("body").scrollspy({
+          target: "#sideNav",
+        });
+      })(jQuery); // End of use strict
+    </script>
+    <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
   </body>
 </html>
