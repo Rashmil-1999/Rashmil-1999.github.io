@@ -1,15 +1,30 @@
 {
   "files": {
-    "main.css": "/static/css/main.5facb584.chunk.css",
-    "main.js": "/static/js/main.6a82821d.chunk.js",
-    "main.js.map": "/static/js/main.6a82821d.chunk.js.map",
-    "runtime~main.js": "/static/js/runtime~main.676e9b07.js",
-    "runtime~main.js.map": "/static/js/runtime~main.676e9b07.js.map",
-    "static/js/2.4990e5fe.chunk.js": "/static/js/2.4990e5fe.chunk.js",
-    "static/js/2.4990e5fe.chunk.js.map": "/static/js/2.4990e5fe.chunk.js.map",
+    "main.css": "/static/css/main.be93b5a4.chunk.css",
+    "main.js": "/static/js/main.ef6006c3.chunk.js",
+    "main.js.map": "/static/js/main.ef6006c3.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.d6274831.js",
+    "runtime-main.js.map": "/static/js/runtime-main.d6274831.js.map",
+    "static/js/2.8ef3bd3a.chunk.js": "/static/js/2.8ef3bd3a.chunk.js",
+    "static/js/2.8ef3bd3a.chunk.js.map": "/static/js/2.8ef3bd3a.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.08e2f48bd0d58001ce73ee5386892be4.js": "/precache-manifest.08e2f48bd0d58001ce73ee5386892be4.js",
+    "precache-manifest.c4b46d5cba62e48f4091b7367e415e8d.js": "/precache-manifest.c4b46d5cba62e48f4091b7367e415e8d.js",
     "service-worker.js": "/service-worker.js",
-    "static/css/main.5facb584.chunk.css.map": "/static/css/main.5facb584.chunk.css.map"
-  }
+    "static/css/main.be93b5a4.chunk.css.map": "/static/css/main.be93b5a4.chunk.css.map",
+    "static/js/2.8ef3bd3a.chunk.js.LICENSE.txt": "/static/js/2.8ef3bd3a.chunk.js.LICENSE.txt",
+    "static/media/aowe.jpg": "/static/media/aowe.1a3dcfde.jpg",
+    "static/media/archive.jpeg": "/static/media/archive.d5222ae7.jpeg",
+    "static/media/attendance.webp": "/static/media/attendance.8db9168a.webp",
+    "static/media/emotion_recognition.png": "/static/media/emotion_recognition.fde8d792.png",
+    "static/media/event.png": "/static/media/event.abd60565.png",
+    "static/media/profilepic.jpg": "/static/media/profilepic.3e10defa.jpg",
+    "static/media/resume.png": "/static/media/resume.12bd9638.png",
+    "static/media/smgarden.png": "/static/media/smgarden.66b6a13d.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.d6274831.js",
+    "static/js/2.8ef3bd3a.chunk.js",
+    "static/css/main.be93b5a4.chunk.css",
+    "static/js/main.ef6006c3.chunk.js"
+  ]
 }
