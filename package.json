@@ -13,7 +13,7 @@
     "react-scripts": "3.4.3",
     "react-scroll": "^1.8.1"
   },
-  "homepage": "http://Rashmil-1999.github.io",
+  "homepage": "https://Rashmil-1999.github.io",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

@@ -14,7 +14,7 @@ const Testimonials = (props) => {
                   <em>{testimonial.text}</em>
                 </p>
                 <footer className="blockquote-footer">
-                  <cite title="Source Title">{testimonial.user}</cite>
+                  <strong><cite title="Source Title">{testimonial.user}</cite></strong>
                 </footer>
               </blockquote>
             );

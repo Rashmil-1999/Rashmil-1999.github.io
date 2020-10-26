@@ -240,11 +240,25 @@
       "url": "https://github.com/Rashmil-1999/Emotion-Recognizer"
     },
     {
-      "title": "Library Attendance Manager",
-      "tech_stack": ["Python", "SQLlite", "Hardware: Barcode Scanner"],
-      "description": "This project was built for attendance management for the college library. It uses a Barcode scanner to scan the ID of the students and the teachers and logs this information into a password protected database. College required a secure storage of the records of who enters or leaves the Library therefore requested Me and my other friend to create such a system.",
-      "image": "library",
-      "url": "https://github.com/Rashmil-1999/Library_Attendance"
+      "title": "American Sign Language Detection",
+      "tech_stack": ["Numpy", "OpenCV", "Keras", "Python", "Tensorflow"],
+      "description": "The main goal of the project was to develop a model that was able to detect various signs used by the mute people to communicate with people who do not know how to interpret it. Hence I thought of developing a model that can be integrated in the mobile app and can help the user to decipher what the other person is trying to say without the help of a translator. The end goal was to integrate the ability to use optical flow analysis and be able to convert the signs into Natural Language and give an audio output but due to the lack of computation resources we could not complete the entire project.",
+      "image": "asl",
+      "url": "https://github.com/Rashmil-1999/ASL_Detection"
+    },
+    {
+      "title": "Age Of Warring Empire tower bot",
+      "tech_stack": ["OpenCV", "pyautogui"],
+      "description": "The tower of age of warring empire game has 10 levels and spawns a random map every time, I found this very boring as I had to complete these levels nearly 50 times to level up my heroes from 1-120-ish level and the max level of heroes were 400, that means 50*10 = 500 times. My solution was this, using OpenCV and template matching, I designed bot that on given certain restrictions, it will utilize gold coins or energy cards accordingly and automate the attacking process. This reduced my efforts as I don't have to play and my heroes get levelled up to 400 in a matter of few hours. Another use case that I developed is the Hydra bot, a Hydra event in the game has 1000 levels, each having 10 sub levels thus, resulting in 10000 attacks, I applied some similar strategies but with deadlock conditions and now I can clear approximately 800 levels in a matter of 6 hours.",
+      "image": "aowe",
+      "url": "https://github.com/Rashmil-1999/Aowe_Tower-Hydra-Bot"
+    },
+    {
+      "title": "Smart India Hackathon - Attention Span detection and detailed analysis of Dialogue.",
+      "tech_stack": ["Numpy", "OpenCV", "Django", "Python", "AioRTC WebRTC in Python", "AioHTTP for WebRTC signalling"],
+      "description": "This project was built in the qualification round fron the college, so that we can send our proposals to the SIH committee. The project goal was to create system for online lectures that will help the teacher in improving their lectures and provide the students with more engaging content. The project leverages the power of high speed of WebRTC and AioRTC in Python to provide real time analysis for the realtime streaming and processing the video feed. While processing the video feed we analyze the video and audio to extract features such as how long was the attention span of the student and when the student was the most attentive and the least attentive. For the Audio part, we provided detailed analysis of what percentage of the online lecture was one way (Teacher to Student) or two way (both Teacher to Student and Student to Teacher).",
+      "image": "SIH",
+      "url": "https://github.com/Rashmil-1999/sih-2020-qualification-hackathon"
     },
     {
       "title": "E - Yantra Competition (Theme - Nutty Squirrel)",
@@ -252,13 +266,6 @@
       "description": "e - Yantra Robotics competition: I was the team leader and we built a line following, color sensing bot with picking and releasing mechanism using Atmega2560 which traversed the arena using Djikstra's algorithm. We ended up being the runner ups of the competition.",
       "image": "eyantra",
       "url": "https://github.com/Rashmil-1999/E-Yantra2018-semifinals"
-    },
-    {
-      "title": "DJ Archive",
-      "tech_stack": ["ReactJS", "Django", "Django RestFramework"],
-      "description": "A live project that is being used by the college to maintain and keep record of the award winning projects, projects done under faculties and final year projects. I worked as a Backend Developer in this project. When some changes were requested by the faculties, I was appointed as the Project Lead to guide a team of 4 Juniors who integrated the extended feature requirements.",
-      "image": "archive",
-      "url": "https://github.com/djunicode/BE-Project-Web"
     },
     {
       "title": "Garduino - Smart Garden",
@@ -274,18 +281,40 @@
       "url": "https://github.com/Rashmil-1999/Garduino"
     },
     {
+      "title": "Stack Overflow Chatbot",
+      "tech_stack": ["Python", "Tensorflow", "NLTK", "numpy","pandas", "sklearn"],
+      "description": "This was the end project for the HSE NLP course on Coursera. I was tasked to build a chatbot which was able to understand the users input and classify the intent and then based on the question, give appropriate responses. The bot was made to be run on Telegram and hosted on an online instance such as AWS. Currently it is not hosted anywhere ans is available for use and training on Github.",
+      "image": "chatbot",
+      "url": "https://github.com/Rashmil-1999/Chatbot"
+    },
+    {
+      "title": "Twitter Named Entity Recognition",
+      "tech_stack": ["Python", "Tensorflow", "NLTK", "numpy"],
+      "description": "This was one of project for the HSE NLP course on Coursera. I was tasked to build a named entity recognition model that will extract the various entities present in the tweet. I used Bi-Directional LSTM's and have also tested the same by using GRU's in place of LSTM's. It was a fun project where I learned the underlying mechanisms of how to recognize things in a text.",
+      "image": "ner",
+      "url": "https://github.com/Rashmil-1999/Twitter_NER"
+    },
+    {
+      "title": "Library Attendance Manager",
+      "tech_stack": ["Python", "SQLlite", "Hardware: Barcode Scanner"],
+      "description": "This project was built for attendance management for the college library. It uses a Barcode scanner to scan the ID of the students and the teachers and logs this information into a password protected database. College required a secure storage of the records of who enters or leaves the Library therefore requested Me and my other friend to create such a system.",
+      "image": "library",
+      "url": "https://github.com/Rashmil-1999/Library_Attendance"
+    },
+    {
+      "title": "DJ Archive",
+      "tech_stack": ["ReactJS", "Django", "Django RestFramework"],
+      "description": "A live project that is being used by the college to maintain and keep record of the award winning projects, projects done under faculties and final year projects. I worked as a Backend Developer in this project. When some changes were requested by the faculties, I was appointed as the Project Lead to guide a team of 4 Juniors who integrated the extended feature requirements.",
+      "image": "archive",
+      "url": "https://github.com/djunicode/BE-Project-Web"
+    },
+    
+    {
       "title": "College - Event Manager App",
       "tech_stack": ["React", "Django", "Django RestFramework"],
       "description": "This project was built to facilitate the teachers in generating the reports of any event held in the college. The system allows for a very simple drag and drop functionality and at the end the report generation saves lot of time of the teachers. I was a part of the backend team in this project and took active part in the designing and planning the database and various APIs.",
       "image": "event",
       "url": "https://github.com/Rashmil-1999/college-event-manager-react"
-    },
-    {
-      "title": "Age Of Warring Empire tower bot",
-      "tech_stack": ["OpenCV", "pyautogui"],
-      "description": "The tower of age of warring empire game has 10 levels and spawns a random map every time, I found this very boring as I had to complete these levels nearly 50 times to level up my heroes from 1-120-ish level and the max level of heroes were 400, that means 50*10 = 500 times. My solution was this, using OpenCV and template matching, I designed bot that on given certain restrictions, it will utilize gold coins or energy cards accordingly and automate the attacking process. This reduced my efforts as I don't have to play and my heroes get levelled up to 400 in a matter of few hours. Another use case that I developed is the Hydra bot, a Hydra event in the game has 1000 levels, each having 10 sub levels thus, resulting in 10000 attacks, I applied some similar strategies but with deadlock conditions and now I can clear approximately 800 levels in a matter of 6 hours.",
-      "image": "aowe",
-      "url": "https://github.com/Rashmil-1999/Aowe_Tower-Hydra-Bot"
     },
     {
       "title": "Resume Website",

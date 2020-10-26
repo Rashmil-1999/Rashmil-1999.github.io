@@ -1,14 +1,19 @@
 import React from "react";
 // Import images from assets
 import archive from "../assets/archive.jpeg";
-import emotion from "../assets/emotion_recognition.png";
+import emotion from "../assets/emotion.png";
 import event from "../assets/event.png";
-import eyantra from "../assets/eyantra.png";
+// import eyantra from "../assets/eyantra.png";
+import eyantra from "../assets/eyantra.jpg";
 import face_detection from "../assets/face_detection.png";
 import garduino from "../assets/smgarden.png";
-import library from "../assets/attendance.webp";
+import library from "../assets/attendance1.png";
 import resume from "../assets/resume.png";
+import asl from "../assets/asl.png";
+import SIH from "../assets/SIH.png";
 import aowe from "../assets/aowe.jpg";
+import chatbot from "../assets/chatbot.png";
+import ner from "../assets/ner.png";
 
 const Projects = (props) => {
   const image_style = {
@@ -25,6 +30,10 @@ const Projects = (props) => {
     resume: resume,
     event: event,
     aowe: aowe,
+    asl: asl,
+    SIH: SIH,
+    chatbot: chatbot,
+    ner: ner,
   };
   const { projects } = props;
   return (
