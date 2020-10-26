@@ -1,30 +1,35 @@
 {
   "files": {
     "main.css": "/static/css/main.be93b5a4.chunk.css",
-    "main.js": "/static/js/main.ef6006c3.chunk.js",
-    "main.js.map": "/static/js/main.ef6006c3.chunk.js.map",
+    "main.js": "/static/js/main.7be9472a.chunk.js",
+    "main.js.map": "/static/js/main.7be9472a.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.d6274831.js",
     "runtime-main.js.map": "/static/js/runtime-main.d6274831.js.map",
-    "static/js/2.8ef3bd3a.chunk.js": "/static/js/2.8ef3bd3a.chunk.js",
-    "static/js/2.8ef3bd3a.chunk.js.map": "/static/js/2.8ef3bd3a.chunk.js.map",
+    "static/js/2.96905e1a.chunk.js": "/static/js/2.96905e1a.chunk.js",
+    "static/js/2.96905e1a.chunk.js.map": "/static/js/2.96905e1a.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.c4b46d5cba62e48f4091b7367e415e8d.js": "/precache-manifest.c4b46d5cba62e48f4091b7367e415e8d.js",
+    "precache-manifest.11816254547195f707a9ddcd3a6b1ff3.js": "/precache-manifest.11816254547195f707a9ddcd3a6b1ff3.js",
     "service-worker.js": "/service-worker.js",
     "static/css/main.be93b5a4.chunk.css.map": "/static/css/main.be93b5a4.chunk.css.map",
-    "static/js/2.8ef3bd3a.chunk.js.LICENSE.txt": "/static/js/2.8ef3bd3a.chunk.js.LICENSE.txt",
+    "static/js/2.96905e1a.chunk.js.LICENSE.txt": "/static/js/2.96905e1a.chunk.js.LICENSE.txt",
+    "static/media/SIH.png": "/static/media/SIH.8adb8e64.png",
     "static/media/aowe.jpg": "/static/media/aowe.1a3dcfde.jpg",
     "static/media/archive.jpeg": "/static/media/archive.d5222ae7.jpeg",
-    "static/media/attendance.webp": "/static/media/attendance.8db9168a.webp",
-    "static/media/emotion_recognition.png": "/static/media/emotion_recognition.fde8d792.png",
-    "static/media/event.png": "/static/media/event.abd60565.png",
+    "static/media/asl.png": "/static/media/asl.a38602ab.png",
+    "static/media/attendance1.png": "/static/media/attendance1.3b6be4d1.png",
+    "static/media/chatbot.png": "/static/media/chatbot.bf156dc9.png",
+    "static/media/emotion.png": "/static/media/emotion.25bdd652.png",
+    "static/media/event.png": "/static/media/event.b71d705f.png",
+    "static/media/eyantra.jpg": "/static/media/eyantra.5f8d1e07.jpg",
+    "static/media/ner.png": "/static/media/ner.6e06fb0a.png",
     "static/media/profilepic.jpg": "/static/media/profilepic.3e10defa.jpg",
     "static/media/resume.png": "/static/media/resume.12bd9638.png",
     "static/media/smgarden.png": "/static/media/smgarden.66b6a13d.png"
   },
   "entrypoints": [
     "static/js/runtime-main.d6274831.js",
-    "static/js/2.8ef3bd3a.chunk.js",
+    "static/js/2.96905e1a.chunk.js",
     "static/css/main.be93b5a4.chunk.css",
-    "static/js/main.ef6006c3.chunk.js"
+    "static/js/main.7be9472a.chunk.js"
   ]
 }
