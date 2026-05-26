@@ -1,0 +1,29 @@
+# .github/workflows/ci.yml
+# Source: docs.github.com/en/actions/quickstart
+#         github.com/actions/setup-node
+# CONTEXT.md D-25: CI gate — lint + format:check + astro check + test.
+# Runs on every push and PR to main. NO deploy step (Phase 5 owns deploy.yml).
+# No `permissions:` block — default GITHUB_TOKEN is read-only, which is all CI needs.
+
+name: CI
+
+on:
+    push:
+        branches: [main]
+    pull_request:
+        branches: [main]
+
+jobs:
+    ci:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: '22'
+                  cache: 'npm'
+            - run: npm ci
+            - run: npm run lint
+            - run: npm run format:check
+            - run: npx astro check
+            - run: npm test
