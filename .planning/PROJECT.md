@@ -20,22 +20,23 @@ The site looks and reads the same to a visitor, but underneath the stack is mode
 - ✓ Downloadable résumé PDF (`public/Rashmil_Panchani.pdf`) linked from About — existing
 - ✓ Content driven from a single source of truth (`src/resumeData.json` today) — existing
 - ✓ Mobile-responsive layout (Bootstrap 4 grid) — existing
+- ✓ Tooling baseline: ESLint 9 flat config, Prettier (with `prettier-plugin-astro`), `tsconfig` extends `astro/tsconfigs/strictest`, Vitest 4 smoke suite spawning `astro build` as a subprocess (Validated in Phase 1: Foundation, 2026-05-26 — commit `4d8d24c`)
 
 ### Active
 
 <!-- M1: Refresh & Modernize. Hypotheses until shipped. -->
 
-- [ ] Replace Create React App with **Astro 6 + TypeScript** (hybrid: `.astro` for static, React 19 islands only where genuinely interactive)
-- [ ] Replace Bootstrap 4 CDN with **Tailwind v4**, bundled (no third-party UI CDNs)
+- [x] Replace Create React App with **Astro 6 + TypeScript** (hybrid: `.astro` for static, React 19 islands only where genuinely interactive) — Phase 1 complete (Astro 6.3.8 scaffold, React 19.2.6 via `@astrojs/react`, tsconfig strictest)
+- [x] Replace Bootstrap 4 CDN with **Tailwind v4**, bundled (no third-party UI CDNs) — Phase 1 wired `@tailwindcss/vite` + CSS-first entry (Phase 3 applies utilities to real markup)
 - [ ] Migrate `src/resumeData.json` to **Astro Content Layer** collections (defined in `src/content.config.ts`) with typed schemas: `glob()` loader + markdown frontmatter for `projects` / `work` / `education` / `leadership` / `testimonials`; `file()` loader + YAML for `about` / `skills` / `links` (this split is the M2 CMS contract — folder collections vs file collections)
 - [ ] Port every existing section preserving its layout and information, applying light visual polish (spacing, typography, icon set consistency, color contrast)
 - [ ] Native scroll-spy and smooth scrolling (no jQuery, no `react-scroll`)
 - [ ] Eliminate documented anti-patterns from `.planning/codebase/`: dead `react-scroll` / `react-script-tag` deps, jQuery scroll-spy IIFE in `public/index.html`, hand-maintained `image_map` in `Projects.jsx`, missing Bootstrap CSS, `<StrictMode>` placement
 - [ ] WCAG 2.1 AA accessibility: semantic landmarks, ARIA on nav toggles and icon-only buttons, keyboard navigation, color-contrast pass, focus management
 - [ ] SEO / social meta hygiene (currently absent): shared `<BaseHead>` with OpenGraph + Twitter Card tags, canonical URL, real `<meta name="description">`, and `@astrojs/sitemap` integration — prerequisite is setting `site` in `astro.config.mjs`
-- [ ] Tooling baseline: ESLint, Prettier, `tsconfig` strict, single Vitest smoke test asserting `astro build` succeeds and each section renders
-- [ ] **GitHub Actions** deploy workflow using `withastro/action` (replaces local `npm run deploy` / `gh-pages` package)
-- [ ] Site serves at `https://Rashmil-1999.github.io/` (user-site repo, root path)
+- [x] Tooling baseline: ESLint, Prettier, `tsconfig` strict, single Vitest smoke test asserting `astro build` succeeds and each section renders — Phase 1 complete
+- [x] **GitHub Actions** workflow on push/PR to `main` running 4-step gate (lint, format:check, astro check, test) — Phase 1 complete (deploy step deferred to Phase 5)
+- [x] Site serves at `https://Rashmil-1999.github.io/` (user-site repo, root path) — Phase 1 set `site: 'https://Rashmil-1999.github.io'` in `astro.config.mjs`
 
 ### Out of Scope
 
@@ -107,4 +108,4 @@ This document evolves at phase transitions and milestone boundaries.
 | Skip Astro View Transitions in M1 | Single-page anchor-nav site — View Transitions add no benefit and introduce script-re-execution bugs. Surfaced by pitfalls research. | — Pending |
 
 ---
-*Last updated: 2026-05-26 after research synthesis (Astro 5→6, SEO meta added, View Transitions excluded)*
+*Last updated: 2026-05-26 after Phase 1 (Foundation) completion — Astro 6.3.8 scaffold live on `main`, all 8 FOUND-* requirements validated, CI green (run 26478179519). Pending follow-ups carried to later phases: Phase 5 CNAME/site URL decision (D-06 deferral); 5 moderate npm-audit vulnerabilities (deferred); `astro check` `ts(6387)` deprecation hint on `tseslint.config` (waiting on upstream).*
