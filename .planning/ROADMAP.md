@@ -34,7 +34,7 @@ Decimal phases appear between their surrounding integers in numeric order.
   4. Repo contains exactly one lockfile (`package-lock.json`); `yarn.lock` is deleted; `npm ls react react-dom @astrojs/react` reports no duplicate or invalid React versions.
   5. `astro.config.mjs` sets `site: 'https://Rashmil-1999.github.io'` and `output: 'static'`, does NOT set `base`, and wires `@tailwindcss/vite` (not `@astrojs/tailwind`); a Tailwind utility used in a `.astro` file produces matching CSS in `dist/_astro/`.
 
-**Plans:** 3/5 plans executed
+**Plans:** 4/5 plans executed
 **Wave 1**
 
 - [x] 01-01-PLAN.md — Snapshot pre-wipe source, commit `.claude/`, rename master→main, wipe CRA tree, baseline Astro scaffold (FOUND-01, FOUND-07) — completed 2026-05-26, rollup commit `30f8cab`
@@ -49,7 +49,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 **Wave 4** *(blocked on Wave 3 completion)*
 
-- [ ] 01-04-PLAN.md — Install ESLint 9 + Prettier + husky + lint-staged; author flat config + Prettier rules + ignore lists; npm run lint + format:check exit 0 (FOUND-05)
+- [x] 01-04-PLAN.md — Install ESLint 9 + Prettier + husky + lint-staged; author flat config + Prettier rules + ignore lists; npm run lint + format:check exit 0 (FOUND-05)
 
 **Wave 5** *(blocked on Wave 4 completion)*
 
@@ -124,7 +124,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 3/5 | In Progress|  |
+| 1. Foundation | 4/5 | In Progress|  |
 | 2. Content Layer | 0/TBD | Not started | - |
 | 3. Sections & Navigation | 0/TBD | Not started | - |
 | 4. SEO, A11Y & Meta Polish | 0/TBD | Not started | - |
