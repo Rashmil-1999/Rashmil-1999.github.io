@@ -336,3 +336,18 @@ _site/
 .sass-cache/
 .jekyll-cache/
 .jekyll-metadata
+
+# -----
+# Astro
+# -----
+
+# Astro generated types
+.astro/
+
+# Astro env (production)
+.env.production
+
+# JetBrains IDE settings
+.idea/
+
+# NOTE: dist/ is already declared above under "Python" — Astro also uses it for build output.
