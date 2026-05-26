@@ -4,11 +4,28 @@
     "private": true,
     "type": "module",
     "homepage": "https://Rashmil-1999.github.io",
+    "engines": {
+        "node": ">=22.13.0"
+    },
     "scripts": {
         "dev": "astro dev",
         "build": "astro build",
         "preview": "astro preview",
-        "astro": "astro"
+        "astro": "astro",
+        "lint": "eslint .",
+        "format": "prettier --write .",
+        "format:check": "prettier --check .",
+        "test": "vitest run",
+        "prepare": "husky"
+    },
+    "lint-staged": {
+        "*.{ts,tsx,astro,js,jsx}": [
+            "eslint --fix",
+            "prettier --write"
+        ],
+        "*.{md,json,yml,yaml,css}": [
+            "prettier --write"
+        ]
     },
     "dependencies": {
         "@astrojs/react": "^5.0.5",
@@ -22,6 +39,19 @@
     },
     "devDependencies": {
         "@astrojs/check": "^0.9.9",
-        "typescript": "^5.9.3"
+        "@eslint/js": "^9.39.4",
+        "eslint": "^9.39.4",
+        "eslint-config-prettier": "^10.1.8",
+        "eslint-plugin-astro": "^1.7.0",
+        "eslint-plugin-jsx-a11y": "^6.10.2",
+        "eslint-plugin-react-hooks": "^7.1.1",
+        "globals": "^17.6.0",
+        "husky": "^9.1.7",
+        "lint-staged": "^17.0.5",
+        "prettier": "^3.8.3",
+        "prettier-plugin-astro": "^0.14.1",
+        "prettier-plugin-tailwindcss": "^0.8.0",
+        "typescript": "^5.9.3",
+        "typescript-eslint": "^8.60.0"
     }
 }
