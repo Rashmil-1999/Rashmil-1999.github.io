@@ -30,7 +30,13 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. `npm test` runs the Vitest smoke suite (which actually spawns `astro build` as a subprocess) and exits 0; deliberately breaking the build causes the test to fail.
   4. Repo contains exactly one lockfile (`package-lock.json`); `yarn.lock` is deleted; `npm ls react react-dom @astrojs/react` reports no duplicate or invalid React versions.
   5. `astro.config.mjs` sets `site: 'https://Rashmil-1999.github.io'` and `output: 'static'`, does NOT set `base`, and wires `@tailwindcss/vite` (not `@astrojs/tailwind`); a Tailwind utility used in a `.astro` file produces matching CSS in `dist/_astro/`.
-**Plans**: TBD
+**Plans:** 5 plans
+Plans:
+- [ ] 01-01-PLAN.md — Snapshot pre-wipe source, commit `.claude/`, rename master→main, wipe CRA tree, baseline Astro scaffold (FOUND-01, FOUND-07)
+- [ ] 01-02-PLAN.md — Wire React + Tailwind v4 integrations; tighten tsconfig to strictest; verify single-lockfile npm tree (FOUND-01, FOUND-02, FOUND-03, FOUND-04, FOUND-07, FOUND-08)
+- [ ] 01-03-PLAN.md — Author BaseLayout + BaseHead + 8 section stubs (D-23 ids; About carries Tailwind marker) + React 19 hydration fixture + Tailwind entry CSS + content.config.ts placeholder (FOUND-03, FOUND-04, FOUND-06)
+- [ ] 01-04-PLAN.md — Install ESLint 9 + Prettier + husky + lint-staged; author flat config + Prettier rules + ignore lists; npm run lint + format:check exit 0 (FOUND-05)
+- [ ] 01-05-PLAN.md — Install Vitest; author vitest.config.ts + globalSetup spawning `astro build` + 5-assertion smoke test; author .github/workflows/ci.yml (lint+format:check+astro-check+test on main, no deploy) (FOUND-06)
 
 ### Phase 2: Content Layer
 **Goal**: All resume data migrated from `src/resumeData.json` into typed Content Layer collections at the M2-compatible per-item shape (markdown files for lists, YAML for singletons), with Zod schemas that catch malformed data at build and project images bound through the `image()` helper so the optimization pipeline is active.
