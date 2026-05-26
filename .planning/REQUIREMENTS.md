@@ -160,17 +160,81 @@ Explicitly excluded from M1. Documented to prevent scope creep.
 
 ## Traceability
 
-Filled by `gsd-roadmapper` during ROADMAP.md creation. Empty here intentionally.
+Every v1 requirement maps to exactly one phase. See `.planning/ROADMAP.md` for phase details.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| (Populated by roadmapper) | | |
+| FOUND-01 | Phase 1: Foundation | Pending |
+| FOUND-02 | Phase 1: Foundation | Pending |
+| FOUND-03 | Phase 1: Foundation | Pending |
+| FOUND-04 | Phase 1: Foundation | Pending |
+| FOUND-05 | Phase 1: Foundation | Pending |
+| FOUND-06 | Phase 1: Foundation | Pending |
+| FOUND-07 | Phase 1: Foundation | Pending |
+| FOUND-08 | Phase 1: Foundation | Pending |
+| CONTENT-01 | Phase 2: Content Layer | Pending |
+| CONTENT-02 | Phase 2: Content Layer | Pending |
+| CONTENT-03 | Phase 2: Content Layer | Pending |
+| CONTENT-04 | Phase 2: Content Layer | Pending |
+| CONTENT-05 | Phase 2: Content Layer | Pending |
+| CONTENT-06 | Phase 2: Content Layer | Pending |
+| CONTENT-07 | Phase 2: Content Layer | Pending |
+| CONTENT-08 | Phase 2: Content Layer | Pending |
+| SECTION-01 | Phase 3: Sections & Navigation | Pending |
+| SECTION-02 | Phase 3: Sections & Navigation | Pending |
+| SECTION-03 | Phase 3: Sections & Navigation | Pending |
+| SECTION-04 | Phase 3: Sections & Navigation | Pending |
+| SECTION-05 | Phase 3: Sections & Navigation | Pending |
+| SECTION-06 | Phase 3: Sections & Navigation | Pending |
+| SECTION-07 | Phase 3: Sections & Navigation | Pending |
+| SECTION-08 | Phase 3: Sections & Navigation | Pending |
+| SECTION-09 | Phase 3: Sections & Navigation | Pending |
+| SECTION-10 | Phase 3: Sections & Navigation | Pending |
+| NAV-01 | Phase 3: Sections & Navigation | Pending |
+| NAV-02 | Phase 3: Sections & Navigation | Pending |
+| NAV-03 | Phase 3: Sections & Navigation | Pending |
+| NAV-04 | Phase 3: Sections & Navigation | Pending |
+| NAV-05 | Phase 3: Sections & Navigation | Pending |
+| STYLE-01 | Phase 3: Sections & Navigation | Pending |
+| STYLE-02 | Phase 3: Sections & Navigation | Pending |
+| STYLE-03 | Phase 3: Sections & Navigation | Pending |
+| STYLE-04 | Phase 3: Sections & Navigation | Pending |
+| STYLE-05 | Phase 3: Sections & Navigation | Pending |
+| A11Y-01 | Phase 4: SEO, A11Y & Meta Polish | Pending |
+| A11Y-02 | Phase 4: SEO, A11Y & Meta Polish | Pending |
+| A11Y-03 | Phase 4: SEO, A11Y & Meta Polish | Pending |
+| A11Y-04 | Phase 4: SEO, A11Y & Meta Polish | Pending |
+| A11Y-05 | Phase 4: SEO, A11Y & Meta Polish | Pending |
+| A11Y-06 | Phase 4: SEO, A11Y & Meta Polish | Pending |
+| A11Y-07 | Phase 4: SEO, A11Y & Meta Polish | Pending |
+| SEO-01 | Phase 4: SEO, A11Y & Meta Polish | Pending |
+| SEO-02 | Phase 4: SEO, A11Y & Meta Polish | Pending |
+| SEO-03 | Phase 4: SEO, A11Y & Meta Polish | Pending |
+| SEO-04 | Phase 4: SEO, A11Y & Meta Polish | Pending |
+| SEO-05 | Phase 4: SEO, A11Y & Meta Polish | Pending |
+| SEO-06 | Phase 4: SEO, A11Y & Meta Polish | Pending |
+| SEO-07 | Phase 4: SEO, A11Y & Meta Polish | Pending |
+| CLEAN-01 | Phase 5: Cleanup & Deploy | Pending |
+| CLEAN-02 | Phase 5: Cleanup & Deploy | Pending |
+| CLEAN-03 | Phase 5: Cleanup & Deploy | Pending |
+| CLEAN-04 | Phase 5: Cleanup & Deploy | Pending |
+| CLEAN-05 | Phase 5: Cleanup & Deploy | Pending |
+| CLEAN-06 | Phase 5: Cleanup & Deploy | Pending |
+| CLEAN-07 | Phase 5: Cleanup & Deploy | Pending |
+| CLEAN-08 | Phase 5: Cleanup & Deploy | Pending |
+| DEPLOY-01 | Phase 5: Cleanup & Deploy | Pending |
+| DEPLOY-02 | Phase 5: Cleanup & Deploy | Pending |
+| DEPLOY-03 | Phase 5: Cleanup & Deploy | Pending |
+| DEPLOY-04 | Phase 5: Cleanup & Deploy | Pending |
+| DEPLOY-05 | Phase 5: Cleanup & Deploy | Pending |
+| DEPLOY-06 | Phase 5: Cleanup & Deploy | Pending |
 
 **Coverage:**
-- v1 requirements: 57 total (8 FOUND + 8 CONTENT + 10 SECTION + 5 NAV + 5 STYLE + 7 A11Y + 7 SEO + 8 CLEAN + 6 DEPLOY = 64; actual count above)
-- Mapped to phases: 0 (pre-roadmap)
-- Unmapped: TBD
+- v1 requirements: 64 total (8 FOUND + 8 CONTENT + 10 SECTION + 5 NAV + 5 STYLE + 7 A11Y + 7 SEO + 8 CLEAN + 6 DEPLOY)
+- Mapped to phases: 64 / 64 (100%)
+- Unmapped: 0
+- Phase distribution: Phase 1 = 8, Phase 2 = 8, Phase 3 = 20, Phase 4 = 14, Phase 5 = 14
 
 ---
 *Requirements defined: 2026-05-26*
-*Last updated: 2026-05-26 after research synthesis*
+*Last updated: 2026-05-26 after roadmap creation — traceability populated*
