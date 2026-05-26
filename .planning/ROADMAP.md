@@ -37,7 +37,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Plans:** 5 plansPlans:
 **Wave 1**
 
-- [ ] 01-01-PLAN.md — Snapshot pre-wipe source, commit `.claude/`, rename master→main, wipe CRA tree, baseline Astro scaffold (FOUND-01, FOUND-07)
+- [x] 01-01-PLAN.md — Snapshot pre-wipe source, commit `.claude/`, rename master→main, wipe CRA tree, baseline Astro scaffold (FOUND-01, FOUND-07) — completed 2026-05-26, rollup commit `30f8cab`
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
@@ -124,7 +124,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 0/TBD | Not started | - |
+| 1. Foundation | 1/5 | Executing | - |
 | 2. Content Layer | 0/TBD | Not started | - |
 | 3. Sections & Navigation | 0/TBD | Not started | - |
 | 4. SEO, A11Y & Meta Polish | 0/TBD | Not started | - |
