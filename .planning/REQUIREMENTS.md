@@ -9,14 +9,14 @@
 
 Scaffolding, tooling, and the build baseline the rest of M1 sits on.
 
-- [ ] **FOUND-01**: Project builds with Astro 6 (current stable) configured for static output to `dist/`
-- [ ] **FOUND-02**: TypeScript 5 is enabled with `strict: true` and `astro check` passes with zero errors
-- [ ] **FOUND-03**: Tailwind v4 is installed via `@tailwindcss/vite` (not the deprecated `@astrojs/tailwind` integration) and processes a single `src/styles/global.css` with `@theme` directive
-- [ ] **FOUND-04**: `@astrojs/react` is installed and a React 19 island can hydrate from `client:*` directives (verified by a throwaway test component)
+- [x] **FOUND-01**: Project builds with Astro 6 (current stable) configured for static output to `dist/`
+- [x] **FOUND-02**: TypeScript 5 is enabled with `strict: true` and `astro check` passes with zero errors
+- [x] **FOUND-03**: Tailwind v4 is installed via `@tailwindcss/vite` (not the deprecated `@astrojs/tailwind` integration) and processes a single `src/styles/global.css` with `@theme` directive
+- [x] **FOUND-04**: `@astrojs/react` is installed and a React 19 island can hydrate from `client:*` directives (verified by a throwaway test component)
 - [ ] **FOUND-05**: ESLint 9 (flat config) and Prettier are configured for `.astro`, `.ts`, `.tsx`, `.md`; `npm run lint` passes
 - [ ] **FOUND-06**: Vitest 3 is configured with one smoke test that runs `astro build` and asserts the produced `dist/index.html` contains a marker from each of the 8 sections
-- [ ] **FOUND-07**: A single canonical package manager (npm) is used; `yarn.lock` is removed and `package-lock.json` is the only lockfile committed
-- [ ] **FOUND-08**: `astro.config.mjs` sets `site: 'https://Rashmil-1999.github.io'`, `output: 'static'`, and does NOT set `base` (user-site repo serves at root)
+- [x] **FOUND-07**: A single canonical package manager (npm) is used; `yarn.lock` is removed and `package-lock.json` is the only lockfile committed
+- [x] **FOUND-08**: `astro.config.mjs` sets `site: 'https://Rashmil-1999.github.io'`, `output: 'static'`, and does NOT set `base` (user-site repo serves at root)
 
 ### Content Layer (CONTENT)
 
@@ -164,14 +164,14 @@ Every v1 requirement maps to exactly one phase. See `.planning/ROADMAP.md` for p
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| FOUND-01 | Phase 1: Foundation | Pending |
-| FOUND-02 | Phase 1: Foundation | Pending |
-| FOUND-03 | Phase 1: Foundation | Pending |
-| FOUND-04 | Phase 1: Foundation | Pending |
+| FOUND-01 | Phase 1: Foundation | Complete |
+| FOUND-02 | Phase 1: Foundation | Complete |
+| FOUND-03 | Phase 1: Foundation | Complete |
+| FOUND-04 | Phase 1: Foundation | Complete |
 | FOUND-05 | Phase 1: Foundation | Pending |
 | FOUND-06 | Phase 1: Foundation | Pending |
-| FOUND-07 | Phase 1: Foundation | Pending |
-| FOUND-08 | Phase 1: Foundation | Pending |
+| FOUND-07 | Phase 1: Foundation | Complete |
+| FOUND-08 | Phase 1: Foundation | Complete |
 | CONTENT-01 | Phase 2: Content Layer | Pending |
 | CONTENT-02 | Phase 2: Content Layer | Pending |
 | CONTENT-03 | Phase 2: Content Layer | Pending |

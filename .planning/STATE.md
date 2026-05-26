@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-last_updated: "2026-05-27T00:30:00.000Z"
-last_activity: 2026-05-26 -- Plan 01-01 complete (greenfield wipe + Astro 6 scaffold; rollup commit 30f8cab)
+last_updated: "2026-05-26T21:39:43.867Z"
+last_activity: 2026-05-26
 progress:
   total_phases: 5
   completed_phases: 0
   total_plans: 5
-  completed_plans: 1
-  percent: 20
+  completed_plans: 2
+  percent: 0
 ---
 
 # Project State
@@ -25,11 +25,11 @@ See: .planning/PROJECT.md (updated 2026-05-26)
 ## Current Position
 
 Phase: 01 (foundation) — EXECUTING
-Plan: 2 of 5
-Status: Ready to execute plan 01-02 (React + Tailwind v4 integrations)
-Last activity: 2026-05-26 -- Plan 01-01 complete (greenfield wipe + Astro 6 scaffold; rollup commit 30f8cab)
+Plan: 3 of 5
+Status: Ready to execute
+Last activity: 2026-05-26
 
-Progress: [██░░░░░░░░] 20%
+Progress: [████░░░░░░] 40%
 
 ## Performance Metrics
 
@@ -51,6 +51,7 @@ Progress: [██░░░░░░░░] 20%
 - Trend: —
 
 *Updated after each plan completion*
+| Phase 01-foundation P02 | ~5min | 2 tasks | 8 files |
 
 ## Accumulated Context
 
@@ -68,6 +69,10 @@ Recent decisions affecting current work:
 - Plan 01-01: package.json `name` set to `rashmil-portfolio` (was placeholder `new-resume` from CRA scaffold); package remains `private: true`.
 - Plan 01-01: `.gitignore` augmented (appended `.astro/`, `.env.production`, `.idea/`) rather than wholesale-replaced — preserved the user's pre-existing language-specific blocks.
 - Plan 01-01: README.md left as-is (CRA original) — Plan 05 owns the rewrite per Phase 5 CLEAN-* + README-* work.
+- [Phase 01-foundation]: Plan 01-02: Used 'npx astro add <name> --yes' over manual npm install + hand-edit for both react and tailwind integrations (CLI is single source of truth for peer pin + config slot)
+- [Phase 01-foundation]: Plan 01-02: Promoted @astrojs/check + typescript@^5.9 to devDependencies (Plan 01 omitted them; FOUND-02 astro check gate requires both)
+- [Phase 01-foundation]: Plan 01-02: Deleted Plan 01 D-04 recovery leftovers (astro-README.md.tmp, astro.gitignore.tmp, package.json.astro) rather than tsconfig-excluding them
+- [Phase 01-foundation]: Plan 01-02: Dropped compilerOptions.jsx block from tsconfig (Pattern 8 verbatim); Plan 03 will re-add if its .tsx hydration fixture needs it under strictest
 
 ### Pending Todos
 
@@ -92,6 +97,6 @@ Items acknowledged and carried forward from previous milestone close:
 
 ## Session Continuity
 
-Last session: 2026-05-27T00:30:00.000Z
-Stopped at: Plan 01-01 complete; ready to begin plan 01-02 (React + Tailwind v4)
-Resume file: .planning/phases/01-foundation/01-02-PLAN.md
+Last session: 2026-05-26T21:39:43.863Z
+Stopped at: Completed 01-foundation/01-02-PLAN.md
+Resume file: None
