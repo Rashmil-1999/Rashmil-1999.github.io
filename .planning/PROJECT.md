@@ -25,13 +25,14 @@ The site looks and reads the same to a visitor, but underneath the stack is mode
 
 <!-- M1: Refresh & Modernize. Hypotheses until shipped. -->
 
-- [ ] Replace Create React App with **Astro 5 + TypeScript** (hybrid: `.astro` for static, React 19 islands only where genuinely interactive)
+- [ ] Replace Create React App with **Astro 6 + TypeScript** (hybrid: `.astro` for static, React 19 islands only where genuinely interactive)
 - [ ] Replace Bootstrap 4 CDN with **Tailwind v4**, bundled (no third-party UI CDNs)
-- [ ] Migrate `src/resumeData.json` to **Astro 5 Content Layer** collections with typed schemas: markdown frontmatter for `projects` / `work` / `education` / `leadership` / `testimonials`; YAML for `about` / `skills` / `links`
+- [ ] Migrate `src/resumeData.json` to **Astro Content Layer** collections (defined in `src/content.config.ts`) with typed schemas: `glob()` loader + markdown frontmatter for `projects` / `work` / `education` / `leadership` / `testimonials`; `file()` loader + YAML for `about` / `skills` / `links` (this split is the M2 CMS contract — folder collections vs file collections)
 - [ ] Port every existing section preserving its layout and information, applying light visual polish (spacing, typography, icon set consistency, color contrast)
 - [ ] Native scroll-spy and smooth scrolling (no jQuery, no `react-scroll`)
 - [ ] Eliminate documented anti-patterns from `.planning/codebase/`: dead `react-scroll` / `react-script-tag` deps, jQuery scroll-spy IIFE in `public/index.html`, hand-maintained `image_map` in `Projects.jsx`, missing Bootstrap CSS, `<StrictMode>` placement
 - [ ] WCAG 2.1 AA accessibility: semantic landmarks, ARIA on nav toggles and icon-only buttons, keyboard navigation, color-contrast pass, focus management
+- [ ] SEO / social meta hygiene (currently absent): shared `<BaseHead>` with OpenGraph + Twitter Card tags, canonical URL, real `<meta name="description">`, and `@astrojs/sitemap` integration — prerequisite is setting `site` in `astro.config.mjs`
 - [ ] Tooling baseline: ESLint, Prettier, `tsconfig` strict, single Vitest smoke test asserting `astro build` succeeds and each section renders
 - [ ] **GitHub Actions** deploy workflow using `withastro/action` (replaces local `npm run deploy` / `gh-pages` package)
 - [ ] Site serves at `https://Rashmil-1999.github.io/` (user-site repo, root path)
@@ -46,6 +47,8 @@ The site looks and reads the same to a visitor, but underneath the stack is mode
 - Dark mode, internationalization, analytics — not requested
 - Custom domain — site moves to default GitHub URL; the old `rashmilpanchani.me` domain is no longer valid and `public/CNAME` is deleted
 - A PWA / service worker — current one is unregistered; not reintroduced
+- Astro View Transitions — zero benefit on a single-page anchor-nav site; introduces script-re-execution bug class
+- Dark mode toggle, view-transitions polish, JSON-LD, real webmanifest, custom 404 page — P2 SEO/meta items deferred from M1
 - Cloudflare Pages / Netlify / Vercel hosting — staying on GitHub Pages
 - Migrations to React Native / mobile app
 
@@ -61,7 +64,7 @@ The site looks and reads the same to a visitor, but underneath the stack is mode
 ## Constraints
 
 - **Hosting**: GitHub Pages (free tier) — no backend, no server runtime, must publish as static files
-- **Tech stack**: Astro 5, React 19 (islands only), Tailwind v4, TypeScript 5 (strict), Node 22 LTS — current stable as of 2026-05; "use the latest features where they help, not for the sake of it"
+- **Tech stack**: Astro 6, React 19 (islands only), Tailwind v4 (via `@tailwindcss/vite`, NOT the deprecated `@astrojs/tailwind` integration which is v3-only), TypeScript 5 (strict), Node 22 LTS — current stable as of 2026-05; "use the latest features where they help, not for the sake of it"
 - **Repo type**: User-site repo → site serves at root path `/`, not a subpath
 - **Content**: All resume content must round-trip from the current `src/resumeData.json` shape into the new Content Layer collections — no data loss
 - **PDF**: `public/Rashmil_Panchani.pdf` download link must keep working
@@ -73,7 +76,7 @@ The site looks and reads the same to a visitor, but underneath the stack is mode
 
 | Decision | Rationale | Outcome |
 |----------|-----------|---------|
-| Astro 5 over Vite / Next.js / staying on CRA | Static-first portfolio, best Lighthouse story, Content Layer fits M2's "editable content" goal natively; CRA is deprecated | — Pending |
+| Astro 6 over Vite / Next.js / staying on CRA | Static-first portfolio, best Lighthouse story, Content Layer fits M2's "editable content" goal natively; CRA is deprecated. Bumped from Astro 5 to 6 after research confirmed 6.3.8 is current stable and all integrations support it. | — Pending |
 | TypeScript with strict mode | Typed Content Layer schemas catch resume-data errors at build; modernization is the point of M1 | — Pending |
 | Tailwind v4 over Bootstrap 5 / plain CSS | Utility-first makes "light visual polish" iterative; CSS-first config in v4 means no `tailwind.config.js` for a small site | — Pending |
 | Hybrid component model (`.astro` + selective React 19 islands) | Today's components have zero interactivity; shipping React for static markup is wasted JS. Keeps React available the moment we need it. | — Pending |
@@ -100,5 +103,8 @@ This document evolves at phase transitions and milestone boundaries.
 3. Audit Out of Scope — reasons still valid?
 4. Update Context with current state
 
+| Add P1 SEO/meta hygiene (OpenGraph, Twitter Card, canonical, real meta description, sitemap) to M1 | Current site has none of this; trivially cheap on Astro and table-stakes for any modern portfolio. Surfaced by features research. | — Pending |
+| Skip Astro View Transitions in M1 | Single-page anchor-nav site — View Transitions add no benefit and introduce script-re-execution bugs. Surfaced by pitfalls research. | — Pending |
+
 ---
-*Last updated: 2026-05-26 after initialization*
+*Last updated: 2026-05-26 after research synthesis (Astro 5→6, SEO meta added, View Transitions excluded)*
