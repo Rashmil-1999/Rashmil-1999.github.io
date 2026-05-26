@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-last_updated: "2026-05-26T21:39:43.867Z"
+last_updated: "2026-05-26T21:54:48.170Z"
 last_activity: 2026-05-26
 progress:
   total_phases: 5
   completed_phases: 0
   total_plans: 5
-  completed_plans: 2
+  completed_plans: 3
   percent: 0
 ---
 
@@ -25,11 +25,11 @@ See: .planning/PROJECT.md (updated 2026-05-26)
 ## Current Position
 
 Phase: 01 (foundation) — EXECUTING
-Plan: 3 of 5
+Plan: 4 of 5
 Status: Ready to execute
 Last activity: 2026-05-26
 
-Progress: [████░░░░░░] 40%
+Progress: [██████░░░░] 60%
 
 ## Performance Metrics
 
@@ -52,6 +52,7 @@ Progress: [████░░░░░░] 40%
 
 *Updated after each plan completion*
 | Phase 01-foundation P02 | ~5min | 2 tasks | 8 files |
+| Phase 01-foundation P03 | ~6min | 4 tasks | 16 files |
 
 ## Accumulated Context
 
@@ -73,6 +74,10 @@ Recent decisions affecting current work:
 - [Phase 01-foundation]: Plan 01-02: Promoted @astrojs/check + typescript@^5.9 to devDependencies (Plan 01 omitted them; FOUND-02 astro check gate requires both)
 - [Phase 01-foundation]: Plan 01-02: Deleted Plan 01 D-04 recovery leftovers (astro-README.md.tmp, astro.gitignore.tmp, package.json.astro) rather than tsconfig-excluding them
 - [Phase 01-foundation]: Plan 01-02: Dropped compilerOptions.jsx block from tsconfig (Pattern 8 verbatim); Plan 03 will re-add if its .tsx hydration fixture needs it under strictest
+- [Phase 01-foundation]: Plan 01-03: Renamed hydration fixture src/pages/__hydration-test.astro -> src/pages/hydration-test.astro (Rule 1 deviation; Astro 6 excludes leading-underscore pages from route generation; built URL is /hydration-test/)
+- [Phase 01-foundation]: Plan 01-03: Did NOT re-add compilerOptions.jsx to tsconfig — astro check exits clean on 16 files under strictest without it (Plan 02 forward note resolved)
+- [Phase 01-foundation]: Plan 01-03: Pitfall 29 did NOT fire — dist/_astro/BaseLayout.*.css contains .text-[#abc123]{color:#abc123} after clean build; no @source escalation needed
+- [Phase 01-foundation]: Plan 01-03: Adopted D-23 lowercase section ids (sidenav, work) over deleted-JSX ids (sideNav, experience); comment headers in SideNav.astro/Work.astro flag the divergence
 
 ### Pending Todos
 
@@ -97,6 +102,6 @@ Items acknowledged and carried forward from previous milestone close:
 
 ## Session Continuity
 
-Last session: 2026-05-26T21:39:43.863Z
+Last session: 2026-05-26T21:51:10.132Z
 Stopped at: Completed 01-foundation/01-02-PLAN.md
 Resume file: None
