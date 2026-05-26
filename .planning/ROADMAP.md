@@ -13,7 +13,7 @@ This is a re-platforming of an existing Create React App portfolio onto Astro 6 
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Foundation** - Astro 6 + TS strict + Tailwind v4 + ESLint + Vitest scaffold builds to `dist/` and passes a smoke test
+- [x] **Phase 1: Foundation** - Astro 6 + TS strict + Tailwind v4 + ESLint + Vitest scaffold builds to `dist/` and passes a smoke test (completed 2026-05-26)
 - [ ] **Phase 2: Content Layer** - All 8 resume collections defined and `resumeData.json` migrated with zero data loss
 - [ ] **Phase 3: Sections & Navigation** - All 8 sections render from collections, side nav with scroll-spy works, all CDN UI libs gone
 - [ ] **Phase 4: SEO, A11Y & Meta Polish** - Shared `<BaseHead>`, sitemap, OG/Twitter/canonical, zero axe-core WCAG 2.1 AA violations
@@ -34,7 +34,7 @@ Decimal phases appear between their surrounding integers in numeric order.
   4. Repo contains exactly one lockfile (`package-lock.json`); `yarn.lock` is deleted; `npm ls react react-dom @astrojs/react` reports no duplicate or invalid React versions.
   5. `astro.config.mjs` sets `site: 'https://Rashmil-1999.github.io'` and `output: 'static'`, does NOT set `base`, and wires `@tailwindcss/vite` (not `@astrojs/tailwind`); a Tailwind utility used in a `.astro` file produces matching CSS in `dist/_astro/`.
 
-**Plans:** 4/5 plans executed
+**Plans:** 5/5 plans complete
 **Wave 1**
 
 - [x] 01-01-PLAN.md — Snapshot pre-wipe source, commit `.claude/`, rename master→main, wipe CRA tree, baseline Astro scaffold (FOUND-01, FOUND-07) — completed 2026-05-26, rollup commit `30f8cab`
@@ -53,7 +53,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 **Wave 5** *(blocked on Wave 4 completion)*
 
-- [ ] 01-05-PLAN.md — Install Vitest; author vitest.config.ts + globalSetup spawning `astro build` + 5-assertion smoke test; author .github/workflows/ci.yml (lint+format:check+astro-check+test on main, no deploy) (FOUND-06)
+- [x] 01-05-PLAN.md — Install Vitest; author vitest.config.ts + globalSetup spawning `astro build` + 5-assertion smoke test; author .github/workflows/ci.yml (lint+format:check+astro-check+test on main, no deploy) (FOUND-06)
 
 ### Phase 2: Content Layer
 
@@ -124,7 +124,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 4/5 | In Progress|  |
+| 1. Foundation | 5/5 | Complete   | 2026-05-26 |
 | 2. Content Layer | 0/TBD | Not started | - |
 | 3. Sections & Navigation | 0/TBD | Not started | - |
 | 4. SEO, A11Y & Meta Polish | 0/TBD | Not started | - |
