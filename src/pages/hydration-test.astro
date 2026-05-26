@@ -1,0 +1,21 @@
+---
+// src/pages/hydration-test.astro
+// CONTEXT.md D-09: hydration fixture page shipped in the same build as index.astro.
+// NOTE (deviation from plan): plan listed the source path as `src/pages/__hydration-test.astro`.
+// Astro 6 excludes any `src/pages/` file whose name starts with an underscore from route
+// generation (https://docs.astro.build/en/guides/routing/#excluding-pages). The build silently
+// emits 0 routes for that source, so the plan's must-have `dist/__hydration-test/index.html`
+// is structurally infeasible. Renamed to `hydration-test.astro` -> built URL is /hydration-test/.
+// See 01-03-SUMMARY.md "Deviations from Plan" #1 for the full rationale.
+//
+// Cross-tree import (tests/__fixtures__/) works because tsconfig include is "**/*" (Pitfall E).
+// client:load is intentional per Pattern 4 — Pitfall 5 says production code defaults to no
+// directive; here we deliberately use client:load so the smoke test sees a deterministic
+// React chunk in dist/_astro/. Phase 5 may delete this fixture (deferred).
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HydrationCheck from '../../tests/__fixtures__/HydrationCheck.tsx';
+---
+<BaseLayout title="Hydration test">
+    <HydrationCheck client:load />
+</BaseLayout>

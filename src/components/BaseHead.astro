@@ -1,0 +1,18 @@
+---
+// src/components/BaseHead.astro
+// CONTEXT.md D-13: minimal head — charset, viewport, title, favicon, two font hints.
+// Phase 4 SEO-01 expands this with the social/meta tags.
+// Phase 3 STYLE-05 adds the font stylesheet link.
+
+interface Props {
+    title: string;
+}
+
+const { title } = Astro.props;
+---
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{title}</title>
+<link rel="icon" href="/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

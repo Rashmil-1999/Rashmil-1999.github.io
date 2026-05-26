@@ -1,1 +1,9 @@
+/* src/styles/global.css */
+/* Source: tailwindcss.com/docs/installation/framework-guides/astro
+            and CONTEXT.md D-14 */
+
 @import "tailwindcss";
+
+@theme {
+    /* TODO Phase 3 (STYLE-04) — brand tokens (colors, fonts, spacing) */
+}

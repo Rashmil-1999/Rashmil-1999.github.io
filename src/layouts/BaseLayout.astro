@@ -1,0 +1,23 @@
+---
+// src/layouts/BaseLayout.astro
+// Source: docs.astro.build/en/basics/layouts/
+// CONTEXT.md D-13: minimal head, no OG/Twitter/canonical in Phase 1.
+
+import BaseHead from '../components/BaseHead.astro';
+import '../styles/global.css';
+
+interface Props {
+    title: string;
+}
+
+const { title } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+    <head>
+        <BaseHead title={title} />
+    </head>
+    <body>
+        <slot />
+    </body>
+</html>

@@ -1,17 +1,28 @@
 ---
+// src/pages/index.astro
+// Source: docs.astro.build/en/basics/astro-pages/
+// CONTEXT.md D-07: composes 8 section stubs in current-site order (SideNav, About, Education, Work, Skills, Projects, Leadership, Testimonials).
+// Phase 3 fills the stubs with real content; this composition order does not change.
 
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SideNav from '../components/SideNav.astro';
+import About from '../components/About.astro';
+import Education from '../components/Education.astro';
+import Work from '../components/Work.astro';
+import Skills from '../components/Skills.astro';
+import Projects from '../components/Projects.astro';
+import Leadership from '../components/Leadership.astro';
+import Testimonials from '../components/Testimonials.astro';
 ---
-
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout title="Rashmil Panchani">
+    <SideNav />
+    <main>
+        <About />
+        <Education />
+        <Work />
+        <Skills />
+        <Projects />
+        <Leadership />
+        <Testimonials />
+    </main>
+</BaseLayout>
