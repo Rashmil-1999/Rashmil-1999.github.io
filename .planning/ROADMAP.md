@@ -147,7 +147,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation | 5/5 | Complete    | 2026-05-26 |
-| 2. Content Layer | 6/7 | In Progress|  |
+| 2. Content Layer | 7/7 | Complete    | 2026-05-27 |
 | 3. Sections & Navigation | 0/TBD | Not started | - |
 | 4. SEO, A11Y & Meta Polish | 0/TBD | Not started | - |
 | 5. Cleanup & Deploy | 0/TBD | Not started | - |
