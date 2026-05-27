@@ -14,7 +14,7 @@ This is a re-platforming of an existing Create React App portfolio onto Astro 6 
 Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Foundation** - Astro 6 + TS strict + Tailwind v4 + ESLint + Vitest scaffold builds to `dist/` and passes a smoke test (completed 2026-05-26)
-- [ ] **Phase 2: Content Layer** - All 8 resume collections defined and `resumeData.json` migrated with zero data loss
+- [x] **Phase 2: Content Layer** - All 8 resume collections defined and `resumeData.json` migrated with zero data loss (completed 2026-05-27)
 - [ ] **Phase 3: Sections & Navigation** - All 8 sections render from collections, side nav with scroll-spy works, all CDN UI libs gone
 - [ ] **Phase 4: SEO, A11Y & Meta Polish** - Shared `<BaseHead>`, sitemap, OG/Twitter/canonical, zero axe-core WCAG 2.1 AA violations
 - [ ] **Phase 5: Cleanup & Deploy** - CRA / yarn.lock / CNAME / gh-pages branch removed, GitHub Actions publishes the live site
@@ -68,7 +68,7 @@ Decimal phases appear between their surrounding integers in numeric order.
   4. `npx astro check` validates content against schemas; introducing a deliberately-malformed test fixture (missing required field) fails the build with a useful Zod error referencing the field path.
   5. Project images are colocated with their markdown in `src/content/projects/` and referenced via the `image()` schema helper; no hand-maintained `image_map` lookup object exists anywhere in the codebase.
 
-**Plans:** 6/7 plans executed
+**Plans:** 7/7 plans complete
 
 **Wave 1**
 
@@ -90,7 +90,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 **Wave 5** *(blocked on Wave 4)*
 
-- [ ] 02-07-PLAN.md — Author 02-PARITY.md and human-verify zero-data-loss checkpoint (CONTENT-06)
+- [x] 02-07-PLAN.md — Author 02-PARITY.md and human-verify zero-data-loss checkpoint (CONTENT-06) — completed 2026-05-27
 
 ### Phase 3: Sections & Navigation
 
