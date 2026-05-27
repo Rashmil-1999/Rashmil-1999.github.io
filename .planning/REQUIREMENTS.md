@@ -26,7 +26,7 @@ Resume data moves from a single JSON to typed Content Layer collections — the 
 - [ ] **CONTENT-02**: List-collections — `projects`, `work`, `education`, `leadership`, `testimonials` — use `glob()` loader over per-item markdown files in `src/content/<name>/`
 - [x] **CONTENT-03**: Singleton-collections — `about`, `skills`, `links` — use `file()` loader over a single YAML file each (e.g., `src/content/about.yaml`)
 - [x] **CONTENT-04**: Every list-collection item has an `order: z.number().default(0)` field so a future CMS can drag-to-reorder without filename hacks
-- [ ] **CONTENT-05**: Project images use Astro's `image()` schema helper and live co-located with their markdown (e.g., `src/content/projects/<slug>.png` referenced as `./<slug>.png` in frontmatter)
+- [x] **CONTENT-05**: Project images use Astro's `image()` schema helper and live co-located with their markdown (e.g., `src/content/projects/<slug>.png` referenced as `./<slug>.png` in frontmatter)
 - [ ] **CONTENT-06**: All content currently in `src/resumeData.json` round-trips into the new collections with zero data loss (verified by manual diff of rendered output against current site)
 - [x] **CONTENT-07**: Schemas use CMS-neutral field names (no `_id`, `_ref`, `sys.*`); enums are plain strings (no raw CSS class names)
 - [ ] **CONTENT-08**: `npx astro check` validates all content against schemas at build; a deliberately-malformed test fixture fails the build with a useful error
@@ -176,7 +176,7 @@ Every v1 requirement maps to exactly one phase. See `.planning/ROADMAP.md` for p
 | CONTENT-02 | Phase 2: Content Layer | Pending |
 | CONTENT-03 | Phase 2: Content Layer | Complete |
 | CONTENT-04 | Phase 2: Content Layer | Complete |
-| CONTENT-05 | Phase 2: Content Layer | Pending |
+| CONTENT-05 | Phase 2: Content Layer | Complete |
 | CONTENT-06 | Phase 2: Content Layer | Pending |
 | CONTENT-07 | Phase 2: Content Layer | Complete |
 | CONTENT-08 | Phase 2: Content Layer | Pending |
