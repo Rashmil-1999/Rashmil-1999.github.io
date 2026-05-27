@@ -20,5 +20,44 @@ const { title } = Astro.props;
     </head>
     <body>
         <slot />
+        <script>
+            // Scroll-spy (NAV-03 / D-30). Single block, vanilla JS, no framework.
+            // RESEARCH.md Pattern 6 lines 713-750.
+            // Targets <section id="..."> elements inside <main> (excludes <nav id="sidenav">
+            // which sits outside <main> per src/pages/index.astro composition).
+            // Toggles aria-current="page" on matching [data-section-link] anchor from SideNav.
+            const sections = document.querySelectorAll('main section[id]');
+            const navLinks = document.querySelectorAll('[data-section-link]');
+            const linkMap = new Map();
+            navLinks.forEach((link) => {
+                const id = link.getAttribute('data-section-link');
+                if (id) linkMap.set(id, link);
+            });
+
+            const observer = new IntersectionObserver(
+                (entries) => {
+                    const active = entries
+                        .filter((e) => e.isIntersecting)
+                        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+                    if (!active) return;
+                    const id = active.target.id;
+                    linkMap.forEach((link, linkId) => {
+                        if (linkId === id) {
+                            link.setAttribute('aria-current', 'page');
+                        } else {
+                            link.removeAttribute('aria-current');
+                        }
+                    });
+                },
+                {
+                    // D-31 defaults: section is "active" when its top is in the upper 30%
+                    // of viewport and its bottom is above the lower 50% of viewport.
+                    rootMargin: '-30% 0px -50% 0px',
+                    threshold: 0,
+                },
+            );
+
+            sections.forEach((section) => observer.observe(section));
+        </script>
     </body>
 </html>
