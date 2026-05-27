@@ -6,6 +6,7 @@
 
 import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
+import icon from 'astro-icon';
 import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
@@ -14,7 +15,9 @@ export default defineConfig({
     // No `base` set — this is a user-site repo, served at /.
     // Setting `base` here is the #1 Astro-on-GH-Pages footgun (Pitfall 10).
     output: 'static',
-    integrations: [react()],
+    trailingSlash: 'always',
+    build: { format: 'directory' },
+    integrations: [react(), icon()],
     vite: {
         plugins: [tailwindcss()],
     },
