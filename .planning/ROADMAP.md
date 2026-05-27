@@ -68,7 +68,29 @@ Decimal phases appear between their surrounding integers in numeric order.
   4. `npx astro check` validates content against schemas; introducing a deliberately-malformed test fixture (missing required field) fails the build with a useful Zod error referencing the field path.
   5. Project images are colocated with their markdown in `src/content/projects/` and referenced via the `image()` schema helper; no hand-maintained `image_map` lookup object exists anywhere in the codebase.
 
-**Plans**: TBD
+**Plans:** 7 plans
+
+**Wave 1**
+
+- [ ] 02-01-PLAN.md — Fill src/content.config.ts with 8 defineCollection exports + Zod 4 schemas (CONTENT-01, CONTENT-04, CONTENT-07)
+
+**Wave 2** *(blocked on Wave 1)*
+
+- [ ] 02-02-PLAN.md — Author about.yaml + skills.yaml + links.yaml singletons; relocate profile.jpg (CONTENT-03)
+- [ ] 02-03-PLAN.md — Colocate 16 project images + 4 orphans; rename graduino.png → garduino.png (CONTENT-05 asset side)
+
+**Wave 3** *(blocked on Wave 2)*
+
+- [ ] 02-04-PLAN.md — Author 13 project markdown entries with cover/alternates refs (CONTENT-02, CONTENT-05)
+- [ ] 02-05-PLAN.md — Author 2 work + 3 education + 1 leadership + 1 testimonial entries (CONTENT-02)
+
+**Wave 4** *(blocked on Wave 3)*
+
+- [ ] 02-06-PLAN.md — Author tests/content-validation.test.ts + malformed fixture (CONTENT-08)
+
+**Wave 5** *(blocked on Wave 4)*
+
+- [ ] 02-07-PLAN.md — Author 02-PARITY.md and human-verify zero-data-loss checkpoint (CONTENT-06)
 
 ### Phase 3: Sections & Navigation
 
@@ -125,7 +147,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation | 5/5 | Complete    | 2026-05-26 |
-| 2. Content Layer | 0/TBD | Not started | - |
+| 2. Content Layer | 0/7 | Not started | - |
 | 3. Sections & Navigation | 0/TBD | Not started | - |
 | 4. SEO, A11Y & Meta Polish | 0/TBD | Not started | - |
 | 5. Cleanup & Deploy | 0/TBD | Not started | - |
