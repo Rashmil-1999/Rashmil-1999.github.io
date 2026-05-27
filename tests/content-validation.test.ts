@@ -34,12 +34,17 @@
 
 import { spawnSync } from 'node:child_process';
 import { copyFileSync, mkdirSync, readFileSync, rmSync } from 'node:fs';
-import { dirname, join } from 'node:path';
+import { dirname, join, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { describe, expect, expectTypeOf, it } from 'vitest';
 
 import type { CollectionEntry } from 'astro:content';
 
-const REPO_ROOT = process.cwd();
+// Anchor on the test file's own location so paths resolve correctly even
+// when Vitest is launched with a non-repo cwd (IDE runner, monorepo
+// wrapper, CI scratch dir). `import.meta.url` -> tests/, then up one.
+const TEST_DIR = dirname(fileURLToPath(import.meta.url));
+const REPO_ROOT = resolve(TEST_DIR, '..');
 const FIXTURE = join(REPO_ROOT, 'tests/__fixtures__/malformed-project.md');
 const TEMP_DIR = join(REPO_ROOT, 'src/content/projects/__test__');
 const TEMP_FILE = join(TEMP_DIR, 'index.md');
