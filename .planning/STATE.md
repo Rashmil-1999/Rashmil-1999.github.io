@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-last_updated: "2026-05-27T00:28:01.869Z"
+last_updated: "2026-05-27T00:33:58.899Z"
 last_activity: 2026-05-27
 progress:
   total_phases: 5
   completed_phases: 1
   total_plans: 12
-  completed_plans: 8
+  completed_plans: 9
   percent: 20
 ---
 
@@ -25,11 +25,11 @@ See: .planning/PROJECT.md (updated 2026-05-26)
 ## Current Position
 
 Phase: 02 (content-layer) — EXECUTING
-Plan: 4 of 7
+Plan: 5 of 7
 Status: Ready to execute
 Last activity: 2026-05-27
 
-Progress: [███████░░░] 67%
+Progress: [████████░░] 75%
 
 ## Performance Metrics
 
@@ -59,6 +59,7 @@ Progress: [███████░░░] 67%
 | Phase 02 P01 | 2m 49s | 1 tasks | 1 files |
 | Phase 02 P02 | 3m 27s | 3 tasks | 4 files |
 | Phase 02 P03 | 1m 26s | 2 tasks | 20 files |
+| Phase Phase 02 PP05 | ~3min | 3 tasks | 7 files |
 
 ## Accumulated Context
 
@@ -100,6 +101,9 @@ Recent decisions affecting current work:
 - [Phase 02-content-layer]: Plan 02-02: Honored Prettier pre-commit single-quote normalization on YAML strings rather than fighting it. Single-quoted category names satisfy the semantic acceptance criterion (names ARE quoted to handle '&' anchor sigil + embedded spaces). Future YAML/markdown frontmatter plans should expect identical behavior.
 - [Phase ?]: [Phase 02-content-layer]: Plan 02-03: Implemented Recipe R5 table (16 images across 13 slug dirs) verbatim; honored D-09 garduino rename and D-10 _orphans containment; rejected 4.8 MB emotion.png per CONCERNS carry-forward
 - [Phase ?]: [Phase 02-content-layer]: Plan 02-03: Surfaced plan-authoring narrative mismatch (plan body says '18 images' in prose, but Recipe R5 table + verify gate + frontmatter + success_criteria + output block all resolve to 16). Implemented to the table — every machine-checkable gate in the plan is internally consistent at 16
+- [Phase ?]: Plan 02-05: Authored 7 list-collection entries (work × 2, education × 3, leadership × 1, testimonial × 1). Synthesized 3 one-sentence education bodies per PATTERNS.md L390 to satisfy D-20 body-non-emptiness gate — restatements of frontmatter only, no invented content. Flag for Plan 02-07 parity diff as 'not in snapshot'.
+- [Phase ?]: Plan 02-05: Testimonial schema split — snapshot 'Roopam Mishra, Founder of Phionike Solutions: Design-Tech Studio.' decomposed into user='Roopam Mishra', role='Founder', org='Phionike Solutions: Design-Tech Studio' per RESEARCH.md L673-679. Trailing period on org dropped (terminated joined sentence, not org name; matches snapshot work[0].company spelling).
+- [Phase ?]: Plan 02-05: Honored Prettier single-quote normalization on YAML frontmatter scalars (same precedent as Plan 02-02 D-21). Author's double-quoted scalars rewritten as single-quotes by pre-commit hook — semantics unchanged; all grep gates still pass.
 
 ### Pending Todos
 
@@ -113,6 +117,7 @@ Acceptance-criteria pre-checks (not blockers — flag before relevant phase star
 - Phase 4: An OG image asset (1200×630, `public/og.png`) must be authored before SEO success criterion 2 is testable.
 - Phase 5: Audit repo branch protection rules (Settings → Branches) before the Actions deploy runs.
 - Phase 5: Decide PDF cache-busting strategy (query param vs `src/` import for Vite hashing).
+- Plan 02-04 (13 project markdown entries) has NOT been executed prior to Plan 02-05 — Wave 3 execution-order anomaly. src/content/projects/ has 0 .md files; astro check still exits 0 (missing files = WARN, not error). Plan 02-06 will fail its getCollection('projects') assertions if 02-04 is not dispatched before Wave 4.
 
 ## Deferred Items
 
@@ -124,6 +129,6 @@ Items acknowledged and carried forward from previous milestone close:
 
 ## Session Continuity
 
-Last session: 2026-05-27T00:27:36.408Z
+Last session: 2026-05-27T00:33:29.476Z
 Stopped at: Completed 02-02-PLAN.md (singleton YAML authoring)
 Resume file: None
