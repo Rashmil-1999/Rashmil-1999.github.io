@@ -61,3 +61,136 @@ html {
         scroll-behavior: auto;
     }
 }
+
+/* Subheading utility (recovered — used in About + section row headers) */
+.subheading {
+    font-family: var(--font-heading);
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 1.5rem;
+}
+
+/* Lead paragraph (recovered p.lead) */
+.lead {
+    font-size: 1.15rem;
+    font-weight: 400;
+}
+
+/* Resume section base (recovered: padding + max-width + min-height) */
+.resume-section {
+    padding: 5rem 1rem;
+    max-width: 75rem;
+}
+@media (min-width: 768px) {
+    .resume-section {
+        min-height: 100vh;
+        padding-left: 3rem;
+        padding-right: 3rem;
+    }
+}
+.resume-section-content {
+    width: 100%;
+}
+
+/* Sidebar layout (recovered, breakpoint widened from 992px → 768px per D-10) */
+@media (min-width: 768px) {
+    body {
+        padding-left: 19rem; /* matches sidebar width */
+    }
+    .sidenav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 19rem;
+        height: 100vh;
+        background-color: var(--color-bg);
+        display: flex;
+        flex-direction: column;
+    }
+}
+@media (max-width: 767px) {
+    body {
+        padding-top: 3.375rem;
+    }
+    .sidenav {
+        position: sticky;
+        top: 0;
+        background-color: var(--color-bg);
+        z-index: 50;
+    }
+}
+
+/* Active nav link — 3 signals: accent color + accent left border + 800 weight (D-12 / A11Y-04) */
+.nav-link {
+    font-weight: 800;
+    letter-spacing: 0.05rem;
+    text-transform: uppercase;
+    padding: 0.5rem 1rem;
+    color: var(--color-text);
+    border-left: 4px solid transparent;
+}
+.nav-link[aria-current='page'] {
+    color: var(--color-accent);
+    border-left-color: var(--color-accent);
+    font-weight: 800; /* already 800; emphasis via color + border */
+}
+
+/* Profile pic (recovered dimensions) */
+.profile-pic {
+    width: 200px;
+    height: 225px;
+    object-fit: cover;
+}
+
+/* text-primary utility (recovered — used for the accent span in <h1>{first}<span class="text-primary">{last}</span>) */
+.text-primary {
+    color: var(--color-accent);
+}
+
+/* Resume Download button.
+   D-27 reconciliation: UI-SPEC accent (#bd5d38), NOT recovered CRA navy (#123c69).
+   "Refresh same vibe" modernization choice per CONTEXT.md D-27 + PATTERNS.md CRA-RECOVERY DELTA. */
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    background-color: var(--color-accent);
+    color: white;
+    text-decoration: none;
+    border-radius: 0.25rem;
+}
+.btn-primary:hover {
+    background-color: #a44e2f; /* ~10% darker than accent */
+}
+
+/* text-muted utility — consumed by Education/Work/Leadership right-column date <span>.
+   Standardizes on --color-muted alias (PATTERNS.md: CRA used Bootstrap text-secondary). */
+.text-muted {
+    color: var(--color-muted);
+}
+
+/* D-26: recovered CRA .social-icons .social-icon 3.5rem rounded-circle (sourced from b537845:src/App.css).
+   Consumed by About.astro social anchors (LinkedIn, Github). */
+.social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 9999px;
+    background-color: var(--color-text);
+    color: var(--color-bg);
+    text-decoration: none;
+}
+.social-icon:hover {
+    background-color: var(--color-accent);
+}
+
+/* D-15 alternating row direction: belt-and-suspenders for Tailwind v4 arbitrary variant
+   md:[&:nth-child(even)]:flex-row-reverse in Projects.astro; both paths cover the same
+   selector + property, so when both apply the result is identical. RESEARCH.md Assumption A5. */
+@media (min-width: 768px) {
+    .project-card:nth-child(even) {
+        flex-direction: row-reverse;
+    }
+}
