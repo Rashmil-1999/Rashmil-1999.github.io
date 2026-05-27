@@ -61,10 +61,10 @@ Side nav and scroll-spy without jQuery and without `react-scroll`.
 Light visual polish — preserve current layout, fix presentation rough edges.
 
 - [ ] **STYLE-01**: Bootstrap 4 (CDN and class names) is fully removed; no `bootstrap` package is installed
-- [ ] **STYLE-02**: All icons are bundled via `astro-icon` + `@iconify-json/simple-icons` (brand/social) + `@iconify-json/devicon` (tech stack); no CDN icon scripts in `<head>`
+- [x] **STYLE-02**: All icons are bundled via `astro-icon` + `@iconify-json/simple-icons` (brand/social) + `@iconify-json/devicon` (tech stack); no CDN icon scripts in `<head>`
 - [ ] **STYLE-03**: Project images are served through Astro's `<Image />` with appropriate `width` / `height` / `format` to prevent the 4.8 MB / 1 MB asset weights flagged in the codebase concerns map
 - [ ] **STYLE-04**: Section spacing, heading typography, and link/button hover states are tidied for visual consistency without redesigning the layout
-- [ ] **STYLE-05**: Fonts (currently Saira Extra Condensed + Muli from Google Fonts) are loaded via `<link rel="preconnect">` + `<link rel="stylesheet">` in the shared head, or self-hosted via `@fontsource/*`; no FOIT on a fresh load
+- [x] **STYLE-05**: Fonts (currently Saira Extra Condensed + Muli from Google Fonts) are loaded via `<link rel="preconnect">` + `<link rel="stylesheet">` in the shared head, or self-hosted via `@fontsource/*`; no FOIT on a fresh load
 
 ### Accessibility (A11Y)
 
@@ -196,10 +196,10 @@ Every v1 requirement maps to exactly one phase. See `.planning/ROADMAP.md` for p
 | NAV-04 | Phase 3: Sections & Navigation | Pending |
 | NAV-05 | Phase 3: Sections & Navigation | Pending |
 | STYLE-01 | Phase 3: Sections & Navigation | Pending |
-| STYLE-02 | Phase 3: Sections & Navigation | Pending |
+| STYLE-02 | Phase 3: Sections & Navigation | Complete |
 | STYLE-03 | Phase 3: Sections & Navigation | Pending |
 | STYLE-04 | Phase 3: Sections & Navigation | Pending |
-| STYLE-05 | Phase 3: Sections & Navigation | Pending |
+| STYLE-05 | Phase 3: Sections & Navigation | Complete |
 | A11Y-01 | Phase 4: SEO, A11Y & Meta Polish | Pending |
 | A11Y-02 | Phase 4: SEO, A11Y & Meta Polish | Pending |
 | A11Y-03 | Phase 4: SEO, A11Y & Meta Polish | Pending |
