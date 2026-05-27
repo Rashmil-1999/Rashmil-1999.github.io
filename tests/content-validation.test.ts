@@ -103,8 +103,13 @@ describe('CONTENT-08: schema validation', () => {
                 cwd: REPO_ROOT,
                 encoding: 'utf8',
             });
-            // D-27 (a): non-zero exit on schema failure (RESEARCH.md Q2).
-            expect(result.status).not.toBe(0);
+            // D-27 (a): exited (not signal-killed) with a non-zero status.
+            // spawnSync sets `status` to null when the process was killed by
+            // a signal (segfault, OOM, SIGKILL). `.not.toBe(0)` would pass
+            // on null too, silently masking a crash as a schema failure.
+            // Use toBeGreaterThan(0) so null fails and a real schema error
+            // (exit code 1) passes.
+            expect(result.status).toBeGreaterThan(0);
             const combined = `${result.stdout ?? ''}\n${result.stderr ?? ''}`;
             // D-27 (b): output cites the entry id from the temp dir name.
             expect(combined).toContain('__test__');
