@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-last_updated: "2026-05-27T00:33:58.899Z"
+last_updated: "2026-05-27T00:39:43.911Z"
 last_activity: 2026-05-27
 progress:
   total_phases: 5
   completed_phases: 1
   total_plans: 12
-  completed_plans: 9
+  completed_plans: 10
   percent: 20
 ---
 
@@ -25,11 +25,11 @@ See: .planning/PROJECT.md (updated 2026-05-26)
 ## Current Position
 
 Phase: 02 (content-layer) — EXECUTING
-Plan: 5 of 7
+Plan: 6 of 7
 Status: Ready to execute
 Last activity: 2026-05-27
 
-Progress: [████████░░] 75%
+Progress: [████████░░] 83%
 
 ## Performance Metrics
 
@@ -60,6 +60,7 @@ Progress: [████████░░] 75%
 | Phase 02 P02 | 3m 27s | 3 tasks | 4 files |
 | Phase 02 P03 | 1m 26s | 2 tasks | 20 files |
 | Phase Phase 02 PP05 | ~3min | 3 tasks | 7 files |
+| Phase 02 P04 | 1m 55s | 1 task tasks | 13 files files |
 
 ## Accumulated Context
 
@@ -104,6 +105,9 @@ Recent decisions affecting current work:
 - [Phase ?]: Plan 02-05: Authored 7 list-collection entries (work × 2, education × 3, leadership × 1, testimonial × 1). Synthesized 3 one-sentence education bodies per PATTERNS.md L390 to satisfy D-20 body-non-emptiness gate — restatements of frontmatter only, no invented content. Flag for Plan 02-07 parity diff as 'not in snapshot'.
 - [Phase ?]: Plan 02-05: Testimonial schema split — snapshot 'Roopam Mishra, Founder of Phionike Solutions: Design-Tech Studio.' decomposed into user='Roopam Mishra', role='Founder', org='Phionike Solutions: Design-Tech Studio' per RESEARCH.md L673-679. Trailing period on org dropped (terminated joined sentence, not org name; matches snapshot work[0].company spelling).
 - [Phase ?]: Plan 02-05: Honored Prettier single-quote normalization on YAML frontmatter scalars (same precedent as Plan 02-02 D-21). Author's double-quoted scalars rewritten as single-quotes by pre-commit hook — semantics unchanged; all grep gates still pass.
+- [Phase 02-content-layer]: Plan 02-04: D-21 lossless casing canonicalization applied to tech_stack: Numpy/Tensorflow -> NumPy/TensorFlow across 6 entries (PATTERNS.md L325 pre-approval); pandas/sklearn kept lowercase (canonical import names); SQLlite typo preserved per D-22 (author voice).
+- [Phase 02-content-layer]: Plan 02-04: Honored Prettier markdown normalization (50*10 -> 50\\*10 escape in AOWE body) per Plans 02-02/02-05 precedent; semantic output unchanged. Plan-authoring annotation: verify-block grep -A1 on dj-archive alternates only inspects one line of two; widened verification confirmed both alternates present.
+- [Phase 02-content-layer]: Plan 02-04: Wave 3 execution-order anomaly closed — src/content/projects/ now has 13 .md files; astro check exits 0 (20 files: 0 errors, 0 warnings, 38 baseline hints). Plan 02-06 getCollection('projects') assertions are now satisfiable.
 
 ### Pending Todos
 
@@ -117,7 +121,7 @@ Acceptance-criteria pre-checks (not blockers — flag before relevant phase star
 - Phase 4: An OG image asset (1200×630, `public/og.png`) must be authored before SEO success criterion 2 is testable.
 - Phase 5: Audit repo branch protection rules (Settings → Branches) before the Actions deploy runs.
 - Phase 5: Decide PDF cache-busting strategy (query param vs `src/` import for Vite hashing).
-- Plan 02-04 (13 project markdown entries) has NOT been executed prior to Plan 02-05 — Wave 3 execution-order anomaly. src/content/projects/ has 0 .md files; astro check still exits 0 (missing files = WARN, not error). Plan 02-06 will fail its getCollection('projects') assertions if 02-04 is not dispatched before Wave 4.
+- Plan 02-04 (13 project markdown entries) — RESOLVED 2026-05-27. The Wave 3 execution-order anomaly is closed; src/content/projects/ has 13 .md files and astro check exits 0.
 
 ## Deferred Items
 
@@ -129,6 +133,6 @@ Items acknowledged and carried forward from previous milestone close:
 
 ## Session Continuity
 
-Last session: 2026-05-27T00:33:29.476Z
-Stopped at: Completed 02-02-PLAN.md (singleton YAML authoring)
+Last session: 2026-05-27T00:39:35.469Z
+Stopped at: Completed 02-04-PLAN.md (13 project markdown entries)
 Resume file: None

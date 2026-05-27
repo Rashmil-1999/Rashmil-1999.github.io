@@ -68,7 +68,7 @@ Decimal phases appear between their surrounding integers in numeric order.
   4. `npx astro check` validates content against schemas; introducing a deliberately-malformed test fixture (missing required field) fails the build with a useful Zod error referencing the field path.
   5. Project images are colocated with their markdown in `src/content/projects/` and referenced via the `image()` schema helper; no hand-maintained `image_map` lookup object exists anywhere in the codebase.
 
-**Plans:** 4/7 plans executed
+**Plans:** 5/7 plans executed
 
 **Wave 1**
 
@@ -81,7 +81,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 **Wave 3** *(blocked on Wave 2)*
 
-- [ ] 02-04-PLAN.md — Author 13 project markdown entries with cover/alternates refs (CONTENT-02, CONTENT-05)
+- [x] 02-04-PLAN.md — Author 13 project markdown entries with cover/alternates refs (CONTENT-02, CONTENT-05)
 - [x] 02-05-PLAN.md — Author 2 work + 3 education + 1 leadership + 1 testimonial entries (CONTENT-02)
 
 **Wave 4** *(blocked on Wave 3)*
@@ -147,7 +147,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation | 5/5 | Complete    | 2026-05-26 |
-| 2. Content Layer | 4/7 | In Progress|  |
+| 2. Content Layer | 5/7 | In Progress|  |
 | 3. Sections & Navigation | 0/TBD | Not started | - |
 | 4. SEO, A11Y & Meta Polish | 0/TBD | Not started | - |
 | 5. Cleanup & Deploy | 0/TBD | Not started | - |
