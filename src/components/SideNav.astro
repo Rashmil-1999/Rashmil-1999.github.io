@@ -1,7 +1,99 @@
 ---
 // src/components/SideNav.astro
-// CONTEXT.md D-08: empty stub. Phase 3 fills with real content.
-// CONTEXT.md D-23: id is "sidenav" (lowercase) — diverges from the deleted Navbar.jsx "sideNav" id.
+// CONTEXT.md D-08: desktop fixed-left sidebar (>= md).
+// CONTEXT.md D-09: mobile sticky top bar + inline collapse (< md).
+// CONTEXT.md D-11: profile photo desktop-only; mobile shows brand text only.
+// CONTEXT.md D-13: hamburger ARIA wiring — aria-label + aria-controls + aria-expanded.
+// CONTEXT.md D-14: id="sidenav" is chrome, NOT in links.yaml (only 7 destination sections appear as anchors).
+// CONTEXT.md D-23 (Phase 1): id is "sidenav" (lowercase) — diverges from deleted Navbar.jsx "sideNav" id.
+// RESEARCH.md Pattern 5 + PATTERNS.md SideNav port — verbatim template.
+
+import { getCollection, getEntry } from 'astro:content';
+import { Image } from 'astro:assets';
+import profileImage from '../assets/profile.jpg';
+
+const linkEntries = await getCollection('links');
+linkEntries.sort((a, b) => a.data.order - b.data.order);
+
+// Read brand text from about.yaml so a future name change propagates without touching SideNav.
+const aboutEntry = await getEntry('about', 'about');
+const fullName = aboutEntry
+    ? `${aboutEntry.data.first_name} ${aboutEntry.data.last_name}`
+    : 'Rashmil Panchani';
 ---
 
-<section id="sidenav"></section>
+<nav id="sidenav" class="sidenav" aria-label="Section navigation">
+    {/* Mobile top bar: brand text + hamburger (visible < md per D-09 + D-10 + D-11) */}
+    <div class="mobile-bar flex items-center justify-between md:hidden">
+        <span class="brand">{fullName}</span>
+        <button
+            type="button"
+            id="sidenav-toggle"
+            aria-label="Toggle navigation menu"
+            aria-controls="sidenav-list"
+            aria-expanded="false"
+            class="hamburger"
+        >
+            <span aria-hidden="true">☰</span>
+        </button>
+    </div>
+
+    {/* Desktop sidebar header: profile image (visible >= md per D-11) */}
+    <div class="sidenav-header hidden md:block">
+        <Image
+            src={profileImage}
+            alt={fullName}
+            class="profile-pic mx-auto rounded-full"
+            width={200}
+            height={225}
+        />
+    </div>
+
+    {/* Nav links list — collapsed on mobile (toggled by hamburger), always visible on desktop */}
+    <ul id="sidenav-list" role="list" class="sidenav-list hidden md:block">
+        {
+            linkEntries.map((entry) => (
+                <li>
+                    <a
+                        href={`#${entry.data.id}`}
+                        class="nav-link block"
+                        data-section-link={entry.data.id}
+                    >
+                        {entry.data.label}
+                    </a>
+                </li>
+            ))
+        }
+    </ul>
+</nav>
+
+<script>
+    // Mobile nav toggle (NAV-04). Vanilla JS, no jQuery, no React island.
+    // RESEARCH.md Pattern 5 (lines 678-707) / PATTERNS.md Mobile toggle script pattern.
+    const toggle = document.getElementById('sidenav-toggle');
+    const list = document.getElementById('sidenav-list');
+    if (toggle && list) {
+        toggle.addEventListener('click', () => {
+            const expanded = toggle.getAttribute('aria-expanded') === 'true';
+            toggle.setAttribute('aria-expanded', String(!expanded));
+            list.classList.toggle('hidden');
+        });
+        // Close on Escape — UI-SPEC Interaction Contract "Mobile nav Escape"
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
+                toggle.setAttribute('aria-expanded', 'false');
+                list.classList.add('hidden');
+                toggle.focus();
+            }
+        });
+        // Close on link click — RESEARCH.md Pattern 5 lines 697-705 ("Mobile nav doesn't collapse on link click" UX bug avoided)
+        list.querySelectorAll('a').forEach((a) =>
+            a.addEventListener('click', () => {
+                if (window.matchMedia('(max-width: 767px)').matches) {
+                    toggle.setAttribute('aria-expanded', 'false');
+                    list.classList.add('hidden');
+                }
+            }),
+        );
+    }
+</script>

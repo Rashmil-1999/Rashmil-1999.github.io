@@ -51,5 +51,15 @@ export default tseslint.config(
         files: ['**/*.{js,mjs,cjs}'],
         ...tseslint.configs.disableTypeChecked,
     },
+    {
+        // Disable type-checked rules on Astro virtual script-block files (e.g.
+        // `SideNav.astro/1_1.ts`). The astro plugin's flat/recommended sets
+        // `parserOptions.project: null` for these (because they're not in the TS project),
+        // but tseslint's type-checked rules still try to access parserServices.program and
+        // throw. Plan 03-06 Rule 3 — first .astro file in the repo to ship a bundled
+        // <script>, surfacing this mismatch.
+        files: ['**/*.astro/*.ts', '**/*.astro/*.js'],
+        ...tseslint.configs.disableTypeChecked,
+    },
     prettier, // MUST be last — turns off stylistic conflicts with Prettier (Pitfall F adjacent).
 );
