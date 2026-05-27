@@ -131,8 +131,15 @@ describe('CONTENT-08 positive path (SC #1)', () => {
         const store = loadDataStore();
         const projects = store.get('projects');
         expect(projects, 'projects collection missing from data-store').toBeDefined();
-        // SC #1 first half: length > 0. Plan 02-04 authored 13 entries.
-        expect(projects!.size).toBeGreaterThan(0);
+        // SC #1 first half: Plan 02-04 authored exactly 13 entries. Phase 3
+        // ROADMAP gating assumes that count, so assert it precisely (a
+        // regression that drops 12 of 13 entries via draft:true or rename
+        // would otherwise slip past a > 0 check).
+        const EXPECTED_PROJECT_COUNT = 13;
+        expect(
+            projects!.size,
+            'expected exactly 13 project entries (Phase 2 Plan 02-04)',
+        ).toBe(EXPECTED_PROJECT_COUNT);
 
         // D-28 type assertion: `entry.data.title` must be `string`, not `any`.
         // This is a compile-time check via expectTypeOf — the runtime value
