@@ -1,6 +1,47 @@
 ---
 // src/components/Leadership.astro
-// CONTEXT.md D-08: empty stub. Phase 3 fills with real content.
+// Phase 3 Plan 03-04: filled per PATTERNS.md Leadership Astro port — same
+// skeleton as Work.astro with field swap (company → org). Schema fields
+// title/duration carry the same names as in the work schema.
+
+import { getCollection, render } from 'astro:content';
+
+const entries = await getCollection('leadership', ({ data }) =>
+    import.meta.env.PROD ? !data.draft : true,
+);
+entries.sort((a, b) => a.data.order - b.data.order);
+
+const rendered = await Promise.all(
+    entries.map(async (entry) => ({
+        entry,
+        Content: (await render(entry)).Content,
+    })),
+);
 ---
 
-<section id="leadership"></section>
+<section id="leadership" class="resume-section">
+    <div class="resume-section-content">
+        <h2 class="mb-5">Leadership</h2>
+        {
+            rendered.map(({ entry, Content }, id) => (
+                <div
+                    class={
+                        id === rendered.length - 1
+                            ? 'flex flex-col md:flex-row md:justify-between'
+                            : 'mb-5 flex flex-col md:flex-row md:justify-between'
+                    }
+                >
+                    <div class="flex-grow">
+                        <h3 class="mb-0">{entry.data.title}</h3>
+                        <div class="subheading mb-3">{entry.data.org}</div>
+                        <Content />
+                    </div>
+                    <div class="flex-shrink-0">
+                        <span class="text-muted">{entry.data.duration}</span>
+                    </div>
+                </div>
+            ))
+        }
+    </div>
+</section>
+<hr class="m-0 border-black/10" />
