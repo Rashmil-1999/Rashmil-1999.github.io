@@ -6,7 +6,7 @@ about:
     contact_message: "Have a project for me? Think I'd be a good fit for your team? I'd love to hear from you, reach me out through my email."
     description: "I am an athlete at heart, with an entrepreneurial spirit and always up for learning new things. Being able to adjust to situations makes me a very flexible asset to anyone who hires me and to my collegues. My passion lies in creating and developing new things which includes WebApps, Embedded Systems and applying Machine/Deep learning models in various projects. My research interest lies in Scene Perception and Cognitive tasks of Natural Language Processing. Apart from a techie, I am also a photographer(Long-exposures being my favourite). I'll add the gallery soon."
     resume_download: Rashmil_Panchani.pdf
-    profile_image: ~/assets/profile.jpg
+    profile_image: /src/assets/profile.jpg
     social:
         - name: LinkedIn
           url: https://www.linkedin.com/in/rashmil-panchani-67587a14b/
