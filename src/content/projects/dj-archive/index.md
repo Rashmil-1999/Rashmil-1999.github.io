@@ -7,7 +7,7 @@ tech_stack:
 url: https://github.com/djunicode/BE-Project-Web
 cover: ./archive.jpeg
 alternates:
-    - ./archive.jpg
+    - ./archive2.png
     - ./archive.png
 order: 110
 ---
