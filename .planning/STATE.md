@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-last_updated: "2026-05-27T00:15:41.723Z"
+last_updated: "2026-05-27T00:23:25.371Z"
 last_activity: 2026-05-27
 progress:
   total_phases: 5
   completed_phases: 1
   total_plans: 12
-  completed_plans: 6
+  completed_plans: 7
   percent: 20
 ---
 
@@ -25,11 +25,11 @@ See: .planning/PROJECT.md (updated 2026-05-26)
 ## Current Position
 
 Phase: 02 (content-layer) — EXECUTING
-Plan: 2 of 7
+Plan: 3 of 7
 Status: Ready to execute
 Last activity: 2026-05-27
 
-Progress: [█████░░░░░] 50%
+Progress: [██████░░░░] 58%
 
 ## Performance Metrics
 
@@ -57,6 +57,7 @@ Progress: [█████░░░░░] 50%
 | Phase 01-foundation P04 | ~10min | 3 tasks | 19 files |
 | Phase 01-foundation P05 | ~8min | 2 tasks | 6 files |
 | Phase 02 P01 | 2m 49s | 1 tasks | 1 files |
+| Phase 02 P02 | 3m 27s | 3 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -93,6 +94,9 @@ Recent decisions affecting current work:
 - [Phase 02-content-layer]: Plan 02-01: Factored iconSchema + trimmedString as module-scope helpers in src/content.config.ts (24 trimmedString call-sites, 2 iconSchema call-sites) — CONTEXT.md Claude's Discretion allowed either; reuse count made factoring clearly cheaper
 - [Phase 02-content-layer]: Plan 02-01: Adopted RESEARCH.md L600-751 schema verbatim — Zod 4 idioms (z.email(), z.url(), .regex({ error })); z imported from astro:content per Pitfall 2/3
 - [Phase 02-content-layer]: Plan 02-01: Rule 1 deviation — plan automated verify uses grep -c 'defineCollection' == 8 but canonical recipe produces 9 (incl. import line); acceptance-criteria text 'exactly 8 defineCollection( occurrences' honored as authoritative — The bare-grep script can never pass against any faithful copy of the RESEARCH.md recipe; flagged for future plan-authoring fix
+- [Phase 02-content-layer]: Plan 02-02: D-17 MySQL normalization — chose 'MySQL' over snapshot 'My SQL' per RESEARCH.md L792 + PATTERNS.md L221 (researcher recommendation: 'My SQL' is a transcription error, not authorial voice; distinct from 'Postgre SQL' which D-22 explicitly preserves)
+- [Phase 02-content-layer]: Plan 02-02: Removed YAML header comments from about.yaml so the file's first non-blank line is 'about:' (literal head -1 verify gate). Same pattern applied proactively to skills.yaml and links.yaml. Precedent: Plan 02-01 Rule 3 deviation #2.
+- [Phase 02-content-layer]: Plan 02-02: Honored Prettier pre-commit single-quote normalization on YAML strings rather than fighting it. Single-quoted category names satisfy the semantic acceptance criterion (names ARE quoted to handle '&' anchor sigil + embedded spaces). Future YAML/markdown frontmatter plans should expect identical behavior.
 
 ### Pending Todos
 
@@ -117,6 +121,6 @@ Items acknowledged and carried forward from previous milestone close:
 
 ## Session Continuity
 
-Last session: 2026-05-27T00:13:33.096Z
-Stopped at: Phase 2 context gathered
+Last session: 2026-05-27T00:23:25.367Z
+Stopped at: Completed 02-02-PLAN.md (singleton YAML authoring)
 Resume file: None
