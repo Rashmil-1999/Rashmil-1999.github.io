@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-last_updated: "2026-05-27T00:39:43.911Z"
+last_updated: "2026-05-27T00:50:10.236Z"
 last_activity: 2026-05-27
 progress:
   total_phases: 5
   completed_phases: 1
   total_plans: 12
-  completed_plans: 10
+  completed_plans: 11
   percent: 20
 ---
 
@@ -25,11 +25,11 @@ See: .planning/PROJECT.md (updated 2026-05-26)
 ## Current Position
 
 Phase: 02 (content-layer) — EXECUTING
-Plan: 6 of 7
+Plan: 7 of 7
 Status: Ready to execute
 Last activity: 2026-05-27
 
-Progress: [████████░░] 83%
+Progress: [█████████░] 92%
 
 ## Performance Metrics
 
@@ -61,6 +61,7 @@ Progress: [████████░░] 83%
 | Phase 02 P03 | 1m 26s | 2 tasks | 20 files |
 | Phase Phase 02 PP05 | ~3min | 3 tasks | 7 files |
 | Phase 02 P04 | 1m 55s | 1 task tasks | 13 files files |
+| Phase 02-content-layer P06 | 6m 18s | 2 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -108,6 +109,9 @@ Recent decisions affecting current work:
 - [Phase 02-content-layer]: Plan 02-04: D-21 lossless casing canonicalization applied to tech_stack: Numpy/Tensorflow -> NumPy/TensorFlow across 6 entries (PATTERNS.md L325 pre-approval); pandas/sklearn kept lowercase (canonical import names); SQLlite typo preserved per D-22 (author voice).
 - [Phase 02-content-layer]: Plan 02-04: Honored Prettier markdown normalization (50*10 -> 50\\*10 escape in AOWE body) per Plans 02-02/02-05 precedent; semantic output unchanged. Plan-authoring annotation: verify-block grep -A1 on dj-archive alternates only inspects one line of two; widened verification confirmed both alternates present.
 - [Phase 02-content-layer]: Plan 02-04: Wave 3 execution-order anomaly closed — src/content/projects/ now has 13 .md files; astro check exits 0 (20 files: 0 errors, 0 warnings, 38 baseline hints). Plan 02-06 getCollection('projects') assertions are now satisfiable.
+- [Phase ?]: [Phase 02-content-layer]: Plan 02-06: Rule 1 deviation — astro check v6 stderr is human-readable, NOT JSON-shaped (RESEARCH.md A1 wrong). Regex changed to /title:Required/ + InvalidContentEntryDataError substring.
+- [Phase ?]: [Phase 02-content-layer]: Plan 02-06: Rule 3 deviation — Open Question 2 failure mode confirmed live: getCollection() under Vitest returns 0 entries; fallback parses node_modules/.astro/data-store.json directly. expectTypeOf preserves D-28 type assertion via CollectionEntry<'projects'>['data']['title'].
+- [Phase ?]: [Phase 02-content-layer]: Plan 02-06: Malformed fixture omits BOTH title AND cover (Open Question 3 applied) — single missing-required-field surface; test asserts on 'title: Required' substring.
 
 ### Pending Todos
 
@@ -133,6 +137,6 @@ Items acknowledged and carried forward from previous milestone close:
 
 ## Session Continuity
 
-Last session: 2026-05-27T00:39:35.469Z
+Last session: 2026-05-27T00:50:03.258Z
 Stopped at: Completed 02-04-PLAN.md (13 project markdown entries)
 Resume file: None
