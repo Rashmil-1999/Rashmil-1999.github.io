@@ -35,7 +35,7 @@ Resume data moves from a single JSON to typed Content Layer collections — the 
 
 Port every existing section as `.astro`. React only if state genuinely exists (it doesn't, day one).
 
-- [ ] **SECTION-01**: `src/pages/index.astro` is the only page route and composes all 8 sections in their current order
+- [x] **SECTION-01**: `src/pages/index.astro` is the only page route and composes all 8 sections in their current order
 - [x] **SECTION-02**: `About.astro` renders name, role, contact info, social links, and links to `/Rashmil_Panchani.pdf` for resume download
 - [x] **SECTION-03**: `Education.astro` renders the education collection in current order with school, degree, dates
 - [x] **SECTION-04**: `Work.astro` renders the work collection with company, role, dates, and bullet descriptions
@@ -50,11 +50,11 @@ Port every existing section as `.astro`. React only if state genuinely exists (i
 
 Side nav and scroll-spy without jQuery and without `react-scroll`.
 
-- [ ] **NAV-01**: `SideNav.astro` renders the same anchor links as today, sourced from the `links` / `about` collections
+- [x] **NAV-01**: `SideNav.astro` renders the same anchor links as today, sourced from the `links` / `about` collections
 - [x] **NAV-02**: Smooth scrolling uses CSS `scroll-behavior: smooth` with a `prefers-reduced-motion: reduce` guard that disables it
-- [ ] **NAV-03**: Active-section highlighting uses inline `<script>` + `IntersectionObserver` (no jQuery, no React island), setting `aria-current="page"` on the active link
-- [ ] **NAV-04**: Mobile nav toggle is keyboard-operable and has correct `aria-expanded` / `aria-controls`
-- [ ] **NAV-05**: No CDN scripts for nav behavior — the jQuery IIFE in `public/index.html` (existing site) is deleted, not ported
+- [x] **NAV-03**: Active-section highlighting uses inline `<script>` + `IntersectionObserver` (no jQuery, no React island), setting `aria-current="page"` on the active link
+- [x] **NAV-04**: Mobile nav toggle is keyboard-operable and has correct `aria-expanded` / `aria-controls`
+- [x] **NAV-05**: No CDN scripts for nav behavior — the jQuery IIFE in `public/index.html` (existing site) is deleted, not ported
 
 ### Style (STYLE)
 
@@ -180,7 +180,7 @@ Every v1 requirement maps to exactly one phase. See `.planning/ROADMAP.md` for p
 | CONTENT-06 | Phase 2: Content Layer | Complete |
 | CONTENT-07 | Phase 2: Content Layer | Complete |
 | CONTENT-08 | Phase 2: Content Layer | Complete |
-| SECTION-01 | Phase 3: Sections & Navigation | Pending |
+| SECTION-01 | Phase 3: Sections & Navigation | Complete |
 | SECTION-02 | Phase 3: Sections & Navigation | Complete |
 | SECTION-03 | Phase 3: Sections & Navigation | Complete |
 | SECTION-04 | Phase 3: Sections & Navigation | Complete |
@@ -190,11 +190,11 @@ Every v1 requirement maps to exactly one phase. See `.planning/ROADMAP.md` for p
 | SECTION-08 | Phase 3: Sections & Navigation | Complete |
 | SECTION-09 | Phase 3: Sections & Navigation | Complete |
 | SECTION-10 | Phase 3: Sections & Navigation | Complete |
-| NAV-01 | Phase 3: Sections & Navigation | Pending |
+| NAV-01 | Phase 3: Sections & Navigation | Complete |
 | NAV-02 | Phase 3: Sections & Navigation | Complete |
-| NAV-03 | Phase 3: Sections & Navigation | Pending |
-| NAV-04 | Phase 3: Sections & Navigation | Pending |
-| NAV-05 | Phase 3: Sections & Navigation | Pending |
+| NAV-03 | Phase 3: Sections & Navigation | Complete |
+| NAV-04 | Phase 3: Sections & Navigation | Complete |
+| NAV-05 | Phase 3: Sections & Navigation | Complete |
 | STYLE-01 | Phase 3: Sections & Navigation | Complete |
 | STYLE-02 | Phase 3: Sections & Navigation | Complete |
 | STYLE-03 | Phase 3: Sections & Navigation | Complete |

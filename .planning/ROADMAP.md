@@ -15,7 +15,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Foundation** - Astro 6 + TS strict + Tailwind v4 + ESLint + Vitest scaffold builds to `dist/` and passes a smoke test (completed 2026-05-26)
 - [x] **Phase 2: Content Layer** - All 8 resume collections defined and `resumeData.json` migrated with zero data loss (completed 2026-05-27)
-- [ ] **Phase 3: Sections & Navigation** - All 8 sections render from collections, side nav with scroll-spy works, all CDN UI libs gone
+- [x] **Phase 3: Sections & Navigation** - All 8 sections render from collections, side nav with scroll-spy works, all CDN UI libs gone (completed 2026-05-27)
 - [ ] **Phase 4: SEO, A11Y & Meta Polish** - Shared `<BaseHead>`, sitemap, OG/Twitter/canonical, zero axe-core WCAG 2.1 AA violations
 - [ ] **Phase 5: Cleanup & Deploy** - CRA / yarn.lock / CNAME / gh-pages branch removed, GitHub Actions publishes the live site
 
@@ -105,7 +105,7 @@ Decimal phases appear between their surrounding integers in numeric order.
   4. No CDN `<script>` or `<link>` for Bootstrap, jQuery, Font Awesome, Devicon, or Iconify exists in any generated HTML; the `bootstrap` package is not installed; all icons render from bundled `astro-icon` + `@iconify-json/*` SVGs.
   5. Project images render via Astro's `<Image />` as optimized WebP/AVIF served at rendered dimensions (not the original 4.8 MB / 1 MB binaries); total image weight on `dist/index.html` is under 500 KB.
 
-**Plans:** 5/6 plans executed
+**Plans:** 6/6 plans complete
 **Wave 1**
 
 - [x] 03-01-PLAN.md — Install astro-icon + 4 Iconify packs + 2 Fontsource packages; wire icon() integration + trailingSlash + build.format in astro.config.mjs; delete Google Fonts preconnects from BaseHead.astro (STYLE-02, STYLE-05)
@@ -122,7 +122,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 **Wave 4** *(blocked on Wave 3)*
 
-- [ ] 03-06-PLAN.md — Fill SideNav.astro (desktop fixed sidebar + mobile sticky top bar + hamburger toggle script reading 7 anchors from links.yaml) + add IntersectionObserver scroll-spy <script> to BaseLayout.astro; run all 5 Phase 3 ROADMAP success-criteria gates (SECTION-01, SECTION-09, NAV-01, NAV-03, NAV-04, NAV-05, STYLE-01)
+- [x] 03-06-PLAN.md — Fill SideNav.astro (desktop fixed sidebar + mobile sticky top bar + hamburger toggle script reading 7 anchors from links.yaml) + add IntersectionObserver scroll-spy <script> to BaseLayout.astro; run all 5 Phase 3 ROADMAP success-criteria gates (SECTION-01, SECTION-09, NAV-01, NAV-03, NAV-04, NAV-05, STYLE-01)
 
 **UI hint**: yes
 
@@ -166,7 +166,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 |-------|----------------|--------|-----------|
 | 1. Foundation | 5/5 | Complete    | 2026-05-26 |
 | 2. Content Layer | 7/7 | Complete    | 2026-05-27 |
-| 3. Sections & Navigation | 5/6 | In Progress|  |
+| 3. Sections & Navigation | 6/6 | Complete   | 2026-05-27 |
 | 4. SEO, A11Y & Meta Polish | 0/TBD | Not started | - |
 | 5. Cleanup & Deploy | 0/TBD | Not started | - |
 
