@@ -1,9 +1,63 @@
-/* src/styles/global.css */
-/* Source: tailwindcss.com/docs/installation/framework-guides/astro
-            and CONTEXT.md D-14 */
+/* src/styles/global.css
+   Single Tailwind v4 entry + brand tokens. Filled by Plan 03-02 (Phase 3). */
 
 @import 'tailwindcss';
 
+/* Fontsource — per-weight CSS (D-33 / D-34) */
+@import '@fontsource/saira-extra-condensed/500.css';
+@import '@fontsource/saira-extra-condensed/700.css';
+@import '@fontsource/mulish/400.css';
+@import '@fontsource/mulish/400-italic.css';
+@import '@fontsource/mulish/800.css';
+@import '@fontsource/mulish/800-italic.css';
+
 @theme {
-    /* TODO Phase 3 (STYLE-04) — brand tokens (colors, fonts, spacing) */
+    /* Brand colors (D-02, D-04, D-05 — recovered from CRA via D-06 / b537845) */
+    --color-bg: #eee2dc;
+    --color-text: #6c757d;
+    --color-accent: #bd5d38;
+    --color-link: #123c69;
+    --color-link-hover: #123c69ad;
+    --color-muted: #6c757d; /* alias of text */
+
+    /* Typography (D-02 / recovered) */
+    --font-heading:
+        'Saira Extra Condensed', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+        'Helvetica Neue', Arial, sans-serif;
+    --font-body:
+        'Mulish', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+        sans-serif;
+}
+
+/* Body base (recovered: bg + text colors + base font) */
+body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+/* Headings inherit Saira + uppercase per recovered theme */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-heading);
+    text-transform: uppercase;
+}
+h1 {
+    line-height: 1;
+}
+
+/* Smooth scroll with prefers-reduced-motion guard (NAV-02 / D-32) */
+html {
+    scroll-behavior: smooth;
+}
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
 }
