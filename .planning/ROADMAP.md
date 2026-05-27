@@ -105,14 +105,14 @@ Decimal phases appear between their surrounding integers in numeric order.
   4. No CDN `<script>` or `<link>` for Bootstrap, jQuery, Font Awesome, Devicon, or Iconify exists in any generated HTML; the `bootstrap` package is not installed; all icons render from bundled `astro-icon` + `@iconify-json/*` SVGs.
   5. Project images render via Astro's `<Image />` as optimized WebP/AVIF served at rendered dimensions (not the original 4.8 MB / 1 MB binaries); total image weight on `dist/index.html` is under 500 KB.
 
-**Plans:** 1/6 plans executed
+**Plans:** 2/6 plans executed
 **Wave 1**
 
 - [x] 03-01-PLAN.md — Install astro-icon + 4 Iconify packs + 2 Fontsource packages; wire icon() integration + trailingSlash + build.format in astro.config.mjs; delete Google Fonts preconnects from BaseHead.astro (STYLE-02, STYLE-05)
 
 **Wave 2** *(blocked on Wave 1)*
 
-- [ ] 03-02-PLAN.md — Fill src/styles/global.css with @theme tokens (recovered CRA colors + Saira/Mulish fonts) + 6 Fontsource per-weight @imports + base body/heading + smooth-scroll + reduced-motion guard + recovered semantic classes (.subheading, .lead, .resume-section, sidebar layout media queries, .nav-link[aria-current='page'], .profile-pic, .text-primary, .btn-primary, .text-muted, .social-icon, .project-card:nth-child(even) row-reverse fallback) (STYLE-01, STYLE-04, NAV-02)
+- [x] 03-02-PLAN.md — Fill src/styles/global.css with @theme tokens (recovered CRA colors + Saira/Mulish fonts) + 6 Fontsource per-weight @imports + base body/heading + smooth-scroll + reduced-motion guard + recovered semantic classes (.subheading, .lead, .resume-section, sidebar layout media queries, .nav-link[aria-current='page'], .profile-pic, .text-primary, .btn-primary, .text-muted, .social-icon, .project-card:nth-child(even) row-reverse fallback) (STYLE-01, STYLE-04, NAV-02)
 
 **Wave 3** *(blocked on Wave 2)*
 
@@ -165,7 +165,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 |-------|----------------|--------|-----------|
 | 1. Foundation | 5/5 | Complete    | 2026-05-26 |
 | 2. Content Layer | 7/7 | Complete    | 2026-05-27 |
-| 3. Sections & Navigation | 1/6 | In Progress|  |
+| 3. Sections & Navigation | 2/6 | In Progress|  |
 | 4. SEO, A11Y & Meta Polish | 0/TBD | Not started | - |
 | 5. Cleanup & Deploy | 0/TBD | Not started | - |
 

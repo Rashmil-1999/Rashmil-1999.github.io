@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-last_updated: "2026-05-27T04:30:32.507Z"
+last_updated: "2026-05-27T04:38:12.598Z"
 last_activity: 2026-05-27
 progress:
   total_phases: 5
   completed_phases: 2
   total_plans: 18
-  completed_plans: 13
+  completed_plans: 14
   percent: 40
 ---
 
@@ -25,11 +25,11 @@ See: .planning/PROJECT.md (updated 2026-05-26)
 ## Current Position
 
 Phase: 3 (sections-navigation) — EXECUTING
-Plan: 2 of 6
+Plan: 3 of 6
 Status: Ready to execute
 Last activity: 2026-05-27
 
-Progress: [███████░░░] 72%
+Progress: [████████░░] 78%
 
 ## Performance Metrics
 
@@ -65,6 +65,7 @@ Progress: [███████░░░] 72%
 | Phase 02-content-layer P06 | 6m 18s | 2 tasks | 2 files |
 | Phase 02-content-layer P07 | ~6h (with checkpoint pause) | 2 tasks | 1 file |
 | Phase 03-sections-navigation P01 | 3min | 3 tasks | 4 files |
+| Phase Phase 03-sections-navigation PP02 | 3m 49s | 3 tasks tasks | 1 file files |
 
 ## Accumulated Context
 
@@ -121,6 +122,11 @@ Recent decisions affecting current work:
 - [Phase ?]: Plan 03-01: Used static @fontsource/mulish (NOT variable) per D-33 / RESEARCH.md Open Question 2 — 4-weight bounded subset matches Saira pattern
 - [Phase ?]: Plan 03-01: icon() integration called with zero arguments — per-glyph SVG inlining default avoids Pitfall E bundle bloat
 - [Phase ?]: Plan 03-01: trailingSlash 'always' + build.format 'directory' set explicitly (D-38) — A7 belt-and-suspenders against future Astro minors
+- [Phase ?]: Plan 03-02: Adopted RESEARCH.md Pattern 8 verbatim for @theme + base + smooth-scroll; values sourced from git show b537845:src/App.css (D-06 recovery)
+- [Phase ?]: Plan 03-02: .btn-primary uses --color-accent (#bd5d38), NOT recovered CRA navy (#123c69) — D-27 reconciliation with inline source comment annotation
+- [Phase ?]: Plan 03-02: Pre-added .text-muted + .social-icon + .project-card:nth-child(even) flex-row-reverse beyond Pattern 8 scope so Wave 3 plans (03-03/04/05) reference helpers by name with no conditional fallbacks
+- [Phase ?]: Plan 03-02: Skipped --color-primary token; manual .text-primary rule keyed off --color-accent preserves CRA visible class name (Research Open Question 4)
+- [Phase ?]: Plan 03-02: Final global.css length 196 lines exceeds plan target range 95-130; overrun is mandated D-NN-citing inline comments per acceptance criteria — trade-off favored auditability over compactness
 
 ### Pending Todos
 
@@ -146,6 +152,6 @@ Items acknowledged and carried forward from previous milestone close:
 
 ## Session Continuity
 
-Last session: 2026-05-27T04:30:03.721Z
-Stopped at: Phase 3 UI-SPEC approved
+Last session: 2026-05-27T04:38:12.594Z
+Stopped at: Completed 03-02-PLAN.md
 Resume file: None
