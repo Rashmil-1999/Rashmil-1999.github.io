@@ -138,6 +138,22 @@ describe('CONTENT-08 positive path (SC #1)', () => {
         expectTypeOf<ProjectTitle>().toEqualTypeOf<string>();
     });
 
+    it('links collection has no duplicate ids (D-14)', () => {
+        // CONTEXT.md D-14 requires unique `id` values across `links.yaml`
+        // entries. The Astro `file()` loader hands the schema one entry at
+        // a time, so per-entry Zod validation cannot detect duplicates.
+        // Enforce uniqueness at the collection level by reading the
+        // data-store and asserting Set(ids).size === entries.length.
+        const store = loadDataStore();
+        const links = store.get('links');
+        expect(links, 'links collection missing from data-store').toBeDefined();
+        const ids = Array.from(links!.keys());
+        expect(
+            new Set(ids).size,
+            `duplicate ids in links: ${ids.join(', ')}`,
+        ).toBe(ids.length);
+    });
+
     it('every list-collection entry has a non-empty markdown body (D-20)', () => {
         // Same data-store fallback. Astro 6's glob loader stores the raw
         // markdown body under entry.body (Assumption A2 in RESEARCH.md A2).
