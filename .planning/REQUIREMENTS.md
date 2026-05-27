@@ -22,13 +22,13 @@ Scaffolding, tooling, and the build baseline the rest of M1 sits on.
 
 Resume data moves from a single JSON to typed Content Layer collections — the M2 CMS contract.
 
-- [ ] **CONTENT-01**: `src/content.config.ts` (Astro 6 location, NOT `src/content/config.ts`) defines all 8 collections with Zod schemas
+- [x] **CONTENT-01**: `src/content.config.ts` (Astro 6 location, NOT `src/content/config.ts`) defines all 8 collections with Zod schemas
 - [ ] **CONTENT-02**: List-collections — `projects`, `work`, `education`, `leadership`, `testimonials` — use `glob()` loader over per-item markdown files in `src/content/<name>/`
 - [ ] **CONTENT-03**: Singleton-collections — `about`, `skills`, `links` — use `file()` loader over a single YAML file each (e.g., `src/content/about.yaml`)
-- [ ] **CONTENT-04**: Every list-collection item has an `order: z.number().default(0)` field so a future CMS can drag-to-reorder without filename hacks
+- [x] **CONTENT-04**: Every list-collection item has an `order: z.number().default(0)` field so a future CMS can drag-to-reorder without filename hacks
 - [ ] **CONTENT-05**: Project images use Astro's `image()` schema helper and live co-located with their markdown (e.g., `src/content/projects/<slug>.png` referenced as `./<slug>.png` in frontmatter)
 - [ ] **CONTENT-06**: All content currently in `src/resumeData.json` round-trips into the new collections with zero data loss (verified by manual diff of rendered output against current site)
-- [ ] **CONTENT-07**: Schemas use CMS-neutral field names (no `_id`, `_ref`, `sys.*`); enums are plain strings (no raw CSS class names)
+- [x] **CONTENT-07**: Schemas use CMS-neutral field names (no `_id`, `_ref`, `sys.*`); enums are plain strings (no raw CSS class names)
 - [ ] **CONTENT-08**: `npx astro check` validates all content against schemas at build; a deliberately-malformed test fixture fails the build with a useful error
 
 ### Section Components (SECTION)
@@ -172,13 +172,13 @@ Every v1 requirement maps to exactly one phase. See `.planning/ROADMAP.md` for p
 | FOUND-06 | Phase 1: Foundation | Complete |
 | FOUND-07 | Phase 1: Foundation | Complete |
 | FOUND-08 | Phase 1: Foundation | Complete |
-| CONTENT-01 | Phase 2: Content Layer | Pending |
+| CONTENT-01 | Phase 2: Content Layer | Complete |
 | CONTENT-02 | Phase 2: Content Layer | Pending |
 | CONTENT-03 | Phase 2: Content Layer | Pending |
-| CONTENT-04 | Phase 2: Content Layer | Pending |
+| CONTENT-04 | Phase 2: Content Layer | Complete |
 | CONTENT-05 | Phase 2: Content Layer | Pending |
 | CONTENT-06 | Phase 2: Content Layer | Pending |
-| CONTENT-07 | Phase 2: Content Layer | Pending |
+| CONTENT-07 | Phase 2: Content Layer | Complete |
 | CONTENT-08 | Phase 2: Content Layer | Pending |
 | SECTION-01 | Phase 3: Sections & Navigation | Pending |
 | SECTION-02 | Phase 3: Sections & Navigation | Pending |

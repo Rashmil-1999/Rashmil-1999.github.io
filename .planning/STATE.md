@@ -3,14 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Phase 2 context gathered
-last_updated: "2026-05-27T00:05:23.284Z"
-last_activity: 2026-05-27 -- Phase 02 planning complete
+last_updated: "2026-05-27T00:15:41.723Z"
+last_activity: 2026-05-27
 progress:
   total_phases: 5
   completed_phases: 1
   total_plans: 12
-  completed_plans: 5
+  completed_plans: 6
   percent: 20
 ---
 
@@ -21,16 +20,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-05-26)
 
 **Core value:** The site looks and reads the same to a visitor, but underneath the stack is modern, the code is conventional, and resume content lives in typed Content Collections that a future editing surface can write to without touching code.
-**Current focus:** Phase 2 — content layer
+**Current focus:** Phase 02 — content-layer
 
 ## Current Position
 
-Phase: 2
-Plan: Not started
+Phase: 02 (content-layer) — EXECUTING
+Plan: 2 of 7
 Status: Ready to execute
-Last activity: 2026-05-27 -- Phase 02 planning complete
+Last activity: 2026-05-27
 
-Progress: [██████████] 100%
+Progress: [█████░░░░░] 50%
 
 ## Performance Metrics
 
@@ -57,6 +56,7 @@ Progress: [██████████] 100%
 | Phase 01-foundation P03 | ~6min | 4 tasks | 16 files |
 | Phase 01-foundation P04 | ~10min | 3 tasks | 19 files |
 | Phase 01-foundation P05 | ~8min | 2 tasks | 6 files |
+| Phase 02 P01 | 2m 49s | 1 tasks | 1 files |
 
 ## Accumulated Context
 
@@ -90,6 +90,9 @@ Recent decisions affecting current work:
 - [Phase ?]: [Phase 01-foundation]: Plan 01-05: Installed @types/node@^22 (Rule 3) — type-checked lint rules flagged node:* imports as no-unsafe-* without it
 - [Phase ?]: [Phase 01-foundation]: Plan 01-05: ci.yml indented 4-space per Prettier; GHA parser is width-agnostic
 - [Phase ?]: [Phase 01-foundation]: Plan 01-05: First CI run on GitHub Actions passed in 39s (Run ID 26478179519); Phase 1 closed — all 8 FOUND-* requirements satisfied; ready for /gsd-transition
+- [Phase 02-content-layer]: Plan 02-01: Factored iconSchema + trimmedString as module-scope helpers in src/content.config.ts (24 trimmedString call-sites, 2 iconSchema call-sites) — CONTEXT.md Claude's Discretion allowed either; reuse count made factoring clearly cheaper
+- [Phase 02-content-layer]: Plan 02-01: Adopted RESEARCH.md L600-751 schema verbatim — Zod 4 idioms (z.email(), z.url(), .regex({ error })); z imported from astro:content per Pitfall 2/3
+- [Phase 02-content-layer]: Plan 02-01: Rule 1 deviation — plan automated verify uses grep -c 'defineCollection' == 8 but canonical recipe produces 9 (incl. import line); acceptance-criteria text 'exactly 8 defineCollection( occurrences' honored as authoritative — The bare-grep script can never pass against any faithful copy of the RESEARCH.md recipe; flagged for future plan-authoring fix
 
 ### Pending Todos
 
@@ -114,6 +117,6 @@ Items acknowledged and carried forward from previous milestone close:
 
 ## Session Continuity
 
-Last session: 2026-05-26T23:23:43.804Z
+Last session: 2026-05-27T00:13:33.096Z
 Stopped at: Phase 2 context gathered
-Resume file: .planning/phases/02-content-layer/02-CONTEXT.md
+Resume file: None
