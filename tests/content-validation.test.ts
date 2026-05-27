@@ -91,6 +91,11 @@ function loadDataStore(): Map<string, Map<string, Record<string, unknown>>> {
 
 describe('CONTENT-08: schema validation', () => {
     it('astro check fails on a malformed project entry with a useful Zod error', () => {
+        // Defensive: a prior run killed by a signal may have left the
+        // malformed fixture in TEMP_DIR. Remove it before re-staging so the
+        // test always starts from a clean slate (belt-and-braces against the
+        // OS-signal interrupt case that bypasses the try/finally below).
+        rmSync(TEMP_DIR, { recursive: true, force: true });
         mkdirSync(dirname(TEMP_FILE), { recursive: true });
         copyFileSync(FIXTURE, TEMP_FILE);
         try {
