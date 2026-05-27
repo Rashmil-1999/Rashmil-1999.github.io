@@ -1,6 +1,49 @@
 ---
 // src/components/Testimonials.astro
-// CONTEXT.md D-08: empty stub. Phase 3 fills with real content.
+// Phase 3 Plan 03-03 Task 3: filled per PATTERNS.md Testimonials Astro port.
+// List-collection read with draft predicate (Phase 2 D-05); markdown body via <Content />.
+// Consumes .blockquote/.blockquote-footer (default Bootstrap-like styling),
+// .text-muted, .resume-section, .resume-section-content, .lead from global.css.
+
+import { getCollection, render } from 'astro:content';
+
+const entries = await getCollection('testimonials', ({ data }) =>
+    import.meta.env.PROD ? !data.draft : true,
+);
+entries.sort((a, b) => a.data.order - b.data.order);
+
+const rendered = await Promise.all(
+    entries.map(async (entry) => ({
+        entry,
+        Content: (await render(entry)).Content,
+    })),
+);
 ---
 
-<section id="testimonials"></section>
+<section id="testimonials" class="resume-section">
+    <div class="resume-section-content">
+        <h2 class="mb-5">Testimonials</h2>
+        {
+            rendered.map(({ entry, Content }) => (
+                <blockquote class="blockquote">
+                    <div class="lead mb-0 italic">
+                        <Content />
+                    </div>
+                    <footer class="blockquote-footer">
+                        <cite>{entry.data.user}</cite>
+                        {entry.data.role && entry.data.org && (
+                            <span class="text-muted">
+                                {' '}
+                                — {entry.data.role}, {entry.data.org}
+                            </span>
+                        )}
+                    </footer>
+                </blockquote>
+            ))
+        }
+    </div>
+</section>
+{
+    /* CONTEXT.md D-03: Testimonials is the final section and intentionally omits the
+    trailing horizontal-rule element that every other section emits. Matches CRA. */
+}
