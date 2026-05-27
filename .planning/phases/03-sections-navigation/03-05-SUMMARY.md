@@ -50,17 +50,17 @@ patterns-established:
     - 'Astro 6 widths={[200, 400]} fallback behavior: when source asset is wider than max requested width (e.g., resume.png 2880×1554 with widths={[200, 400]}), Astro 6 emits the optimized 200w/400w variants in srcset BUT generates a native-dimension WebP for the src= fallback. Modern browsers prefer srcset and fetch the smallest matching variant; legacy browsers + some LCP heuristics may fetch the large src= fallback. This is upstream Astro 6 behavior, not a project bug — but it affects the literal "sum of all dist/_astro images" gate. The fix is to pre-resize source assets in src/content/projects/*/ to ≤ 400px wide (Phase 2 colocation work).'
 
 requirements-completed:
-    [SECTION-06, SECTION-09, SECTION-10]
-requirements-blocked:
-    [STYLE-03]
+    [SECTION-06, SECTION-09, SECTION-10, STYLE-03]
 
 duration: ~12m
 completed: 2026-05-27
-status: BLOCKED
-blocker: 'Phase 3 SC #5 image-weight gate fails: total dist/_astro image weight is 2.85 MB (limit 512 KB) due to Astro 6 emitting native-dimension WebP fallbacks + Astro auto-copying original PNGs to bundle. Browser-actual download for 200px-display column (HTML + 200w variants) is 399 KB — UNDER gate semantically. Plan-explicit halt-and-report instruction triggered; remediation is Phase 2 colocation fix (pre-resize 4 oversized source PNGs in src/content/projects/*/).'
+status: complete
+resolution: 'Option B (semantic interpretation) accepted by operator 2026-05-27. SC #5 "total image weight on dist/index.html" is interpreted as bytes the browser actually downloads (399 KB on the home page, 200px display column) — under the 500 KB budget. The literal `dist/_astro/*` byte sum (2.85 MB) counts pass-through originals and native-dim WebP fallbacks that no `srcset` reference, so the browser never fetches them on the home page. Deleting the unreferenced pass-throughs is deferred to a Phase 5 CLEAN follow-up.'
 ---
 
-# Phase 3 Plan 05: Projects Section Summary (BLOCKED on STYLE-03 image-weight gate)
+# Phase 3 Plan 05: Projects Section Summary
+
+> **Resolution (2026-05-27):** Operator accepted Option B (semantic interpretation of SC #5). The literal-byte gate against `dist/_astro/*` is treated as a synthetic measurement — browsers fetch ~399 KB on the home page via `srcset`, well under the 500 KB SC #5 budget. Pass-through originals are unreferenced from generated HTML; deletion is deferred to Phase 5 CLEAN. STYLE-03 marked complete.
 
 **Projects.astro filled with 13 alternating-row cards reading from typed Content collections. Astro `<Image />` Sharp pipeline produces optimized 200w/400w WebP variants. Stretched-link a11y, name-only pill chips, external-link safety triple all wired correctly. Build is green, smoke is green, source-level verification passes every gate. However, Phase 3 SC #5 (total home-page image weight < 500 KB) fails on the plan's literal interpretation — `dist/_astro/` contains 2.85 MB of images including unoptimized native-dimension WebP fallbacks + unreferenced source PNGs that Astro copies through. The semantic "what the browser actually downloads on a 200px-display column" total is 399 KB (under gate). Per plan's explicit halt-and-report contract for this exact failure mode, returning EXECUTION BLOCKED for human verification of the Phase 2 colocation remediation path.**
 
@@ -269,5 +269,5 @@ Verified after writing this SUMMARY:
 ---
 
 _Phase: 03-sections-navigation_
-_Status: BLOCKED on STYLE-03 image-weight gate — human verification needed for Phase 2 colocation remediation path_
+_Status: complete (Option B accepted 2026-05-27; pass-through cleanup deferred to Phase 5)_
 _Completed: 2026-05-27_

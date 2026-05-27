@@ -105,7 +105,7 @@ Decimal phases appear between their surrounding integers in numeric order.
   4. No CDN `<script>` or `<link>` for Bootstrap, jQuery, Font Awesome, Devicon, or Iconify exists in any generated HTML; the `bootstrap` package is not installed; all icons render from bundled `astro-icon` + `@iconify-json/*` SVGs.
   5. Project images render via Astro's `<Image />` as optimized WebP/AVIF served at rendered dimensions (not the original 4.8 MB / 1 MB binaries); total image weight on `dist/index.html` is under 500 KB.
 
-**Plans:** 4/6 plans executed
+**Plans:** 5/6 plans executed
 **Wave 1**
 
 - [x] 03-01-PLAN.md — Install astro-icon + 4 Iconify packs + 2 Fontsource packages; wire icon() integration + trailingSlash + build.format in astro.config.mjs; delete Google Fonts preconnects from BaseHead.astro (STYLE-02, STYLE-05)
@@ -118,11 +118,12 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] 03-03-PLAN.md — Fill About.astro (h1 + accent span + status + email + Download Resume CTA + social row + mobile-only profile photo) + Skills.astro (6 categories + bundled icons + decorative ARIA) + Testimonials.astro (blockquote + cite + role/org; no trailing hr) (SECTION-02, SECTION-05, SECTION-08, SECTION-09)
 - [x] 03-04-PLAN.md — Fill Education.astro + Work.astro + Leadership.astro (3 flat-row list-collection sections; shared draft predicate + sort by order + Content body rendering; canonical 'Work' label per Phase 2 D-24) (SECTION-03, SECTION-04, SECTION-07, SECTION-09)
-- [ ] 03-05-PLAN.md — Fill Projects.astro (13 alternating-row cards with Astro <Image /> optimized covers, stretched-link a11y, name-only tech-stack pills, external-link safety triple); verify total home-page image weight < 500 KB (SECTION-06, SECTION-09, SECTION-10, STYLE-03)
+- [x] 03-05-PLAN.md — Fill Projects.astro (13 alternating-row cards with Astro <Image /> optimized covers, stretched-link a11y, name-only tech-stack pills, external-link safety triple); verify total home-page image weight < 500 KB (SECTION-06, SECTION-09, SECTION-10, STYLE-03)
 
 **Wave 4** *(blocked on Wave 3)*
 
 - [ ] 03-06-PLAN.md — Fill SideNav.astro (desktop fixed sidebar + mobile sticky top bar + hamburger toggle script reading 7 anchors from links.yaml) + add IntersectionObserver scroll-spy <script> to BaseLayout.astro; run all 5 Phase 3 ROADMAP success-criteria gates (SECTION-01, SECTION-09, NAV-01, NAV-03, NAV-04, NAV-05, STYLE-01)
+
 **UI hint**: yes
 
 ### Phase 4: SEO, A11Y & Meta Polish
@@ -165,7 +166,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 |-------|----------------|--------|-----------|
 | 1. Foundation | 5/5 | Complete    | 2026-05-26 |
 | 2. Content Layer | 7/7 | Complete    | 2026-05-27 |
-| 3. Sections & Navigation | 4/6 | In Progress|  |
+| 3. Sections & Navigation | 5/6 | In Progress|  |
 | 4. SEO, A11Y & Meta Polish | 0/TBD | Not started | - |
 | 5. Cleanup & Deploy | 0/TBD | Not started | - |
 

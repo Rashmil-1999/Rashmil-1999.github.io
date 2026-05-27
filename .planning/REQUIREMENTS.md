@@ -40,11 +40,11 @@ Port every existing section as `.astro`. React only if state genuinely exists (i
 - [x] **SECTION-03**: `Education.astro` renders the education collection in current order with school, degree, dates
 - [x] **SECTION-04**: `Work.astro` renders the work collection with company, role, dates, and bullet descriptions
 - [x] **SECTION-05**: `Skills.astro` renders the skills collection grouped by category, with bundled icons (no Devicon/Iconify CDN)
-- [ ] **SECTION-06**: `Projects.astro` renders the projects collection as cards with optimized images via `<Image />`, tech-stack chips, and external links with `rel="noopener noreferrer"`
+- [x] **SECTION-06**: `Projects.astro` renders the projects collection as cards with optimized images via `<Image />`, tech-stack chips, and external links with `rel="noopener noreferrer"`
 - [x] **SECTION-07**: `Leadership.astro` renders the leadership collection with role, org, dates, and description
 - [x] **SECTION-08**: `Testimonials.astro` renders the testimonials collection as quoted blocks with attribution
 - [x] **SECTION-09**: No section ships React runtime; every component is `.astro` unless a SECTION-* requirement is later split out for an interactive island
-- [ ] **SECTION-10**: The hand-maintained `image_map` lookup from `Projects.jsx` is gone — image references flow from frontmatter through the schema, not through a side-table
+- [x] **SECTION-10**: The hand-maintained `image_map` lookup from `Projects.jsx` is gone — image references flow from frontmatter through the schema, not through a side-table
 
 ### Navigation (NAV)
 
@@ -62,7 +62,7 @@ Light visual polish — preserve current layout, fix presentation rough edges.
 
 - [x] **STYLE-01**: Bootstrap 4 (CDN and class names) is fully removed; no `bootstrap` package is installed
 - [x] **STYLE-02**: All icons are bundled via `astro-icon` + `@iconify-json/simple-icons` (brand/social) + `@iconify-json/devicon` (tech stack); no CDN icon scripts in `<head>`
-- [ ] **STYLE-03**: Project images are served through Astro's `<Image />` with appropriate `width` / `height` / `format` to prevent the 4.8 MB / 1 MB asset weights flagged in the codebase concerns map
+- [x] **STYLE-03**: Project images are served through Astro's `<Image />` with appropriate `width` / `height` / `format` to prevent the 4.8 MB / 1 MB asset weights flagged in the codebase concerns map
 - [x] **STYLE-04**: Section spacing, heading typography, and link/button hover states are tidied for visual consistency without redesigning the layout
 - [x] **STYLE-05**: Fonts (currently Saira Extra Condensed + Muli from Google Fonts) are loaded via `<link rel="preconnect">` + `<link rel="stylesheet">` in the shared head, or self-hosted via `@fontsource/*`; no FOIT on a fresh load
 
@@ -185,11 +185,11 @@ Every v1 requirement maps to exactly one phase. See `.planning/ROADMAP.md` for p
 | SECTION-03 | Phase 3: Sections & Navigation | Complete |
 | SECTION-04 | Phase 3: Sections & Navigation | Complete |
 | SECTION-05 | Phase 3: Sections & Navigation | Complete |
-| SECTION-06 | Phase 3: Sections & Navigation | Pending |
+| SECTION-06 | Phase 3: Sections & Navigation | Complete |
 | SECTION-07 | Phase 3: Sections & Navigation | Complete |
 | SECTION-08 | Phase 3: Sections & Navigation | Complete |
 | SECTION-09 | Phase 3: Sections & Navigation | Complete |
-| SECTION-10 | Phase 3: Sections & Navigation | Pending |
+| SECTION-10 | Phase 3: Sections & Navigation | Complete |
 | NAV-01 | Phase 3: Sections & Navigation | Pending |
 | NAV-02 | Phase 3: Sections & Navigation | Complete |
 | NAV-03 | Phase 3: Sections & Navigation | Pending |
@@ -197,7 +197,7 @@ Every v1 requirement maps to exactly one phase. See `.planning/ROADMAP.md` for p
 | NAV-05 | Phase 3: Sections & Navigation | Pending |
 | STYLE-01 | Phase 3: Sections & Navigation | Complete |
 | STYLE-02 | Phase 3: Sections & Navigation | Complete |
-| STYLE-03 | Phase 3: Sections & Navigation | Pending |
+| STYLE-03 | Phase 3: Sections & Navigation | Complete |
 | STYLE-04 | Phase 3: Sections & Navigation | Complete |
 | STYLE-05 | Phase 3: Sections & Navigation | Complete |
 | A11Y-01 | Phase 4: SEO, A11Y & Meta Polish | Pending |
@@ -230,6 +230,7 @@ Every v1 requirement maps to exactly one phase. See `.planning/ROADMAP.md` for p
 | DEPLOY-06 | Phase 5: Cleanup & Deploy | Pending |
 
 **Coverage:**
+
 - v1 requirements: 64 total (8 FOUND + 8 CONTENT + 10 SECTION + 5 NAV + 5 STYLE + 7 A11Y + 7 SEO + 8 CLEAN + 6 DEPLOY)
 - Mapped to phases: 64 / 64 (100%)
 - Unmapped: 0
