@@ -36,14 +36,14 @@ Resume data moves from a single JSON to typed Content Layer collections — the 
 Port every existing section as `.astro`. React only if state genuinely exists (it doesn't, day one).
 
 - [ ] **SECTION-01**: `src/pages/index.astro` is the only page route and composes all 8 sections in their current order
-- [ ] **SECTION-02**: `About.astro` renders name, role, contact info, social links, and links to `/Rashmil_Panchani.pdf` for resume download
+- [x] **SECTION-02**: `About.astro` renders name, role, contact info, social links, and links to `/Rashmil_Panchani.pdf` for resume download
 - [ ] **SECTION-03**: `Education.astro` renders the education collection in current order with school, degree, dates
 - [ ] **SECTION-04**: `Work.astro` renders the work collection with company, role, dates, and bullet descriptions
-- [ ] **SECTION-05**: `Skills.astro` renders the skills collection grouped by category, with bundled icons (no Devicon/Iconify CDN)
+- [x] **SECTION-05**: `Skills.astro` renders the skills collection grouped by category, with bundled icons (no Devicon/Iconify CDN)
 - [ ] **SECTION-06**: `Projects.astro` renders the projects collection as cards with optimized images via `<Image />`, tech-stack chips, and external links with `rel="noopener noreferrer"`
 - [ ] **SECTION-07**: `Leadership.astro` renders the leadership collection with role, org, dates, and description
-- [ ] **SECTION-08**: `Testimonials.astro` renders the testimonials collection as quoted blocks with attribution
-- [ ] **SECTION-09**: No section ships React runtime; every component is `.astro` unless a SECTION-* requirement is later split out for an interactive island
+- [x] **SECTION-08**: `Testimonials.astro` renders the testimonials collection as quoted blocks with attribution
+- [x] **SECTION-09**: No section ships React runtime; every component is `.astro` unless a SECTION-* requirement is later split out for an interactive island
 - [ ] **SECTION-10**: The hand-maintained `image_map` lookup from `Projects.jsx` is gone — image references flow from frontmatter through the schema, not through a side-table
 
 ### Navigation (NAV)
@@ -181,14 +181,14 @@ Every v1 requirement maps to exactly one phase. See `.planning/ROADMAP.md` for p
 | CONTENT-07 | Phase 2: Content Layer | Complete |
 | CONTENT-08 | Phase 2: Content Layer | Complete |
 | SECTION-01 | Phase 3: Sections & Navigation | Pending |
-| SECTION-02 | Phase 3: Sections & Navigation | Pending |
+| SECTION-02 | Phase 3: Sections & Navigation | Complete |
 | SECTION-03 | Phase 3: Sections & Navigation | Pending |
 | SECTION-04 | Phase 3: Sections & Navigation | Pending |
-| SECTION-05 | Phase 3: Sections & Navigation | Pending |
+| SECTION-05 | Phase 3: Sections & Navigation | Complete |
 | SECTION-06 | Phase 3: Sections & Navigation | Pending |
 | SECTION-07 | Phase 3: Sections & Navigation | Pending |
-| SECTION-08 | Phase 3: Sections & Navigation | Pending |
-| SECTION-09 | Phase 3: Sections & Navigation | Pending |
+| SECTION-08 | Phase 3: Sections & Navigation | Complete |
+| SECTION-09 | Phase 3: Sections & Navigation | Complete |
 | SECTION-10 | Phase 3: Sections & Navigation | Pending |
 | NAV-01 | Phase 3: Sections & Navigation | Pending |
 | NAV-02 | Phase 3: Sections & Navigation | Complete |
