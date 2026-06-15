@@ -3,47 +3,57 @@ skills:
         - name: 'Programming Languages & Operating Systems'
           order: 10
           items:
+              - { name: Python, icon: devicon:python }
+              - { name: Java, icon: devicon:java }
+              - { name: Javascript, icon: devicon:javascript }
+              - { name: Typescript, icon: devicon:typescript }
               - { name: C, icon: devicon:c }
               - { name: C++, icon: devicon:cplusplus }
-              - { name: Java, icon: devicon:java }
-              - { name: Python, icon: devicon:python }
               - { name: Go, icon: devicon:go }
-              - { name: JavaScript, icon: devicon:javascript }
               - { name: Windows, icon: devicon:windows8 }
               - { name: Linux, icon: devicon:linux }
               - { name: macOS, icon: devicon:apple }
         - name: 'Database Technologies'
           order: 20
           items:
-              - { name: MySQL, icon: devicon:mysql }
-              - { name: 'Postgre SQL', icon: devicon:postgresql }
+              - { name: My SQL, icon: devicon:mysql }
+              - { name: Postgre SQL, icon: devicon:postgresql }
               - { name: MongoDB, icon: devicon:mongodb }
               - { name: Redis, icon: devicon:redis }
-              - { name: GraphQL, icon: logos:graphql }
+              - { name: Graph QL, icon: logos:graphql }
         - name: 'Web Development'
           order: 30
           items:
               - { name: HTML5, icon: devicon:html5 }
               - { name: CSS3, icon: devicon:css3 }
               - { name: Django, icon: simple-icons:django }
+              - { name: Flask, icon: devicon:flask }
+              - { name: FastAPI, icon: devicon:fastapi }
+              - { name: Spring Boot, icon: devicon:spring }
               - { name: NodeJS, icon: devicon:nodejs }
-              - { name: ReactJS, icon: devicon:react }
+              - { name: React, icon: devicon:react }
+              - { name: Material UI, icon: devicon:materialui }
               - { name: Bootstrap, icon: devicon:bootstrap }
         - name: 'Dev Ops'
           order: 40
           items:
               - { name: Heroku, icon: devicon:heroku }
               - { name: AWS, icon: devicon:amazonwebservices }
-              - { name: 'Google Cloud Platform', icon: logos:google-cloud }
+              - { name: Docker, icon: devicon:docker }
+              - { name: Google Cloud Platform, icon: devicon:googlecloud }
         - name: 'Tools and Frameworks'
           order: 50
           items:
-              - { name: NumPy, icon: simple-icons:numpy }
-              - { name: Pandas, icon: simple-icons:pandas }
-              - { name: Tensorflow, icon: simple-icons:tensorflow }
-              - { name: Keras, icon: simple-icons:keras }
+              - { name: Numpy, icon: devicon:numpy }
+              - { name: Pandas, icon: devicon:pandas }
+              - { name: Matplotlib, icon: devicon:matplotlib }
+              - { name: Arduino, icon: devicon:arduino }
+              - { name: Tensorflow, icon: devicon:tensorflow }
+              - { name: Pytorch, icon: devicon:pytorch }
+              - { name: Keras, icon: devicon:keras }
               - { name: NLTK, icon: lucide:code }
-              - { name: OpenCV, icon: simple-icons:opencv }
+              - { name: OpenCV, icon: devicon:opencv }
+              - { name: NetworkX, icon: devicon:networkx }
         - name: 'Version Control'
           order: 60
           items:

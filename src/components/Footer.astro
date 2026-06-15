@@ -1,0 +1,30 @@
+---
+// src/components/Footer.astro
+// Live-site Footer port: dark band, social icons, contact email, copyright.
+
+import { getEntry } from 'astro:content';
+import { Icon } from 'astro-icon/components';
+
+const aboutEntry = await getEntry('about', 'about');
+if (!aboutEntry) throw new Error('about.yaml missing');
+const { first_name, last_name, email, social } = aboutEntry.data;
+---
+
+<footer class="site-footer px-4 py-10">
+    <ul role="list" class="mb-6 flex justify-center gap-8 text-2xl">
+        {
+            social.map((network) => (
+                <li>
+                    <a href={network.url} target="_blank" rel="noopener noreferrer">
+                        <Icon name={network.icon} class="size-7" aria-hidden="true" />
+                        <span class="sr-only">{network.name} (opens in new tab)</span>
+                    </a>
+                </li>
+            ))
+        }
+    </ul>
+    <p class="mb-4">
+        Contact me: <a class="underline" href={`mailto:${email}`}>{email}</a>
+    </p>
+    <p class="py-2"><small>Copyright &copy; {first_name} {last_name}</small></p>
+</footer>

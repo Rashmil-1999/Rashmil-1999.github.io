@@ -1,0 +1,36 @@
+---
+// src/components/Header.astro
+// Live-site hero port (Header.jsx): laptop icon, name, rotating titles,
+// theme switch (HeroWidgets island), resume download button.
+
+import { getEntry } from 'astro:content';
+import { Icon } from 'astro-icon/components';
+import HeroWidgets from './HeroWidgets.tsx';
+
+const aboutEntry = await getEntry('about', 'about');
+if (!aboutEntry) throw new Error('about.yaml missing');
+const { first_name, last_name, titles, resume_download } = aboutEntry.data;
+const name = `${first_name} ${last_name}`;
+---
+
+<header id="home" class="hero">
+    <div>
+        <Icon
+            name="lucide:laptop"
+            class="mx-auto size-32 text-[#3c342c] opacity-80"
+            aria-hidden="true"
+        />
+        <h1 class="hero-name mb-4">{name}</h1>
+        <HeroWidgets titles={[...titles]} client:load />
+        <p class="mt-10">
+            <a
+                href={`/${resume_download}`}
+                download
+                class="title-styles inline-flex items-center gap-2"
+            >
+                <Icon name="lucide:download" class="size-6" aria-hidden="true" />
+                Resume
+            </a>
+        </p>
+    </div>
+</header>

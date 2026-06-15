@@ -1,9 +1,8 @@
 ---
 // src/components/Skills.astro
-// Phase 3 Plan 03-03 Task 2: filled per RESEARCH.md Pattern 4 + PATTERNS.md Skills port.
-// Singleton read via getEntry('skills', 'skills') — skills.yaml top-level key is `skills:`.
-// Consumes .subheading, .resume-section, .resume-section-content from global.css (Plan 03-02).
-// Per D-21, astro-icon fails the build loudly on unknown Iconify ids — no runtime fallback.
+// Live-site Skills port: centered categories of large colored Devicon icons
+// with name labels and divider rules between categories (recovered Skills.jsx).
+// Per D-21, astro-icon fails the build loudly on unknown Iconify ids.
 
 import { getEntry } from 'astro:content';
 import { Icon } from 'astro-icon/components';
@@ -14,24 +13,25 @@ if (!skillsEntry) throw new Error('skills.yaml missing');
 const categories = [...skillsEntry.data.categories].sort((a, b) => a.order - b.order);
 ---
 
-<section id="skills" class="resume-section">
-    <div class="resume-section-content">
-        <h2 class="mb-5">Skills</h2>
-        {
-            categories.map((category) => (
-                <div class="mb-5">
-                    <div class="subheading mb-3">{category.name}</div>
-                    <ul role="list" class="dev-icons flex flex-wrap gap-4">
-                        {category.items.map((item) => (
-                            <li class="flex flex-col items-center">
-                                <Icon name={item.icon} aria-hidden="true" class="size-6" />
-                                <span class="mt-1 text-xs">{item.name}</span>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-            ))
-        }
-    </div>
+<section id="skills" class="section-surface px-4 pb-16">
+    <h2 class="section-title section-title-dark">Skills</h2>
+    {
+        categories.map((category, i) => (
+            <div class="mx-auto max-w-4xl text-center">
+                <h3 class="mb-6 text-lg font-bold">{category.name}</h3>
+                <ul
+                    role="list"
+                    class="mb-8 flex flex-wrap items-end justify-center gap-x-8 gap-y-6"
+                >
+                    {category.items.map((item) => (
+                        <li class="flex flex-col items-center">
+                            <Icon name={item.icon} aria-hidden="true" class="size-12" />
+                            <span class="mt-2 text-xs">{item.name}</span>
+                        </li>
+                    ))}
+                </ul>
+                {i < categories.length - 1 && <hr class="mx-auto mb-8 w-4/5 border-black/20" />}
+            </div>
+        ))
+    }
 </section>
-<hr class="m-0 border-black/10" />

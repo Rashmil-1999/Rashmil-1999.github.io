@@ -1,29 +1,27 @@
 ---
 // src/pages/index.astro
-// Source: docs.astro.build/en/basics/astro-pages/
-// CONTEXT.md D-07: composes 8 section stubs in current-site order (SideNav, About, Education, Work, Skills, Projects, Leadership, Testimonials).
-// Phase 3 fills the stubs with real content; this composition order does not change.
+// Live-site composition (recovered App.jsx): Header hero, then
+// About → Education → Projects → Skills → Experience (work) → Footer.
+// No nav — the live design is a single scrolling page.
 
 import BaseLayout from '../layouts/BaseLayout.astro';
-import SideNav from '../components/SideNav.astro';
+import Header from '../components/Header.astro';
 import About from '../components/About.astro';
 import Education from '../components/Education.astro';
-import Work from '../components/Work.astro';
-import Skills from '../components/Skills.astro';
 import Projects from '../components/Projects.astro';
-import Leadership from '../components/Leadership.astro';
-import Testimonials from '../components/Testimonials.astro';
+import Skills from '../components/Skills.astro';
+import Work from '../components/Work.astro';
+import Footer from '../components/Footer.astro';
 ---
 
 <BaseLayout title="Rashmil Panchani">
-    <SideNav />
+    <Header />
     <main>
         <About />
         <Education />
-        <Work />
-        <Skills />
         <Projects />
-        <Leadership />
-        <Testimonials />
+        <Skills />
+        <Work />
     </main>
+    <Footer />
 </BaseLayout>

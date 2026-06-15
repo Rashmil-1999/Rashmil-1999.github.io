@@ -2,6 +2,14 @@
 company: 'Phionike Solutions: Design-Tech Studio'
 title: Research and Development Intern
 duration: 'May 2019 - July 2019'
+icon: 'devicon:nodejs'
+main_tech:
+    - Amazon Alexa
+technologies:
+    - JavaScript
+    - Node JS
+    - AWS S3
+    - AWS Lambda
 order: 10
 ---
 

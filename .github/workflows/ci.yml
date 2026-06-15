@@ -1,15 +1,14 @@
 # .github/workflows/ci.yml
 # Source: docs.github.com/en/actions/quickstart
 #         github.com/actions/setup-node
-# CONTEXT.md D-25: CI gate — lint + format:check + astro check + test.
-# Runs on every push and PR to main. NO deploy step (Phase 5 owns deploy.yml).
+# CI gate for pull requests — lint + format:check + astro check + test.
+# Main-branch validation moved to deploy.yml (which runs the same gate before
+# publishing), so this only runs on PRs to avoid double-running on main pushes.
 # No `permissions:` block — default GITHUB_TOKEN is read-only, which is all CI needs.
 
 name: CI
 
 on:
-    push:
-        branches: [main]
     pull_request:
         branches: [main]
 

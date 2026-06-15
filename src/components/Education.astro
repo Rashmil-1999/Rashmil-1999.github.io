@@ -1,11 +1,11 @@
 ---
 // src/components/Education.astro
-// Phase 3 Plan 03-04: filled per PATTERNS.md Education Astro port.
-// Reads from Phase 2 'education' Content Collection (3 entries) with the
-// Phase 2 D-05 draft predicate. Renders RESEARCH.md Pattern 1 (flat-row,
-// NOT card-shadowed per D-22). Markdown body emitted via <Content /> per D-23.
+// Live-site Education port: vertical timeline on the brand section background
+// (recovered Education.jsx used react-vertical-timeline with map:university
+// icons and a diploma-scroll cap).
 
 import { getCollection, render } from 'astro:content';
+import { Icon } from 'astro-icon/components';
 
 const entries = await getCollection('education', ({ data }) =>
     import.meta.env.PROD ? !data.draft : true,
@@ -20,30 +20,34 @@ const rendered = await Promise.all(
 );
 ---
 
-<section id="education" class="resume-section">
-    <div class="resume-section-content">
-        <h2 class="mb-5">Education</h2>
+<section id="education" class="section-alt px-4 pb-16">
+    <h2 class="section-title">Education</h2>
+    <ol role="list" class="timeline mx-auto max-w-3xl">
         {
-            rendered.map(({ entry, Content }, id) => (
-                <div
-                    class={
-                        id === rendered.length - 1
-                            ? 'flex flex-col md:flex-row md:justify-between'
-                            : 'mb-5 flex flex-col md:flex-row md:justify-between'
-                    }
-                >
-                    <div class="flex-grow">
-                        <h3 class="mb-0">{entry.data.name}</h3>
-                        <div class="subheading mb-3">{entry.data.degree}</div>
-                        {entry.data.score && <p>{entry.data.score}</p>}
-                        <Content />
+            rendered.map(({ entry, Content }) => (
+                <li class="relative mb-12">
+                    <span class="timeline-node" aria-hidden="true">
+                        <Icon name="lucide:graduation-cap" class="size-6" />
+                    </span>
+                    <div class="timeline-card">
+                        <div class="flex flex-col md:flex-row md:items-baseline md:justify-between md:gap-4">
+                            <h3 class="text-xl font-bold">{entry.data.degree}</h3>
+                            <span class="shrink-0 text-sm">{entry.data.graduated}</span>
+                        </div>
+                        <p class="mb-2 text-lg">{entry.data.name}</p>
+                        {entry.data.score && <p class="mb-2 text-sm">{entry.data.score}</p>}
+                        <div class="text-sm">
+                            <Content />
+                        </div>
                     </div>
-                    <div class="flex-shrink-0">
-                        <span class="text-muted">{entry.data.graduated}</span>
-                    </div>
-                </div>
+                </li>
             ))
         }
-    </div>
+        <li class="relative">
+            <span class="timeline-node" aria-hidden="true">
+                <Icon name="lucide:scroll" class="size-6" />
+            </span>
+            <span class="sr-only">End of education timeline</span>
+        </li>
+    </ol>
 </section>
-<hr class="m-0 border-black/10" />

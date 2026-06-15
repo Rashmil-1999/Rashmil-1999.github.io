@@ -1,10 +1,13 @@
 ---
-title: Age Of Warring Empire tower bot
+title: 'Age Of Warring Empire tower bot'
+start_date: '2019'
+url: 'https://github.com/Rashmil-1999/Aowe_Tower-Hydra-Bot'
+cover: ./live.jpg
 tech_stack:
-    - OpenCV
-    - pyautogui
-url: https://github.com/Rashmil-1999/Aowe_Tower-Hydra-Bot
-cover: ./aowe.jpg
+    - { name: Numpy, icon: 'devicon:numpy' }
+    - { name: OpenCV, icon: 'devicon:opencv' }
+    - { name: Pyautogui, icon: 'lucide:code' }
+    - { name: Python, icon: 'devicon:python' }
 order: 40
 ---
 

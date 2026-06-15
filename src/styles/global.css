@@ -1,58 +1,70 @@
 /* src/styles/global.css
-   Single Tailwind v4 entry + brand tokens. Filled by Plan 03-02 (Phase 3). */
+   Tailwind v4 entry + live-site design system.
+   Palette and component classes ported from the recovered live site
+   (resume-rashmil, deployed 2022-09-15; source extracted from its source maps):
+   App.scss + scss/themes/theme-light.scss + theme-dark.scss.
+   Dark mode = body[data-theme='dark'] re-declares the semantic custom properties,
+   which every utility/component below consumes via var(). */
 
 @import 'tailwindcss';
 
-/* Fontsource — per-weight CSS (D-33 / D-34) */
-@import '@fontsource/saira-extra-condensed/500.css';
-@import '@fontsource/saira-extra-condensed/700.css';
-@import '@fontsource/mulish/400.css';
-@import '@fontsource/mulish/400-italic.css';
-@import '@fontsource/mulish/800.css';
-@import '@fontsource/mulish/800-italic.css';
+/* Fontsource — Raleway drives the hero rotating titles (live App.scss). */
+@import '@fontsource/raleway/200.css';
+@import '@fontsource/raleway/300.css';
 
 @theme {
-    /* Brand colors (D-02, D-04, D-05 — recovered from CRA via D-06 / b537845) */
-    --color-bg: #eee2dc;
-    --color-text: #6c757d;
-    --color-accent: #bd5d38;
-    --color-link: #123c69;
-    --color-link-hover: #123c69ad;
-    --color-muted: #6c757d; /* alias of text */
+    /* Brand constants (identical in both themes) */
+    --color-brand: #7a73ff;
+    --color-brand-deep: #635bff;
+    --color-badge-soft: #d7d6fc;
+    --color-footer: #1f1f1f;
 
-    /* Typography (D-02 / recovered) */
-    --font-heading:
-        'Saira Extra Condensed', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-        'Helvetica Neue', Arial, sans-serif;
-    --font-body:
-        'Mulish', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
-        sans-serif;
+    /* Semantic, theme-switched tokens (light defaults; dark overrides below).
+       Declared in @theme so bg-hero / bg-alt / bg-card etc. exist as utilities. */
+    --color-hero: #7a73ff;
+    --color-alt: #7a73ff; /* education / projects / experience section bg */
+    --color-surface: #ffffff; /* about section bg */
+    --color-card: #ffffff; /* polaroid, terminal card, timeline cards, project cards */
+    --color-card-text: #212529;
+    --color-node: #635bff; /* timeline icon nodes + main badges */
+    --color-badge-soft-bg: #d7d6fc;
+    --color-badge-soft-text: #212529;
+    --color-heading-on-surface: #000000;
+
+    --font-titles: 'Raleway', sans-serif;
+    --font-display:
+        'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; /* hero name (live) */
 }
 
-/* Body base (recovered: bg + text colors + base font) */
+/* Dark theme (live theme-dark.scss). Utilities resolve var() at runtime,
+   so re-declaring the semantic tokens here re-skins every component. */
+body[data-theme='dark'] {
+    --color-hero: #494949;
+    --color-alt: #5b5b5b;
+    --color-surface: #7f7f7f;
+    --color-card: #6d6d6d;
+    --color-card-text: #ffffff;
+    --color-node: #919191;
+    --color-badge-soft-bg: #919191;
+    --color-badge-soft-text: #ffffff;
+    --color-heading-on-surface: #ffffff;
+}
+
 body {
-    background-color: var(--color-bg);
-    color: var(--color-text);
-    font-family: var(--font-body);
-    font-weight: 400;
+    background-color: var(--color-surface);
+    color: var(--color-card-text);
+    font-family:
+        system-ui,
+        -apple-system,
+        'Segoe UI',
+        Roboto,
+        'Helvetica Neue',
+        Arial,
+        sans-serif;
     line-height: 1.5;
 }
 
-/* Headings inherit Saira + uppercase per recovered theme */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    font-family: var(--font-heading);
-    text-transform: uppercase;
-}
-h1 {
-    line-height: 1;
-}
-
-/* Smooth scroll with prefers-reduced-motion guard (NAV-02 / D-32) */
+/* Smooth scroll with prefers-reduced-motion guard */
 html {
     scroll-behavior: smooth;
 }
@@ -62,135 +74,244 @@ html {
     }
 }
 
-/* Subheading utility (recovered — used in About + section row headers) */
-.subheading {
-    font-family: var(--font-heading);
-    text-transform: uppercase;
-    font-weight: 500;
-    font-size: 1.5rem;
-}
-
-/* Lead paragraph (recovered p.lead) */
-.lead {
-    font-size: 1.15rem;
-    font-weight: 400;
-}
-
-/* Resume section base (recovered: padding + max-width + min-height) */
-.resume-section {
-    padding: 5rem 1rem;
-    max-width: 75rem;
-}
-@media (min-width: 768px) {
-    .resume-section {
-        min-height: 100vh;
-        padding-left: 3rem;
-        padding-right: 3rem;
-    }
-}
-.resume-section-content {
-    width: 100%;
-}
-
-/* Sidebar layout (recovered, breakpoint widened from 992px → 768px per D-10) */
-@media (min-width: 768px) {
-    body {
-        padding-left: 19rem; /* matches sidebar width */
-    }
-    .sidenav {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 19rem;
-        height: 100vh;
-        background-color: var(--color-bg);
-        display: flex;
-        flex-direction: column;
-    }
-}
-@media (max-width: 767px) {
-    body {
-        padding-top: 3.375rem;
-    }
-    .sidenav {
-        position: sticky;
-        top: 0;
-        background-color: var(--color-bg);
-        z-index: 50;
-    }
-}
-
-/* Active nav link — 3 signals: accent color + accent left border + 800 weight (D-12 / A11Y-04) */
-.nav-link {
-    font-weight: 800;
-    letter-spacing: 0.05rem;
-    text-transform: uppercase;
-    padding: 0.5rem 1rem;
-    color: var(--color-text);
-    border-left: 4px solid transparent;
-}
-.nav-link[aria-current='page'] {
-    color: var(--color-accent);
-    border-left-color: var(--color-accent);
-    font-weight: 800; /* already 800; emphasis via color + border */
-}
-
-/* Profile pic (recovered dimensions) */
-.profile-pic {
-    width: 200px;
-    height: 225px;
-    object-fit: cover;
-}
-
-/* text-primary utility (recovered — used for the accent span in <h1>{first}<span class="text-primary">{last}</span>) */
-.text-primary {
-    color: var(--color-accent);
-}
-
-/* Resume Download button.
-   D-27 reconciliation: UI-SPEC accent (#bd5d38), NOT recovered CRA navy (#123c69).
-   "Refresh same vibe" modernization choice per CONTEXT.md D-27 + PATTERNS.md CRA-RECOVERY DELTA. */
-.btn-primary {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.5rem 1rem;
-    background-color: var(--color-accent);
-    color: white;
-    text-decoration: none;
-    border-radius: 0.25rem;
-}
-.btn-primary:hover {
-    background-color: #a44e2f; /* ~10% darker than accent */
-}
-
-/* text-muted utility — consumed by Education/Work/Leadership right-column date <span>.
-   Standardizes on --color-muted alias (PATTERNS.md: CRA used Bootstrap text-secondary). */
-.text-muted {
-    color: var(--color-muted);
-}
-
-/* D-26: recovered CRA .social-icons .social-icon 3.5rem rounded-circle (sourced from b537845:src/App.css).
-   Consumed by About.astro social anchors (LinkedIn, Github). */
-.social-icon {
-    display: inline-flex;
+/* --- Hero (live: header { background-color: #7a73ff; ... }) --- */
+.hero {
+    background-color: var(--color-hero);
+    text-align: center;
+    padding: 9rem 1rem 4rem;
+    min-height: 80vh;
+    display: flex;
     align-items: center;
     justify-content: center;
-    width: 3.5rem;
-    height: 3.5rem;
-    border-radius: 9999px;
-    background-color: var(--color-text);
-    color: var(--color-bg);
-    text-decoration: none;
 }
-.social-icon:hover {
-    background-color: var(--color-accent);
+.hero-name {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 8vw, 4rem);
+    font-weight: 600;
+    color: #353239;
+}
+body[data-theme='dark'] .hero-name {
+    color: #ffffff;
+}
+.title-styles {
+    font-family: var(--font-titles);
+    font-weight: 300;
+    font-size: clamp(1.25rem, 4vw, 1.75rem);
+    color: #353239;
+    letter-spacing: 0.05em;
+}
+body[data-theme='dark'] .title-styles {
+    color: #ffffff;
 }
 
-/* D-15 alternating row direction: belt-and-suspenders for Tailwind v4 arbitrary variant
-   md:[&:nth-child(even)]:flex-row-reverse in Projects.astro; both paths cover the same
-   selector + property, so when both apply the result is identical. RESEARCH.md Assumption A5. */
-@media (min-width: 768px) {
-    .project-card:nth-child(even) {
-        flex-direction: row-reverse;
+/* --- Section scaffolding (live .section-title) --- */
+.section-title {
+    padding: 3rem 0;
+    font-size: 1.5rem; /* large text — white on brand purple passes AA at 3:1+ */
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-align: center;
+    color: #ffffff;
+}
+.section-title-dark {
+    color: var(--color-heading-on-surface);
+}
+.section-alt {
+    background-color: var(--color-alt);
+}
+.section-surface {
+    background-color: var(--color-surface);
+}
+
+/* --- About: polaroid + terminal card (live App.scss) --- */
+.polaroid {
+    background: var(--color-card);
+    display: inline-block;
+    padding: 15px 15px 30px;
+    box-shadow: 0 4px 6px rgb(0 0 0 / 0.3);
+    transition: transform 0.2s linear;
+}
+.terminal-card {
+    background: var(--color-card);
+    color: var(--color-card-text);
+    border-radius: 0.375rem;
+    box-shadow: 0 4px 6px rgb(0 0 0 / 0.3);
+    text-align: justify;
+    overflow: hidden;
+}
+.terminal-card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid rgb(0 0 0 / 0.125);
+    background: rgb(0 0 0 / 0.03);
+}
+.terminal-dot {
+    width: 0.875rem;
+    height: 0.875rem;
+    border-radius: 9999px;
+    display: inline-block;
+}
+.wave {
+    font-size: 160%;
+}
+
+/* --- Timeline (port of react-vertical-timeline single-column) --- */
+.timeline {
+    position: relative;
+    margin-left: 1rem;
+    padding-left: 2.5rem;
+    border-left: 4px solid rgb(255 255 255 / 0.5);
+}
+.timeline-node {
+    position: absolute;
+    top: 0;
+    left: -3.45rem;
+    display: flex;
+    width: 3rem;
+    height: 3rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    background-color: var(--color-node);
+    color: #ffffff;
+    box-shadow: 0 0 0 4px var(--color-alt);
+}
+.timeline-card {
+    background: var(--color-card);
+    color: var(--color-card-text);
+    border-radius: 0.5rem;
+    padding: 1.25rem;
+    box-shadow: 0 3px 0 var(--color-node);
+}
+.main-badge {
+    background-color: var(--color-node);
+    color: #ffffff;
+    border-radius: 9999px;
+    padding: 0.25rem 0.625rem;
+    font-size: 0.8125rem;
+}
+.soft-badge {
+    background-color: var(--color-badge-soft-bg);
+    color: var(--color-badge-soft-text);
+    border-radius: 9999px;
+    padding: 0.25rem 0.625rem;
+    font-size: 0.8125rem;
+}
+
+/* --- Project cards + modal (live cards / awesome-slider chrome) --- */
+.project-card {
+    background: var(--color-card);
+    color: var(--color-card-text);
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgb(0 0 0 / 0.3);
+    transition:
+        transform 0.2s linear,
+        box-shadow 0.2s linear;
+}
+.project-card:hover,
+.project-card:focus-within {
+    transform: scale(1.01);
+    box-shadow: 0 10px 20px rgb(0 0 0 / 0.5);
+}
+.slider-tab {
+    background-color: var(--color-brand);
+    height: 25px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding-left: 0.5rem;
+}
+body[data-theme='dark'] .slider-tab {
+    background-color: #8c8c8c;
+}
+.slider-frame {
+    border: 5px solid var(--color-brand);
+}
+body[data-theme='dark'] .slider-frame {
+    border-color: #8c8c8c;
+}
+
+/* --- Theme switch (live react-switch: 90x40, owl/sun) --- */
+.theme-switch {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    width: 90px;
+    height: 40px;
+    border-radius: 9999px;
+    background-color: var(--color-brand-deep);
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s linear;
+}
+body[data-theme='dark'] .theme-switch {
+    background-color: #353535;
+}
+.theme-switch-thumb {
+    position: absolute;
+    left: 4px;
+    width: 32px;
+    height: 32px;
+    border-radius: 9999px;
+    background: #ffffff;
+    transition: transform 0.2s linear;
+}
+body[data-theme='dark'] .theme-switch-thumb {
+    transform: translateX(50px);
+}
+@media (prefers-reduced-motion: reduce) {
+    .theme-switch-thumb,
+    .project-card,
+    .polaroid {
+        transition: none;
+    }
+}
+
+/* --- Footer (live) --- */
+.site-footer {
+    background: var(--color-footer);
+    color: #ffffff;
+    text-align: center;
+    font-size: 14px;
+}
+.site-footer a {
+    color: #ffffff;
+}
+
+/* Focus visibility (WCAG 2.4.7) — consistent ring on every interactive element */
+a:focus-visible,
+button:focus-visible {
+    outline: 3px solid #ffffff;
+    outline-offset: 2px;
+}
+.section-surface a:focus-visible,
+.section-surface button:focus-visible {
+    outline-color: var(--color-brand-deep);
+}
+
+/* GitHub corner (live index.html) */
+.github-corner:hover .octo-arm {
+    animation: octocat-wave 560ms ease-in-out;
+}
+@keyframes octocat-wave {
+    0%,
+    100% {
+        transform: rotate(0);
+    }
+    20%,
+    60% {
+        transform: rotate(-25deg);
+    }
+    40%,
+    80% {
+        transform: rotate(10deg);
+    }
+}
+@media (max-width: 500px), (prefers-reduced-motion: reduce) {
+    .github-corner:hover .octo-arm {
+        animation: none;
     }
 }

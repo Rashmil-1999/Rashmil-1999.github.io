@@ -30,7 +30,10 @@ const projects = defineCollection({
     schema: ({ image }) =>
         z.object({
             title: trimmedString(),
-            tech_stack: z.array(trimmedString()).default([]),
+            start_date: trimmedString(),
+            // tech entries carry an Iconify icon id so cards/modals can render
+            // the live site's per-technology icons (D-16 shape).
+            tech_stack: z.array(z.object({ name: trimmedString(), icon: iconSchema })).default([]),
             url: z.url().optional(),
             cover: image(),
             alternates: z.array(image()).optional(),
@@ -40,6 +43,8 @@ const projects = defineCollection({
 });
 
 // --- Work (image-free list) ---
+// icon / main_tech / technologies feed the timeline rendering in Work.astro
+// (ported from the recovered live-site Experience.jsx — see recovered/live-site-2022/).
 const work = defineCollection({
     loader: glob({ pattern: '**/*.md', base: './src/content/work' }),
     schema: z.object({
@@ -47,6 +52,9 @@ const work = defineCollection({
         title: trimmedString(),
         duration: trimmedString(),
         url: z.url().optional(),
+        icon: iconSchema.optional(),
+        main_tech: z.array(trimmedString()).default([]),
+        technologies: z.array(trimmedString()).default([]),
         order: z.number().int().default(0),
         draft: z.boolean().default(false),
     }),
@@ -65,31 +73,6 @@ const education = defineCollection({
     }),
 });
 
-// --- Leadership ---
-const leadership = defineCollection({
-    loader: glob({ pattern: '**/*.md', base: './src/content/leadership' }),
-    schema: z.object({
-        org: trimmedString(),
-        title: trimmedString(),
-        duration: trimmedString(),
-        url: z.url().optional(),
-        order: z.number().int().default(0),
-        draft: z.boolean().default(false),
-    }),
-});
-
-// --- Testimonials ---
-const testimonials = defineCollection({
-    loader: glob({ pattern: '**/*.md', base: './src/content/testimonials' }),
-    schema: z.object({
-        user: trimmedString(),
-        role: trimmedString().optional(),
-        org: trimmedString().optional(),
-        order: z.number().int().default(0),
-        draft: z.boolean().default(false),
-    }),
-});
-
 // --- About (object-map singleton; D-13) ---
 // `profile_image` is a string (resolved by colocation in Phase 2 Wave 2), NOT `image()` — D-11 / RESEARCH.md.
 const about = defineCollection({
@@ -98,6 +81,9 @@ const about = defineCollection({
         first_name: trimmedString(),
         last_name: trimmedString(),
         current_status: trimmedString(),
+        // Hero rotating titles + About card greeting (live-site port).
+        titles: z.array(trimmedString()).min(1),
+        description_header: trimmedString(),
         email: z.email(),
         contact_message: trimmedString(),
         description: trimmedString(),
@@ -138,26 +124,10 @@ const skills = defineCollection({
     }),
 });
 
-// --- Links (array singleton — nav entries; D-06 / D-14) ---
-// The schema describes ONE entry; the loader handles array iteration (Pitfall 3).
-const links = defineCollection({
-    loader: file('src/content/links.yaml'),
-    schema: z.object({
-        id: z.string().regex(/^[a-z][a-z0-9-]*$/, {
-            error: 'id must be lowercase kebab-case, starting with a letter',
-        }),
-        label: trimmedString(),
-        order: z.number().int().default(0),
-    }),
-});
-
 export const collections = {
     projects,
     work,
     education,
-    leadership,
-    testimonials,
     about,
     skills,
-    links,
 };

@@ -10,23 +10,15 @@ import { describe, expect, it } from 'vitest';
 
 const DIST = join(process.cwd(), 'dist');
 
-const sectionIds = [
-    'sidenav',
-    'about',
-    'education',
-    'work',
-    'skills',
-    'projects',
-    'leadership',
-    'testimonials',
-];
+// Live-site layout: hero header + 5 sections (no nav, no leadership/testimonials).
+const sectionIds = ['home', 'about', 'education', 'projects', 'skills', 'work'];
 
 describe('Phase 1 smoke', () => {
     it('emits dist/index.html', () => {
         expect(existsSync(join(DIST, 'index.html'))).toBe(true);
     });
 
-    it('dist/index.html contains all 8 section ids', () => {
+    it('dist/index.html contains all live-site section ids', () => {
         const html = readFileSync(join(DIST, 'index.html'), 'utf8');
         for (const id of sectionIds) {
             expect(html).toContain(`id="${id}"`);

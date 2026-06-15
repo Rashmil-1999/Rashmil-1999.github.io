@@ -141,15 +141,11 @@ describe('CONTENT-08 positive path (SC #1)', () => {
         const store = loadDataStore();
         const projects = store.get('projects');
         expect(projects, 'projects collection missing from data-store').toBeDefined();
-        // SC #1 first half: Plan 02-04 authored exactly 13 entries. Phase 3
-        // ROADMAP gating assumes that count, so assert it precisely (a
-        // regression that drops 12 of 13 entries via draft:true or rename
-        // would otherwise slip past a > 0 check).
-        const EXPECTED_PROJECT_COUNT = 13;
-        expect(
-            projects!.size,
-            'expected exactly 13 project entries (Phase 2 Plan 02-04)',
-        ).toBe(EXPECTED_PROJECT_COUNT);
+        // Live-site parity: exactly the 8 projects the deployed 2022 site shows.
+        const EXPECTED_PROJECT_COUNT = 8;
+        expect(projects!.size, 'expected exactly 8 project entries (live-site parity)').toBe(
+            EXPECTED_PROJECT_COUNT,
+        );
 
         // D-28 type assertion: `entry.data.title` must be `string`, not `any`.
         // This is a compile-time check via expectTypeOf — the runtime value
@@ -160,35 +156,13 @@ describe('CONTENT-08 positive path (SC #1)', () => {
         expectTypeOf<ProjectTitle>().toEqualTypeOf<string>();
     });
 
-    it('links collection has no duplicate ids (D-14)', () => {
-        // CONTEXT.md D-14 requires unique `id` values across `links.yaml`
-        // entries. The Astro `file()` loader hands the schema one entry at
-        // a time, so per-entry Zod validation cannot detect duplicates.
-        // Enforce uniqueness at the collection level by reading the
-        // data-store and asserting Set(ids).size === entries.length.
-        const store = loadDataStore();
-        const links = store.get('links');
-        expect(links, 'links collection missing from data-store').toBeDefined();
-        const ids = Array.from(links!.keys());
-        expect(
-            new Set(ids).size,
-            `duplicate ids in links: ${ids.join(', ')}`,
-        ).toBe(ids.length);
-    });
-
     it('every list-collection entry has a non-empty markdown body (D-20)', () => {
         // Same data-store fallback. Astro 6's glob loader stores the raw
         // markdown body under entry.body (Assumption A2 in RESEARCH.md A2).
         // If the field is named differently in a future Astro release, this
         // is a one-line update.
         const store = loadDataStore();
-        for (const collection of [
-            'projects',
-            'work',
-            'education',
-            'leadership',
-            'testimonials',
-        ] as const) {
+        for (const collection of ['projects', 'work', 'education'] as const) {
             const entries = store.get(collection);
             expect(entries, `${collection} collection missing`).toBeDefined();
             for (const [id, entry] of entries!) {
