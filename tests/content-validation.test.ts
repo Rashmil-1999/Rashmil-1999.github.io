@@ -115,7 +115,13 @@ describe('CONTENT-08: schema validation', () => {
             // Use toBeGreaterThan(0) so null fails and a real schema error
             // (exit code 1) passes.
             expect(result.status).toBeGreaterThan(0);
-            const combined = `${result.stdout ?? ''}\n${result.stderr ?? ''}`;
+            // Strip ANSI escape codes: GitHub Actions forces color in `astro
+            // check`, which interleaves ESC sequences inside the error text
+            // (e.g. between "title" and ":"), breaking the field regex. Built
+            // via fromCharCode(27) so there's no control-char literal in source.
+            // Locally the output is plain, so this only mattered in CI.
+            const ansi = new RegExp(String.fromCharCode(27) + '\\[[0-9;]*m', 'g');
+            const combined = `${result.stdout ?? ''}\n${result.stderr ?? ''}`.replace(ansi, '');
             // D-27 (b): output cites the entry id from the temp dir name.
             expect(combined).toContain('__test__');
             // D-27 (c): output cites the missing required field.
