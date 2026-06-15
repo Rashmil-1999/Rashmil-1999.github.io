@@ -1,4 +1,3 @@
-<!-- GSD:project-start source:PROJECT.md -->
 ## Project
 
 **Rashmil Panchani Portfolio (rashmil-1999.github.io)**
@@ -17,9 +16,7 @@ A single-page personal portfolio site for Rashmil Panchani — about, education,
 - **Accessibility**: WCAG 2.1 AA is a hard requirement (per `.claude/CLAUDE.md`), not a stretch goal
 - **No CDN UI libs**: Bootstrap, jQuery, Font Awesome, Devicon, Iconify are CDN-loaded today and must be replaced with bundled equivalents (or dropped)
 - **Compatibility with M2**: Content shape and storage must be amenable to an editing surface (admin UI / headless CMS / git-based editor) in M2 — informs the Content Layer choice
-<!-- GSD:project-end -->
 
-<!-- GSD:stack-start source:codebase/STACK.md -->
 ## Technology Stack
 
 ## Languages
@@ -80,9 +77,7 @@ A single-page personal portfolio site for Rashmil Panchani — about, education,
 - Custom domain: `rashmilpanchani.me`
 - Deploy command: `npm run deploy` (runs `predeploy: npm run build` then `gh-pages -d build`)
 - No backend, no API, no database — pure static SPA bootstrapping from `src/resumeData.json`
-<!-- GSD:stack-end -->
 
-<!-- GSD:conventions-start source:CONVENTIONS.md -->
 ## Conventions
 
 ## Naming Patterns
@@ -139,9 +134,7 @@ A single-page personal portfolio site for Rashmil Panchani — about, education,
 - All content lives in `src/resumeData.json` and is imported once in `src/index.js`.
 - The top-level `App` destructures the JSON and passes named slices down as props to each section component.
 - There is no `useState`, `useEffect`, `useContext`, or other hook usage in any component — the app is fully static after first render.
-<!-- GSD:conventions-end -->
 
-<!-- GSD:architecture-start source:ARCHITECTURE.md -->
 ## Architecture
 
 ## System Overview
@@ -231,32 +224,3 @@ A single-page personal portfolio site for Rashmil Panchani — about, education,
 - Missing JSON keys -> destructuring in `src/index.js:23-31` yields `undefined`; downstream `.map(...)` calls throw at render time.
 - Network-blocked CDNs -> degraded styling and broken scroll-spy, with no React-side detection.
 ## Cross-Cutting Concerns
-<!-- GSD:architecture-end -->
-
-<!-- GSD:skills-start source:skills/ -->
-## Project Skills
-
-No project skills found. Add skills to any of: `.claude/skills/`, `.agents/skills/`, `.cursor/skills/`, `.github/skills/`, or `.codex/skills/` with a `SKILL.md` index file.
-<!-- GSD:skills-end -->
-
-<!-- GSD:workflow-start source:GSD defaults -->
-## GSD Workflow Enforcement
-
-Before using Edit, Write, or other file-changing tools, start work through a GSD command so planning artifacts and execution context stay in sync.
-
-Use these entry points:
-- `/gsd-quick` for small fixes, doc updates, and ad-hoc tasks
-- `/gsd-debug` for investigation and bug fixing
-- `/gsd-execute-phase` for planned phase work
-
-Do not make direct repo edits outside a GSD workflow unless the user explicitly asks to bypass it.
-<!-- GSD:workflow-end -->
-
-
-
-<!-- GSD:profile-start -->
-## Developer Profile
-
-> Profile not yet configured. Run `/gsd-profile-user` to generate your developer profile.
-> This section is managed by `generate-claude-profile` -- do not edit manually.
-<!-- GSD:profile-end -->
