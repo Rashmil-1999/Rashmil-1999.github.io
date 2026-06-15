@@ -36,6 +36,10 @@ jobs:
                   node-version: '22'
                   cache: 'npm'
             - run: npm ci
+            # Generate content-collection types so typed-ESLint can resolve
+            # astro:content calls (.astro/types.d.ts). Without this, lint fails
+            # in a clean checkout with "type that could not be resolved".
+            - run: npx astro sync
             - run: npm run lint
             - run: npm run format:check
             - run: npx astro check
