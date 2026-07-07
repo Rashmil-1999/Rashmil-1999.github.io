@@ -1,13 +1,5 @@
-// eslint.config.js
-// Source: eslint.org/docs/latest/use/configure/configuration-files
-//         typescript-eslint.io/getting-started
-//         github.com/ota-meshi/eslint-plugin-astro
-//         github.com/jsx-eslint/eslint-plugin-jsx-a11y (flatConfigs.recommended)
-// CONTEXT.md D-15 (composition order), D-18 (ignore list — `.planning/` and `.claude/` mandatory).
-// Per PATTERNS.md Shared Patterns: `.planning/` and `.claude/` MUST appear in the ignore list.
-// Per RESEARCH.md Pitfall A: pin ESLint to 9.x (NOT 10) so eslint-plugin-jsx-a11y@6 peer is satisfied.
-// Per RESEARCH.md Pitfall C: parserOptions.project is required for type-checked rules to attach parserServices.
-// Per RESEARCH.md Pitfall F (adjacent rule): eslint-config-prettier MUST be the LAST entry.
+// Flat ESLint config. Order matters: each entry layers onto the previous, and the
+// last one wins on conflicts — which is why `prettier` sits at the very bottom.
 
 import js from '@eslint/js';
 import tseslint from 'typescript-eslint';
@@ -19,12 +11,13 @@ import globals from 'globals';
 
 export default tseslint.config(
     {
-        ignores: ['dist/', 'node_modules/', '.astro/', 'coverage/', '.planning/', '.claude/'],
+        ignores: ['dist/', 'node_modules/', '.astro/', 'coverage/', '.claude/'],
     },
     js.configs.recommended,
     ...tseslint.configs.recommendedTypeChecked,
     {
-        // Type-checked rules require parserOptions.project (Pitfall C mitigation).
+        // Type-checked rules read type info, so they need a parser pointed at the
+        // TS project (`project: true` finds the nearest tsconfig).
         languageOptions: {
             parserOptions: {
                 project: true,
@@ -35,7 +28,7 @@ export default tseslint.config(
     },
     ...astro.configs.recommended,
     {
-        // jsx-a11y + react-hooks apply to JSX/TSX only, NOT .astro files (D-15).
+        // jsx-a11y + react-hooks are React rules, so scope them to JSX/TSX only.
         files: ['**/*.{jsx,tsx}'],
         plugins: { 'jsx-a11y': jsxA11y, 'react-hooks': reactHooks },
         rules: {
@@ -52,14 +45,11 @@ export default tseslint.config(
         ...tseslint.configs.disableTypeChecked,
     },
     {
-        // Disable type-checked rules on Astro virtual script-block files (e.g.
-        // `SideNav.astro/1_1.ts`). The astro plugin's flat/recommended sets
-        // `parserOptions.project: null` for these (because they're not in the TS project),
-        // but tseslint's type-checked rules still try to access parserServices.program and
-        // throw. Plan 03-06 Rule 3 — first .astro file in the repo to ship a bundled
-        // <script>, surfacing this mismatch.
+        // Disable type-checked rules on the virtual files Astro extracts from
+        // `<script>` blocks (e.g. `Foo.astro/1_1.ts`). They aren't part of the TS
+        // project, so type-checked rules would throw trying to read type info.
         files: ['**/*.astro/*.ts', '**/*.astro/*.js'],
         ...tseslint.configs.disableTypeChecked,
     },
-    prettier, // MUST be last — turns off stylistic conflicts with Prettier (Pitfall F adjacent).
+    prettier, // MUST be last — turns off any style rules that would fight Prettier.
 );

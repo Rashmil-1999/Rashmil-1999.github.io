@@ -1,8 +1,9 @@
 ---
-// src/components/BaseHead.astro
-// CONTEXT.md D-13: minimal head — charset, viewport, title, favicon, two font hints.
-// Phase 4 SEO-01 expands this with the social/meta tags.
-// Phase 3 STYLE-05 adds the font stylesheet link.
+// Contents of <head>, kept minimal: charset, viewport, title, favicon.
+//
+// In an .astro file the code between the `---` fences ("frontmatter") runs at build
+// time on the server. The `Props` interface types the data a parent passes in, and
+// `Astro.props` is how you read it.
 
 interface Props {
     title: string;
@@ -16,5 +17,6 @@ const { title } = Astro.props;
 <title>{title}</title>
 <link rel="icon" href="/favicon.svg" />
 {
-    /* D-36: Google Fonts preconnects removed — fonts self-hosted via @fontsource/* starting in Plan 03-02 */
+    /* No Google Fonts preconnect: fonts are self-hosted via @fontsource, so the
+       browser never reaches out to a third-party font host. */
 }

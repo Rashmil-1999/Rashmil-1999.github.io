@@ -1,9 +1,10 @@
-// src/components/ProjectsGallery.tsx
-// React island: live-site Projects port (Projects.jsx + ProjectDetailsModal.jsx).
-// Clickable cards open a native <dialog> with an image carousel (the live
-// site's react-awesome-slider, rebuilt minimal), external link, description,
-// and tech-stack icons. Icon SVGs are pre-rendered at build time by
-// Projects.astro and passed in as strings — no runtime icon fetching.
+// React island: clickable project cards that open a native <dialog> modal with an
+// image carousel, external link, description, and tech-stack icons.
+//
+// Hydrated by Projects.astro via `client:visible` (JS loads only when the section
+// scrolls into view). Every prop here is plain data: the tech icon SVGs were
+// pre-rendered to strings at build time by Projects.astro, so this component just
+// injects them with `dangerouslySetInnerHTML` — no icon library runs in the browser.
 
 import { useEffect, useRef, useState } from 'react';
 

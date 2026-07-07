@@ -1,10 +1,14 @@
 ---
-// src/components/Projects.astro
-// Live-site Projects port: brand section background, clickable cards opening
-// a modal carousel (ProjectsGallery island). All build-time work happens here —
-// image optimization via getImage(), tech icon SVGs via @iconify/utils against
-// the locally installed @iconify-json sets — so the island receives only
-// serializable strings (no runtime icon fetching).
+// Projects section: clickable cards that open a modal carousel.
+//
+// The card/modal UI is a React island (ProjectsGallery), but all the heavy lifting
+// happens here in the build-time frontmatter so the island ships only plain,
+// serializable data:
+//   - getImage() optimizes each cover/alternate image and returns a URL string.
+//   - renderIcon() turns each Iconify id into an SVG string using the locally
+//     installed @iconify-json sets — no icons are fetched at runtime in the browser.
+// Props passed to a `client:*` island must be JSON-serializable, which is why we
+// pre-resolve images and icons to strings rather than passing components.
 
 import { getCollection } from 'astro:content';
 import { getImage } from 'astro:assets';

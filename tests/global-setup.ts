@@ -1,8 +1,6 @@
-// tests/global-setup.ts
-// Source: vitest.dev/config/globalsetup, nodejs.org/api/child_process.html#child_processspawnsynccommand-args-options
-// CONTEXT.md D-21: spawns `astro build` ONCE before any test file runs.
-// If build fails (non-zero exit), THIS THROWS -> entire test suite fails.
-// Implicitly satisfies ROADMAP Phase 1 SC #3: a broken build kills the test suite.
+// Vitest global setup: runs ONCE before any test file. It builds the site so the
+// tests can assert against the real `dist/` output. If the build fails this throws,
+// which fails the whole suite — a broken build can never pass tests.
 
 import { spawnSync } from 'node:child_process';
 import { rmSync } from 'node:fs';

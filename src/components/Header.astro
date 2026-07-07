@@ -1,7 +1,11 @@
 ---
-// src/components/Header.astro
-// Live-site hero port (Header.jsx): laptop icon, name, rotating titles,
-// theme switch (HeroWidgets island), resume download button.
+// Hero section: laptop icon, name, rotating titles, theme switch, resume button.
+//
+// Frontmatter (this `---` block) runs at build time. `getEntry('about', 'about')`
+// reads the single "about" entry from the Content Collections defined in
+// content.config.ts — fully typed, so `aboutEntry.data` is autocompleted/checked.
+// `<Icon>` (astro-icon) renders an Iconify SVG at build; `<HeroWidgets client:load>`
+// is a React island hydrated in the browser (the typewriter + theme toggle).
 
 import { getEntry } from 'astro:content';
 import { Icon } from 'astro-icon/components';

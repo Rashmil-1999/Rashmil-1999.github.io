@@ -1,7 +1,6 @@
-// tests/__fixtures__/HydrationCheck.tsx
-// Source: react.dev/reference/react/useState
-// CONTEXT.md D-09 + FOUND-04: React 19 verification island. Any state update proves hydration.
-// type="button" is mandatory (jsx-a11y rule, Plan 04 lint config will enforce).
+// Minimal React island used only by the hydration test: clicking it updates state,
+// which can only happen if the component hydrated in the browser.
+// `type="button"` keeps the jsx-a11y lint rule happy.
 
 import { useState } from 'react';
 

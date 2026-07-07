@@ -1,15 +1,15 @@
 ---
-// src/components/Skills.astro
-// Live-site Skills port: centered categories of large colored Devicon icons
-// with name labels and divider rules between categories (recovered Skills.jsx).
-// Per D-21, astro-icon fails the build loudly on unknown Iconify ids.
+// Skills section: categories of colored Devicon icons with labels and dividers.
+//
+// `<Icon>` renders Iconify icons at build time; if an icon id doesn't exist it
+// fails the build rather than silently shipping a blank — a nice safety net.
 
 import { getEntry } from 'astro:content';
 import { Icon } from 'astro-icon/components';
 
 const skillsEntry = await getEntry('skills', 'skills');
 if (!skillsEntry) throw new Error('skills.yaml missing');
-// Spread because Zod-validated readonly array under noUncheckedIndexedAccess.
+// Copy into a new array before sorting: collection data is a readonly array.
 const categories = [...skillsEntry.data.categories].sort((a, b) => a.order - b.order);
 ---
 

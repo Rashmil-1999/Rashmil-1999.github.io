@@ -1,8 +1,6 @@
-// tests/smoke.test.ts
-// CONTEXT.md D-23: five assertions against dist/.
-// Hydration page URL is /hydration-test/ (NOT /__hydration-test/) per Plan 03 SUMMARY
-// Deviation #1: Astro 6 excludes src/pages/*.astro whose filename starts with `_`
-// from route generation, so the underscore-prefixed path is structurally infeasible.
+// Smoke test: a handful of assertions against the built `dist/` output.
+// The hydration page is served at /hydration-test/ (no leading underscore) because
+// Astro excludes `src/pages/` files whose name starts with `_` from routing.
 
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
@@ -13,7 +11,7 @@ const DIST = join(process.cwd(), 'dist');
 // Live-site layout: hero header + 5 sections (no nav, no leadership/testimonials).
 const sectionIds = ['home', 'about', 'education', 'projects', 'skills', 'work'];
 
-describe('Phase 1 smoke', () => {
+describe('build output smoke test', () => {
     it('emits dist/index.html', () => {
         expect(existsSync(join(DIST, 'index.html'))).toBe(true);
     });
@@ -37,8 +35,8 @@ describe('Phase 1 smoke', () => {
     });
 
     it('emits the Tailwind marker utility in dist/_astro/*.css', () => {
-        // CONTEXT.md D-12: Pitfall 29 mitigation.
-        // The marker class `text-[#abc123]` compiles to `color: #abc123` in v4.
+        // Proves Tailwind v4 actually compiled: the marker class `text-[#abc123]`
+        // should appear as `color: #abc123` in the emitted CSS.
         const astroDir = join(DIST, '_astro');
         const cssFiles = readdirSync(astroDir).filter((f) => f.endsWith('.css'));
         const cssBlob = cssFiles.map((f) => readFileSync(join(astroDir, f), 'utf8')).join('\n');

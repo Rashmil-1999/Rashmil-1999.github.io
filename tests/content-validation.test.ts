@@ -1,36 +1,18 @@
-// tests/content-validation.test.ts
-// CONTEXT.md D-26..D-28 + RESEARCH.md Recipe R9 (lines 974-1031).
-// Source: docs.astro.build/en/reference/cli-reference/ (astro check exits non-zero on schema failure),
-//         docs.astro.build/en/guides/content-collections/ (data-store.json is the build artifact).
+// Tests that the Content Collections schema actually guards the data. Three checks:
 //
-// Three sub-tests:
-//   1. CONTENT-08 schema gate: spawnSync of `npx astro check` against a temp
-//      copy of tests/__fixtures__/malformed-project.md (placed inside
-//      src/content/projects/__test__/index.md) must exit non-zero AND surface
-//      both the entry id (`__test__`) AND the missing field name (`title`).
+//   1. Schema gate: copy a deliberately malformed project into the projects
+//      collection, run `astro check`, and confirm it exits non-zero and names both
+//      the bad entry (`__test__`) and the missing field (`title`).
 //
-//      DEVIATION from Recipe R9 (RESEARCH.md Assumption A1 was wrong):
-//      `astro check` does NOT emit the JSON-shaped `"path": ["title"]` form
-//      that `astro dev`/`astro build` uses (RESEARCH.md Q2 only confirmed the
-//      latter). The actual `astro check` output is a human-readable
-//      `InvalidContentEntryDataError ... title: Required` block. Assertion
-//      regex updated to match the v6 `astro check` format observed live.
+//   2. Positive path: the build's data-store artifact holds the expected typed
+//      project entries, and `entry.data.title` is `string` (not `any`).
 //
-//   2. Phase 2 SC #1 positive path (D-28): the build artifact at
-//      node_modules/.astro/data-store.json contains 13 typed project entries
-//      and `CollectionEntry<'projects'>['data']['title']` is `string` (not `any`).
+//   3. Body non-emptiness: every Markdown entry has a non-empty body. (Zod can't
+//      validate a Markdown body, so this is checked here instead.)
 //
-//      DEVIATION from Recipe R9 (RESEARCH.md Open Question 2 failure mode):
-//      `await import('astro:content')` + `getCollection('projects')` returns
-//      0 entries inside Vitest under getViteConfig — confirmed live. Open
-//      Question 2's recommended fallback is "consume the build output". The
-//      build artifact (data-store.json populated by astro build in
-//      globalSetup) is the source-of-truth and the cleanest fallback.
-//      `expectTypeOf` keeps the D-28 compile-time type assertion intact.
-//
-//   3. D-20 body non-emptiness across all 5 list collections (Astro's Zod
-//      schema cannot gate markdown body — RESEARCH.md Open Question 1).
-//      Same data-store fallback: read the persisted entries.
+// Note on reading data: `getCollection` returns 0 entries when called inside Vitest,
+// so checks 2 and 3 read `node_modules/.astro/data-store.json` — the artifact
+// `astro build` writes (produced in global-setup) — as the source of truth.
 
 import { spawnSync } from 'node:child_process';
 import { copyFileSync, mkdirSync, readFileSync, rmSync } from 'node:fs';
@@ -108,65 +90,50 @@ describe('CONTENT-08: schema validation', () => {
                 cwd: REPO_ROOT,
                 encoding: 'utf8',
             });
-            // D-27 (a): exited (not signal-killed) with a non-zero status.
-            // spawnSync sets `status` to null when the process was killed by
-            // a signal (segfault, OOM, SIGKILL). `.not.toBe(0)` would pass
-            // on null too, silently masking a crash as a schema failure.
-            // Use toBeGreaterThan(0) so null fails and a real schema error
-            // (exit code 1) passes.
+            // Must have exited with a non-zero status, NOT been killed by a signal.
+            // spawnSync sets `status` to null on a signal kill (segfault, OOM), and
+            // `.not.toBe(0)` would pass on null too — masking a crash as a schema
+            // failure. `toBeGreaterThan(0)` fails on null and passes on exit code 1.
             expect(result.status).toBeGreaterThan(0);
-            // Strip ANSI escape codes: GitHub Actions forces color in `astro
-            // check`, which interleaves ESC sequences inside the error text
-            // (e.g. between "title" and ":"), breaking the field regex. Built
-            // via fromCharCode(27) so there's no control-char literal in source.
-            // Locally the output is plain, so this only mattered in CI.
+            // Strip ANSI color codes: CI forces color in `astro check`, which
+            // interleaves escape sequences inside the error text (e.g. between
+            // "title" and ":") and would break the field regex below. Locally the
+            // output is plain. Built via fromCharCode(27) to avoid a literal ESC.
             const ansi = new RegExp(String.fromCharCode(27) + '\\[[0-9;]*m', 'g');
             const combined = `${result.stdout ?? ''}\n${result.stderr ?? ''}`.replace(ansi, '');
-            // D-27 (b): output cites the entry id from the temp dir name.
+            // Output must cite the bad entry id (the temp dir name)...
             expect(combined).toContain('__test__');
-            // D-27 (c): output cites the missing required field.
-            // v6 `astro check` format: "title: Required" inside an
-            // InvalidContentEntryDataError block (NOT the JSON `"path":
-            // ["title"]` shape that astro dev emits — A1 deviation).
+            // ...and the missing required field. `astro check` prints this as
+            // "title: Required" inside an InvalidContentEntryDataError block.
             expect(combined).toMatch(/title\s*:\s*Required/);
             // Belt-and-braces: the canonical error class name is present.
             expect(combined).toContain('InvalidContentEntryDataError');
         } finally {
             rmSync(TEMP_DIR, { recursive: true, force: true });
         }
-    }, 60_000); // astro check is slow; give it a minute (Recipe R9 line 1007).
+    }, 60_000); // astro check is slow; give it a minute.
 });
 
-describe('CONTENT-08 positive path (SC #1)', () => {
-    it('await getCollection("projects") returns >0 typed entries', () => {
-        // RESEARCH.md Open Question 2 fallback: `await import('astro:content')`
-        // resolves under getViteConfig but `getCollection` returns 0 entries
-        // (the data-store populated by `astro build` in globalSetup isn't
-        // exposed through Vitest's Vite plugin instance). Read the build
-        // artifact directly — same source of truth, no API gap.
+describe('content collections: typed entries', () => {
+    it('the projects collection has the expected typed entries', () => {
+        // Read the build artifact directly (see file header) — `getCollection`
+        // returns 0 entries under Vitest.
         const store = loadDataStore();
         const projects = store.get('projects');
         expect(projects, 'projects collection missing from data-store').toBeDefined();
-        // Live-site parity: exactly the 8 projects the deployed 2022 site shows.
         const EXPECTED_PROJECT_COUNT = 8;
-        expect(projects!.size, 'expected exactly 8 project entries (live-site parity)').toBe(
-            EXPECTED_PROJECT_COUNT,
-        );
+        expect(projects!.size, 'expected exactly 8 project entries').toBe(EXPECTED_PROJECT_COUNT);
 
-        // D-28 type assertion: `entry.data.title` must be `string`, not `any`.
-        // This is a compile-time check via expectTypeOf — the runtime value
-        // doesn't matter (TypeScript performs the check on the type alias).
-        // Source: `CollectionEntry<'projects'>` is the public type alias
-        // generated by `astro sync` from src/content.config.ts.
+        // Compile-time check: `entry.data.title` must be typed `string`, not `any`.
+        // expectTypeOf runs in the type system, so the runtime value is irrelevant.
+        // `CollectionEntry<'projects'>` is the type Astro generates from the schema.
         type ProjectTitle = CollectionEntry<'projects'>['data']['title'];
         expectTypeOf<ProjectTitle>().toEqualTypeOf<string>();
     });
 
-    it('every list-collection entry has a non-empty markdown body (D-20)', () => {
-        // Same data-store fallback. Astro 6's glob loader stores the raw
-        // markdown body under entry.body (Assumption A2 in RESEARCH.md A2).
-        // If the field is named differently in a future Astro release, this
-        // is a one-line update.
+    it('every list-collection entry has a non-empty markdown body', () => {
+        // Same build-artifact read. Astro's glob loader stores the raw Markdown
+        // body under entry.body.
         const store = loadDataStore();
         for (const collection of ['projects', 'work', 'education'] as const) {
             const entries = store.get(collection);

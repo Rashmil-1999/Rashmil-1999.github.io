@@ -1,4 +1,8 @@
 {
+    // Extends Astro's "strictest" preset (strict TS + extra safety flags).
+    // The include list pulls in `.astro/types.d.ts`, the file Astro generates with
+    // types for your Content Collections, env vars, etc. — so `getCollection` and
+    // friends are fully typed.
     "extends": "astro/tsconfigs/strictest",
     "include": [".astro/types.d.ts", "**/*"],
     "exclude": ["dist", "node_modules"]

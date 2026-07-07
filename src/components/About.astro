@@ -1,7 +1,9 @@
 ---
-// src/components/About.astro
-// Live-site About port: polaroid profile photo with four logo icons +
-// terminal-style description card ("Hi 👋 :)" greeting).
+// About section: polaroid profile photo with logo icons + a terminal-style card.
+//
+// `<Image>` (from astro:assets) optimizes a local image at build time — it emits a
+// resized, modern-format file and the right width/height to avoid layout shift.
+// The image is `import`ed (not referenced by string) so Astro can process it.
 
 import { getEntry } from 'astro:content';
 import { Image } from 'astro:assets';
@@ -20,6 +22,9 @@ const polaroidIcons = ['logos:python', 'logos:react', 'logos:pytorch', 'logos:te
     <div class="mx-auto flex max-w-5xl flex-col items-center gap-10 md:flex-row md:items-start">
         <div class="text-center">
             <div class="polaroid">
+                {
+                    /* `widths` generates a srcset (250w + 500w) so retina screens get the sharper file. */
+                }
                 <Image
                     src={profilePic}
                     alt="Rashmil Panchani"

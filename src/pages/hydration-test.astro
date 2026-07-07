@@ -1,17 +1,14 @@
 ---
-// src/pages/hydration-test.astro
-// CONTEXT.md D-09: hydration fixture page shipped in the same build as index.astro.
-// NOTE (deviation from plan): plan listed the source path as `src/pages/__hydration-test.astro`.
-// Astro 6 excludes any `src/pages/` file whose name starts with an underscore from route
-// generation (https://docs.astro.build/en/guides/routing/#excluding-pages). The build silently
-// emits 0 routes for that source, so the plan's must-have `dist/__hydration-test/index.html`
-// is structurally infeasible. Renamed to `hydration-test.astro` -> built URL is /hydration-test/.
-// See 01-03-SUMMARY.md "Deviations from Plan" #1 for the full rationale.
+// Test-only page that proves React hydration works end to end. The smoke test
+// asserts this page ships a real React chunk in the build output.
 //
-// Cross-tree import (tests/__fixtures__/) works because tsconfig include is "**/*" (Pitfall E).
-// client:load is intentional per Pattern 4 — Pitfall 5 says production code defaults to no
-// directive; here we deliberately use client:load so the smoke test sees a deterministic
-// React chunk in dist/_astro/. Phase 5 may delete this fixture (deferred).
+// Astro turns each file in `src/pages/` into a route — EXCEPT files whose name
+// starts with `_`, which are excluded from routing. So this is named
+// `hydration-test.astro` (built URL: /hydration-test/), not `_hydration-test.astro`.
+//
+// `client:load` is the key directive: without a `client:*` directive Astro ships
+// zero JS for a component (static HTML only). `client:load` tells Astro to hydrate
+// it in the browser as soon as the page loads, which is what the smoke test checks.
 
 import BaseLayout from '../layouts/BaseLayout.astro';
 import HydrationCheck from '../../tests/__fixtures__/HydrationCheck.tsx';

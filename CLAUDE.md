@@ -2,7 +2,7 @@
 
 **Rashmil Panchani Portfolio (rashmil-1999.github.io)**
 
-A single-page personal portfolio site for Rashmil Panchani — about, education, work, skills, projects, leadership, and testimonials, with a downloadable résumé PDF. Today it is a Create React App SPA published to GitHub Pages. This project rebuilds it on a modern static stack so the same content renders cleanly and the data is structured for in-place editing in a future milestone.
+A single-page personal portfolio site for Rashmil Panchani — about, education, work, skills, projects, leadership, and testimonials, with a downloadable résumé PDF. Today it is a Create React App SPA published to GitHub Pages. This project rebuilds it on a modern static stack so the same content renders cleanly and the data is structured for in-place editing through a future editing surface.
 
 **Core Value:** The site looks and reads the same to a visitor, but underneath the stack is modern, the code is conventional, and resume content lives in typed Content Collections that a future editing surface can write to without touching code.
 
@@ -15,7 +15,7 @@ A single-page personal portfolio site for Rashmil Panchani — about, education,
 - **PDF**: `public/Rashmil_Panchani.pdf` download link must keep working
 - **Accessibility**: WCAG 2.1 AA is a hard requirement (per `.claude/CLAUDE.md`), not a stretch goal
 - **No CDN UI libs**: Bootstrap, jQuery, Font Awesome, Devicon, Iconify are CDN-loaded today and must be replaced with bundled equivalents (or dropped)
-- **Compatibility with M2**: Content shape and storage must be amenable to an editing surface (admin UI / headless CMS / git-based editor) in M2 — informs the Content Layer choice
+- **Compatibility with a future editing surface**: Content shape and storage must be amenable to an editing surface (admin UI / headless CMS / git-based editor) later — informs the Content Layer choice
 
 ## Technology Stack
 
