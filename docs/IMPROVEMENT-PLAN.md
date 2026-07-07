@@ -1,13 +1,12 @@
 # Portfolio Improvement Plan
 
 Status: **live-site parity achieved in the Astro stack.** The app (`npm run dev`)
-now renders the recovered live-site design — purple hero with typewriter titles and
+now renders the original live-site design — purple hero with typewriter titles and
 owl/sun theme switch, terminal-card About with polaroid, Education + Experience
 vertical timelines, clickable project cards with modal image carousel and tech-stack
 icons, colored Devicon skills grid, dark footer, GitHub corner, and the full dark
 theme (now persisted to localStorage, which the live site never did). All content is
-the live site's 2022 data in typed Content Collections. See
-`docs/live-site-recovery.md` for provenance.
+the live site's 2022 data in typed Content Collections.
 
 ## P0 — Ship it
 
@@ -37,16 +36,16 @@ the live site's 2022 data in typed Content Collections. See
    elements in on scroll. Recreate with CSS scroll-driven animations
    (`animation-timeline: view()`) behind `@supports` + `prefers-reduced-motion`
    guards — no JS needed.
-2. **Two-column timeline on wide screens.** The live timelines alternated cards
-   left/right of a center rail on desktop. The port uses a single left rail; an
-   `xl:` two-column variant would complete the look.
+2. ~~**Two-column timeline on wide screens.**~~ DONE — the rail centers at `lg`
+   and cards alternate right/left of it; below `lg` it stays a left rail with all
+   cards on the right.
 3. **Carousel transitions.** The modal slider cuts between images; the live
    react-awesome-slider animated. A CSS crossfade (or View Transitions API) on slide
    change, reduced-motion-guarded, restores the feel.
 4. **Real screenshot alt text.** Carousel images currently get generic
    "screenshot N of M" alt text. Add an optional per-image caption/alt field to the
    projects schema (also feeds a visible caption line in the modal).
-5. **Dark-theme contrast tuning.** The recovered dark palette has weak spots the
+5. **Dark-theme contrast tuning.** The original dark palette has weak spots the
    port inherited deliberately (parity first): white-on-`#7f7f7f` About headings sit
    near 4:1. Nudge surfaces darker (e.g. `#6d6d6d`-range) to clear WCAG AA without
    changing the look meaningfully.
@@ -66,7 +65,7 @@ the live site's 2022 data in typed Content Collections. See
    opens/closes with keyboard, PDF link 200s).
 3. **Analytics (optional).** Privacy-friendly (Plausible/GoatCounter) — the live
    site's react-ga/Universal Analytics is long dead.
-4. **M2 editing surface.** Content is in typed collections (md + yaml). Evaluate
+4. **Editing surface.** Content is in typed collections (md + yaml). Evaluate
    Keystatic (first-class Astro content-collection support, GitHub-app mode works on
    GitHub Pages) vs Decap CMS.
 5. **Old-design assets cleanup.** `public/Rashmil_Panchani.pdf` (superseded by
@@ -76,7 +75,6 @@ the live site's 2022 data in typed Content Collections. See
 
 ## Notes
 
-- Live-site provenance + recovery method: `docs/live-site-recovery.md`.
 - The deployed 2022 build (and its source maps) live forever in `gh-pages` branch
-  history (`8c0cb75`); the old Bootstrap CRA is at `c83c1e6`; the pre-wipe snapshot
-  is at `.planning/snapshots/m1-source/` per commit `30f8cab`.
+  history (`8c0cb75`); the old Bootstrap CRA is at `c83c1e6`; the pre-rebuild
+  snapshot of the original source is in commit `30f8cab`.
