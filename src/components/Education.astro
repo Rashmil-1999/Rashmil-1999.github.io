@@ -1,8 +1,11 @@
 ---
-// src/components/Education.astro
-// Live-site Education port: vertical timeline on the brand section background
-// (recovered Education.jsx used react-vertical-timeline with map:university
-// icons and a diploma-scroll cap).
+// Education section: a vertical timeline ending in a "diploma scroll" cap.
+//
+// `getCollection('education')` returns every entry in the collection; the filter
+// hides drafts in production but shows them in dev. Each Markdown entry's body is
+// turned into a renderable `<Content />` component by `render(entry)` — that's how
+// you drop a collection's prose into the page. We pre-render them in `Promise.all`
+// since `render` is async and can't be awaited inside the JSX map below.
 
 import { getCollection, render } from 'astro:content';
 import { Icon } from 'astro-icon/components';
@@ -22,7 +25,7 @@ const rendered = await Promise.all(
 
 <section id="education" class="section-alt px-4 pb-16">
     <h2 class="section-title">Education</h2>
-    <ol role="list" class="timeline mx-auto max-w-3xl">
+    <ol role="list" class="timeline mx-auto max-w-3xl lg:max-w-4xl">
         {
             rendered.map(({ entry, Content }) => (
                 <li class="relative mb-12">
@@ -30,10 +33,8 @@ const rendered = await Promise.all(
                         <Icon name="lucide:graduation-cap" class="size-6" />
                     </span>
                     <div class="timeline-card">
-                        <div class="flex flex-col md:flex-row md:items-baseline md:justify-between md:gap-4">
-                            <h3 class="text-xl font-bold">{entry.data.degree}</h3>
-                            <span class="shrink-0 text-sm">{entry.data.graduated}</span>
-                        </div>
+                        <h3 class="text-xl font-bold">{entry.data.degree}</h3>
+                        <p class="mb-1 text-sm">{entry.data.graduated}</p>
                         <p class="mb-2 text-lg">{entry.data.name}</p>
                         {entry.data.score && <p class="mb-2 text-sm">{entry.data.score}</p>}
                         <div class="text-sm">

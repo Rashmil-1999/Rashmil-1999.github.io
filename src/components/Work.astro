@@ -1,8 +1,10 @@
 ---
-// src/components/Work.astro
-// Live-site Experience port (recovered Experience.jsx): vertical timeline on
-// the brand section background — icon nodes, main-tech badges, soft tech
-// chips, hourglass "career start" cap. Pure Astro + Tailwind; static section.
+// Experience section: a vertical timeline (icon nodes, main-tech badges, soft tech
+// chips, hourglass "career start" cap). Static HTML — no client JS ships.
+//
+// Same pattern as Education.astro: `getCollection` loads the entries, and
+// `render(entry)` turns each Markdown body into a `<Content />` component. The
+// async renders are resolved up front with `Promise.all` so the JSX can stay sync.
 
 import { getCollection, render } from 'astro:content';
 import { Icon } from 'astro-icon/components';
@@ -22,7 +24,7 @@ const rendered = await Promise.all(
 
 <section id="work" class="section-alt px-4 pb-16">
     <h2 class="section-title">Experience</h2>
-    <ol role="list" class="timeline mx-auto max-w-3xl">
+    <ol role="list" class="timeline mx-auto max-w-3xl lg:max-w-4xl">
         {
             rendered.map(({ entry, Content }) => (
                 <li class="relative mb-12">
@@ -37,10 +39,8 @@ const rendered = await Promise.all(
                                 ))}
                             </ul>
                         )}
-                        <div class="flex flex-col md:flex-row md:items-baseline md:justify-between md:gap-4">
-                            <h3 class="text-xl font-bold">{entry.data.title}</h3>
-                            <span class="shrink-0 text-sm">{entry.data.duration}</span>
-                        </div>
+                        <h3 class="text-xl font-bold">{entry.data.title}</h3>
+                        <p class="mb-1 text-sm">{entry.data.duration}</p>
                         <p class="mb-2 text-lg">{entry.data.company}</p>
                         <div class="text-sm">
                             <Content />

@@ -1,8 +1,5 @@
-/* src/styles/global.css
-   Tailwind v4 entry + live-site design system.
-   Palette and component classes ported from the recovered live site
-   (resume-rashmil, deployed 2022-09-15; source extracted from its source maps):
-   App.scss + scss/themes/theme-light.scss + theme-dark.scss.
+/* Global stylesheet: Tailwind v4 entry + the site's design system.
+   Palette and component classes are ported from the original React portfolio.
    Dark mode = body[data-theme='dark'] re-declares the semantic custom properties,
    which every utility/component below consumes via var(). */
 
@@ -158,17 +155,34 @@ body[data-theme='dark'] .title-styles {
     font-size: 160%;
 }
 
-/* --- Timeline (port of react-vertical-timeline single-column) --- */
+/* --- Timeline (Education + Experience) ---
+   Mobile-first: a vertical rail on the left with every card to its right.
+   From lg (64rem) up, the rail moves to the center and cards alternate
+   right/left of it (first card on the right).
+   The rail (.timeline::before) and the icon nodes share the same x offset and
+   are both centered with translateX(-50%), so they stay aligned on the same
+   axis by construction instead of by hand-tuned negative margins. */
 .timeline {
     position: relative;
-    margin-left: 1rem;
-    padding-left: 2.5rem;
-    border-left: 4px solid rgb(255 255 255 / 0.5);
+}
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 1.5rem;
+    width: 4px;
+    transform: translateX(-50%);
+    background: rgb(255 255 255 / 0.5);
+}
+.timeline > li {
+    padding-left: 4.5rem;
 }
 .timeline-node {
     position: absolute;
     top: 0;
-    left: -3.45rem;
+    left: 1.5rem;
+    transform: translateX(-50%);
     display: flex;
     width: 3rem;
     height: 3rem;
@@ -185,6 +199,25 @@ body[data-theme='dark'] .title-styles {
     border-radius: 0.5rem;
     padding: 1.25rem;
     box-shadow: 0 3px 0 var(--color-node);
+}
+@media (min-width: 64rem) {
+    .timeline::before {
+        left: 50%;
+    }
+    .timeline > li {
+        padding-left: 0;
+    }
+    .timeline-node {
+        left: 50%;
+    }
+    .timeline-card {
+        /* Half the row minus clearance for the centered node + a gap. */
+        width: calc(50% - 2.75rem);
+    }
+    /* Odd entries sit right of the rail, even entries left. */
+    .timeline > li:nth-child(odd) .timeline-card {
+        margin-left: auto;
+    }
 }
 .main-badge {
     background-color: var(--color-node);
