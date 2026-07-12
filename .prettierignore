@@ -2,14 +2,11 @@ dist/
 node_modules/
 .astro/
 coverage/
-.planning/
 .claude/
 package-lock.json
 
-# GSD-managed: regenerated from .planning/PROJECT.md + codebase/*.md by GSD workflow.
-# Formatting this file would conflict with GSD's marker-based regeneration and
-# would re-run on every regen. Treat as machine-managed (same logic as .planning/).
-CLAUDE.md
+# Design handoff bundle — reference prototype kept byte-exact, not shipped code.
+docs/design_handoff_portfolio_refresh/
 
 # Editor workspace settings — co-installed by users' editor extensions. Not load-bearing
 # for the build; formatting churn would create noisy diffs for unrelated changes.
