@@ -29,7 +29,9 @@ const rendered = await Promise.all(
             rendered.map(({ entry, Content }) => (
                 <li class="relative mb-12">
                     <span class="timeline-node" aria-hidden="true">
-                        <Icon name={entry.data.icon ?? 'lucide:briefcase'} class="size-6" />
+                        {/* One consistent icon down the rail (the per-entry `icon`
+                            field stays in the data but is no longer used here). */}
+                        <Icon name="lucide:briefcase" class="size-6" />
                     </span>
                     <div class="timeline-card">
                         {entry.data.main_tech.length > 0 && (

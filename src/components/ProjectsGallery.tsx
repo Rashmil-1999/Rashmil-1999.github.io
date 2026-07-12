@@ -59,10 +59,10 @@ export default function ProjectsGallery({ projects }: { projects: GalleryProject
                     <div className="p-6 text-center md:w-2/3">
                         <h3 className="mb-1 text-xl font-bold">{p.title}</h3>
                         <p className="mb-3 text-sm opacity-80">{p.startDate}</p>
-                        <p className="mb-3 text-left text-sm">{p.description}</p>
+                        <p className="mb-3 text-justify text-sm">{p.description}</p>
                         <button
                             type="button"
-                            className="font-bold tracking-wide uppercase after:absolute after:inset-0 after:cursor-pointer"
+                            className="font-bold tracking-wide text-(--color-brand) uppercase after:absolute after:inset-0 after:cursor-pointer"
                             aria-haspopup="dialog"
                             onClick={() => show(i)}
                         >
@@ -104,10 +104,12 @@ export default function ProjectsGallery({ projects }: { projects: GalleryProject
                                 />
                                 {project.images.length > 1 && (
                                     <>
+                                        {/* Proper chevron icons (lucide), flex-centered: the raw
+                                            ‹/› text glyphs sat off-center in the round buttons. */}
                                         <button
                                             type="button"
                                             aria-label="Previous image"
-                                            className="absolute top-1/2 left-2 -translate-y-1/2 rounded-full bg-black/60 px-3 py-1 text-2xl text-white"
+                                            className="absolute top-1/2 left-2 flex size-10 -translate-y-1/2 items-center justify-center rounded-full bg-black/60 text-white"
                                             onClick={() =>
                                                 setSlide(
                                                     (slide - 1 + project.images.length) %
@@ -115,17 +117,39 @@ export default function ProjectsGallery({ projects }: { projects: GalleryProject
                                                 )
                                             }
                                         >
-                                            ‹
+                                            <svg
+                                                aria-hidden="true"
+                                                className="size-6"
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                strokeWidth="2"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                            >
+                                                <path d="m15 18-6-6 6-6" />
+                                            </svg>
                                         </button>
                                         <button
                                             type="button"
                                             aria-label="Next image"
-                                            className="absolute top-1/2 right-2 -translate-y-1/2 rounded-full bg-black/60 px-3 py-1 text-2xl text-white"
+                                            className="absolute top-1/2 right-2 flex size-10 -translate-y-1/2 items-center justify-center rounded-full bg-black/60 text-white"
                                             onClick={() =>
                                                 setSlide((slide + 1) % project.images.length)
                                             }
                                         >
-                                            ›
+                                            <svg
+                                                aria-hidden="true"
+                                                className="size-6"
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                strokeWidth="2"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                            >
+                                                <path d="m9 18 6-6-6-6" />
+                                            </svg>
                                         </button>
                                         <p className="sr-only" aria-live="polite">
                                             Image {slide + 1} of {project.images.length}
