@@ -11,7 +11,15 @@ import globals from 'globals';
 
 export default tseslint.config(
     {
-        ignores: ['dist/', 'node_modules/', '.astro/', 'coverage/', '.claude/'],
+        ignores: [
+            'dist/',
+            'node_modules/',
+            '.astro/',
+            'coverage/',
+            '.claude/',
+            // Design handoff bundle — reference prototype, not shipped code.
+            'docs/design_handoff_portfolio_refresh/',
+        ],
     },
     js.configs.recommended,
     ...tseslint.configs.recommendedTypeChecked,

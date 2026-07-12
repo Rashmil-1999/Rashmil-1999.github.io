@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Sora:wght@400;600;700&family=Archivo:wght@500;600;700&family=JetBrains+Mono:wght@300;400;500&family=Space+Mono:wght@400;700&family=Manrope:wght@400;600;700&family=IBM+Plex+Sans:wght@400;600&family=Raleway:wght@200;300&display=swap" rel="stylesheet">
+<script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background-color: var(--color-surface, #ffffff);
+    color: var(--color-card-text, #212529);
+    font-family: var(--font-body, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif);
+    line-height: 1.5;
+  }
+  a { color: var(--color-brand-deep, #635bff); }
+  a:hover { color: var(--color-brand, #7a73ff); }
+  iconify-icon { display: inline-block; }
+
+  .hero {
+    background-color: var(--color-hero, #7a73ff);
+    text-align: center;
+    padding: 9rem 1rem 4rem;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color .3s ease;
+  }
+  .hero-name {
+    font-family: var(--font-heading, 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif);
+    font-size: clamp(2.5rem, 8vw, 4rem);
+    font-weight: 600;
+    color: var(--hero-text, #353239);
+    margin: 0 0 1rem;
+    letter-spacing: -0.01em;
+  }
+  .title-styles {
+    font-family: var(--font-accent, 'Raleway', sans-serif);
+    font-weight: var(--title-weight, 300);
+    font-size: clamp(1.25rem, 4vw, 1.75rem);
+    color: var(--title-styles-color, #353239);
+    letter-spacing: 0.05em;
+  }
+  .type-cursor { animation: blink 1s steps(1) infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  .section-title {
+    padding: 3rem 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-align: center;
+    color: var(--title-alt-color, #ffffff);
+    margin: 0;
+  }
+  .section-title-dark { color: var(--color-heading-on-surface, #000000); }
+  .section-alt { background-color: var(--color-alt, #7a73ff); transition: background-color .3s ease; }
+  .section-surface { background-color: var(--color-surface, #ffffff); transition: background-color .3s ease; }
+
+  .wrap { margin-left: auto; margin-right: auto; }
+  .max-5xl { max-width: 64rem; }
+  .max-4xl { max-width: 56rem; }
+  .max-3xl { max-width: 48rem; }
+  .max-xl { max-width: 36rem; }
+
+  .polaroid {
+    background: var(--color-card, #ffffff);
+    display: inline-block;
+    padding: 15px 15px 30px;
+    box-shadow: 0 4px 6px rgb(0 0 0 / 0.3);
+    transition: transform .2s linear;
+  }
+  .polaroid:hover { transform: rotate(-1deg) scale(1.02); }
+  .terminal-card {
+    background: var(--color-card, #ffffff);
+    color: var(--color-card-text, #212529);
+    border-radius: .375rem;
+    box-shadow: 0 4px 6px rgb(0 0 0 / 0.3);
+    text-align: justify;
+    overflow: hidden;
+    border: var(--card-border, 1px solid transparent);
+  }
+  .terminal-card-header {
+    display: flex; align-items: center; gap: .5rem;
+    padding: .75rem 1rem;
+    border-bottom: 1px solid rgb(0 0 0 / 0.125);
+    background: rgb(0 0 0 / 0.03);
+  }
+  .terminal-dot { width: .875rem; height: .875rem; border-radius: 9999px; display: inline-block; }
+  .wave { font-size: 160%; }
+
+  .timeline { position: relative; list-style: none; padding: 0; margin: 0 auto; }
+  .timeline::before {
+    content: ''; position: absolute; top: 0; bottom: 0; left: 1.5rem;
+    width: 4px; transform: translateX(-50%);
+    background: var(--rail-color, rgba(255,255,255,0.5));
+  }
+  .timeline > li { padding-left: 4.5rem; position: relative; }
+  .timeline-node {
+    position: absolute; top: 0; left: 1.5rem; transform: translateX(-50%);
+    display: flex; width: 3rem; height: 3rem; align-items: center; justify-content: center;
+    border-radius: 9999px;
+    background-color: var(--color-node, #635bff);
+    color: #ffffff;
+    box-shadow: 0 0 0 4px var(--color-node-ring, #7a73ff);
+  }
+  .timeline-card {
+    background: var(--color-card, #ffffff);
+    color: var(--color-card-text, #212529);
+    border-radius: .5rem;
+    padding: 1.25rem;
+    box-shadow: 0 3px 0 var(--color-node, #635bff);
+    border: var(--card-border, 1px solid transparent);
+  }
+  @media (min-width: 64rem) {
+    .timeline::before { left: 50%; }
+    .timeline > li { padding-left: 0; }
+    .timeline-node { left: 50%; }
+    .timeline-card { width: calc(50% - 2.75rem); }
+    .timeline > li:nth-child(odd) .timeline-card { margin-left: auto; }
+  }
+  .main-badge {
+    background-color: var(--color-node, #635bff); color: #fff;
+    border-radius: 9999px; padding: .25rem .625rem; font-size: .8125rem;
+  }
+  .soft-badge {
+    background-color: var(--color-badge-soft-bg, #d7d6fc); color: var(--color-badge-soft-text, #212529);
+    border-radius: 9999px; padding: .25rem .625rem; font-size: .8125rem;
+  }
+  .badge-row { display: flex; flex-wrap: wrap; gap: .5rem; list-style: none; padding: 0; margin: 0; }
+
+  .project-card {
+    background: var(--color-card, #ffffff);
+    color: var(--color-card-text, #212529);
+    border-radius: .5rem;
+    box-shadow: 0 4px 6px rgb(0 0 0 / 0.3);
+    border: var(--card-border, 1px solid transparent);
+    transition: transform .2s linear, box-shadow .2s linear;
+  }
+  .project-card:hover, .project-card:focus-within {
+    transform: scale(1.01);
+    box-shadow: 0 10px 20px rgb(0 0 0 / 0.5);
+  }
+
+  .slider-tab { background-color: var(--color-brand, #7a73ff); height: 25px; display: flex; align-items: center; gap: .5rem; padding-left: .5rem; }
+  .slider-frame { border: 5px solid var(--color-brand, #7a73ff); }
+  .slider-nav { position: absolute; top: 50%; transform: translateY(-50%); border-radius: 9999px; background: rgba(0,0,0,.6); color: #fff; font-size: 1.5rem; border: none; cursor: pointer; width: 2.25rem; height: 2.25rem; display: flex; align-items: center; justify-content: center; }
+  .project-dialog { margin: auto; width: min(56rem, 95vw); border-radius: .5rem; background: var(--color-card, #fff); color: var(--color-card-text, #212529); padding: 0; border: none; }
+  .project-dialog::backdrop { background: rgba(0,0,0,.7); }
+
+  .skill-item { display: flex; flex-direction: column; align-items: center; }
+  .skills-row { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: center; gap: 1.5rem 2rem; list-style: none; padding: 0; margin: 0 0 2rem; }
+
+  .theme-switch {
+    position: relative; display: inline-flex; align-items: center;
+    width: 90px; height: 40px; border-radius: 9999px;
+    background-color: var(--color-brand-deep, #635bff);
+    border: none; cursor: pointer; transition: background-color .2s linear;
+  }
+  body[data-theme='dark'] .theme-switch { background-color: #353535; }
+  .theme-switch-thumb {
+    position: absolute; left: 4px; width: 32px; height: 32px; border-radius: 9999px;
+    background: #fff; transition: transform .2s linear;
+  }
+  body[data-theme='dark'] .theme-switch-thumb { transform: translateX(50px); }
+
+  .site-footer { background: var(--color-footer, #1f1f1f); color: #fff; text-align: center; font-size: 14px; }
+  .site-footer a { color: #fff; }
+
+  a:focus-visible, button:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+  .section-surface a:focus-visible, .section-surface button:focus-visible { outline-color: var(--color-brand-deep, #635bff); }
+
+  .github-corner:hover .octo-arm { animation: octocat-wave 560ms ease-in-out; }
+  @keyframes octocat-wave { 0%,100% { transform: rotate(0); } 20%,60% { transform: rotate(-25deg); } 40%,80% { transform: rotate(10deg); } }
+  @media (max-width: 500px), (prefers-reduced-motion: reduce) { .github-corner:hover .octo-arm { animation: none; } }
+  @media (prefers-reduced-motion: reduce) { .theme-switch-thumb, .project-card, .polaroid, .type-cursor { transition: none; animation: none; } }
+</style>
+</helmet>
+
+<a href="https://github.com/Rashmil-1999" target="_blank" rel="noopener noreferrer" class="github-corner" aria-label="View source on GitHub (opens in new tab)" style="position:fixed;top:0;left:0;z-index:50;">
+  <svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513;color:#fff;transform:scale(-1,1);" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+    <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin:130px 106px;" class="octo-arm"></path>
+    <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path>
+  </svg>
+</a>
+
+<header id="home" class="hero">
+  <div>
+    <iconify-icon icon="lucide:laptop" width="128" height="128" style="color:var(--hero-text,#3c342c);opacity:.85;display:block;margin:0 auto;" aria-hidden="true"></iconify-icon>
+    <h1 class="hero-name">Rashmil Panchani</h1>
+    <div style="min-height:3rem;margin-bottom:2rem;">
+      <p class="title-styles" style="margin:0;">{{ typed }}<span aria-hidden="true" class="type-cursor">|</span></p>
+    </div>
+    <button type="button" role="switch" aria-checked="{{ dark }}" aria-label="Dark theme" class="theme-switch" onClick="{{ toggleTheme }}" style="margin:0 auto;">
+      <span class="theme-switch-thumb" aria-hidden="true"></span>
+      <span aria-hidden="true" style="position:absolute;right:10px;font-size:1.25rem;">{{ owl }}</span>
+      <span aria-hidden="true" style="position:absolute;left:10px;font-size:1.25rem;">{{ sun }}</span>
+    </button>
+    <p style="margin-top:2.5rem;">
+      <a href="Rashmil_Resume.pdf" download class="title-styles" style="display:inline-flex;align-items:center;gap:.5rem;text-decoration:none;">
+        <iconify-icon icon="lucide:download" width="24" height="24" aria-hidden="true"></iconify-icon>
+        Resume
+      </a>
+    </p>
+  </div>
+</header>
+
+<main>
+  <section id="about" class="section-surface" style="overflow:hidden;padding:0 1rem 4rem;">
+    <h2 class="section-title section-title-dark">About me</h2>
+    <div class="wrap max-5xl" style="display:flex;flex-direction:column;align-items:center;gap:2.5rem;" id="about-row">
+      <div style="text-align:center;">
+        <div class="polaroid">
+          <img src="assets/profile.jpeg" alt="Rashmil Panchani" width="250" style="display:block;margin:0 auto;max-width:250px;height:auto;">
+          <div style="margin-top:1rem;display:flex;justify-content:center;gap:1rem;">
+            <iconify-icon icon="logos:python" width="40" height="40" aria-hidden="true"></iconify-icon>
+            <iconify-icon icon="logos:react" width="40" height="40" aria-hidden="true"></iconify-icon>
+            <iconify-icon icon="logos:pytorch" width="40" height="40" aria-hidden="true"></iconify-icon>
+            <iconify-icon icon="logos:tensorflow" width="40" height="40" aria-hidden="true"></iconify-icon>
+          </div>
+        </div>
+      </div>
+      <div style="width:100%;max-width:36rem;">
+        <div class="terminal-card">
+          <div class="terminal-card-header" aria-hidden="true">
+            <span class="terminal-dot" style="background:#ff5f57;"></span>
+            <span class="terminal-dot" style="background:#febc2e;"></span>
+            <span class="terminal-dot" style="background:#28c840;"></span>
+          </div>
+          <div style="padding:1.5rem;font-size:1.125rem;line-height:2;">
+            <p class="wave" style="margin:0 0 1rem;">Hi <span role="img" aria-label="waving hand">👋</span> :)</p>
+            <p style="margin:0;">I'm Rashmil Panchani. I am an athlete at heart, with an entrepreneurial spirit and always up for learning new things. Being able to adjust to situations makes me a very flexible asset to anyone who hires me and to my collegues. My passion lies in creating and developing new things which includes WebApps, Embedded Systems and applying Machine/Deep learning models in various projects. My research interest lies in Scene Perception and Cognitive tasks of Natural Language Processing. Apart from a techie, I am also a photographer(Long-exposures being my favourite).</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="education" class="section-alt" style="padding:0 1rem 4rem;">
+    <h2 class="section-title">Education</h2>
+    <ol role="list" class="timeline max-3xl">
+      <li style="margin-bottom:3rem;">
+        <span class="timeline-node" aria-hidden="true"><iconify-icon icon="lucide:graduation-cap" width="24" height="24"></iconify-icon></span>
+        <div class="timeline-card">
+          <h3 style="font-size:1.25rem;font-weight:700;margin:0;">Master of Computer Science</h3>
+          <p style="font-size:.875rem;margin:.25rem 0;">August 2021 - December 2022</p>
+          <p style="font-size:1.125rem;margin:0 0 .5rem;">University of Illinois Urbana-Champaign</p>
+          <p style="font-size:.875rem;margin:0 0 .5rem;">GPA: 3.94 / 4</p>
+          <div style="font-size:.875rem;"><p style="margin:0;">Master of Computer Science, graduated December 2022 with a GPA of 3.94 / 4.</p></div>
+        </div>
+      </li>
+      <li style="margin-bottom:3rem;">
+        <span class="timeline-node" aria-hidden="true"><iconify-icon icon="lucide:graduation-cap" width="24" height="24"></iconify-icon></span>
+        <div class="timeline-card">
+          <h3 style="font-size:1.25rem;font-weight:700;margin:0;">Bachelors in Computer Engineering</h3>
+          <p style="font-size:.875rem;margin:.25rem 0;">August 2017 - May 2021</p>
+          <p style="font-size:1.125rem;margin:0 0 .5rem;">DWARKADAS J. SANGHVI COLLEGE OF ENGINEERING</p>
+          <p style="font-size:.875rem;margin:0 0 .5rem;">CGPA: 9.963 / 10</p>
+          <div style="font-size:.875rem;"><p style="margin:0;">Bachelor's in Computer Engineering with a CGPA of 9.963 / 10.</p></div>
+        </div>
+      </li>
+      <li>
+        <span class="timeline-node" aria-hidden="true"><iconify-icon icon="lucide:scroll" width="24" height="24"></iconify-icon></span>
+      </li>
+    </ol>
+  </section>
+
+  <section id="projects" class="section-alt" style="padding:0 1rem 4rem;">
+    <h2 class="section-title">Projects</h2>
+    <div class="wrap max-4xl">
+      <sc-for list="{{ projects }}" as="p" hint-placeholder-count="8">
+        <article class="project-card" style="position:relative;margin-bottom:2.5rem;display:flex;flex-direction:column;">
+          <div style="display:flex;align-items:center;justify-content:center;padding:1rem;">
+            <img src="{{ p.img }}" alt="{{ p.title }}" loading="lazy" style="max-height:13rem;border-radius:.25rem;object-fit:contain;max-width:100%;">
+          </div>
+          <div style="padding:1.5rem;text-align:center;">
+            <h3 style="font-size:1.25rem;font-weight:700;margin:0 0 .25rem;">{{ p.title }}</h3>
+            <p style="font-size:.875rem;opacity:.8;margin:0 0 .75rem;">{{ p.date }}</p>
+            <p style="font-size:.875rem;text-align:justify;margin:0 0 .75rem;">{{ p.desc }}</p>
+            <button type="button" onClick="{{ p.open }}" aria-haspopup="dialog" style-after="content:'';position:absolute;inset:0;cursor:pointer;" style="position:relative;font-weight:700;letter-spacing:.05em;text-transform:uppercase;font-size:.8125rem;background:none;border:none;color:var(--color-brand,#ff5f05);font-family:inherit;cursor:pointer;">Click for more information</button>
+          </div>
+        </article>
+      </sc-for>
+    </div>
+    <dialog class="project-dialog" onClose="{{ onDialogClose }}" aria-label="{{ modalTitle }}">
+      <sc-if value="{{ modalProject }}" hint-placeholder-val="{{ false }}">
+        <div style="padding:1.5rem;">
+          <div style="text-align:right;">
+            <button type="button" aria-label="Close" onClick="{{ closeModal }}" style="font-size:1.875rem;line-height:1;background:none;border:none;color:inherit;cursor:pointer;">✕</button>
+          </div>
+          <div class="wrap" style="max-width:42rem;margin-bottom:1.5rem;">
+            <div class="slider-tab" aria-hidden="true">
+              <span class="terminal-dot" style="background:#ff5f57;"></span>
+              <span class="terminal-dot" style="background:#febc2e;"></span>
+              <span class="terminal-dot" style="background:#28c840;"></span>
+            </div>
+            <div class="slider-frame" style="position:relative;background:rgba(0,0,0,0.05);">
+              {{ modalImgEl }}
+              <sc-if value="{{ modalHasMany }}" hint-placeholder-val="{{ false }}">
+                <button type="button" aria-label="Previous image" onClick="{{ prevSlide }}" class="slider-nav" style="left:.5rem;"><iconify-icon icon="lucide:chevron-left" width="22" height="22" aria-hidden="true"></iconify-icon></button>
+                <button type="button" aria-label="Next image" onClick="{{ nextSlide }}" class="slider-nav" style="right:.5rem;"><iconify-icon icon="lucide:chevron-right" width="22" height="22" aria-hidden="true"></iconify-icon></button>
+                <span style="position:absolute;bottom:.5rem;right:.75rem;background:rgba(0,0,0,.6);color:#fff;border-radius:9999px;padding:.1rem .55rem;font-size:.75rem;">{{ modalCounter }}</span>
+              </sc-if>
+            </div>
+          </div>
+          <h3 style="margin:0 0 .5rem;font-size:1.5rem;font-weight:700;">{{ modalTitle }} <a href="{{ modalUrl }}" target="_blank" rel="noopener noreferrer" style="margin-left:.5rem;font-size:1rem;text-decoration:underline;vertical-align:middle;">View on GitHub</a></h3>
+          <p style="margin:0 0 1.5rem;text-align:justify;font-size:.875rem;">{{ modalDesc }}</p>
+          <ul style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:center;gap:1.5rem;list-style:none;padding:0;margin:0;">
+            <sc-for list="{{ modalTech }}" as="t" hint-placeholder-count="4">
+              <li class="skill-item">
+                <iconify-icon icon="{{ t.icon }}" width="40" height="40" aria-hidden="true"></iconify-icon>
+                <span style="margin-top:.25rem;font-size:.75rem;">{{ t.name }}</span>
+              </li>
+            </sc-for>
+          </ul>
+        </div>
+      </sc-if>
+    </dialog>
+  </section>
+
+  <section id="skills" class="section-surface" style="padding:0 1rem 4rem;">
+    <h2 class="section-title section-title-dark">Skills</h2>
+    <sc-for list="{{ skillCats }}" as="cat" hint-placeholder-count="6">
+      <div class="wrap max-4xl" style="text-align:center;">
+        <h3 style="margin-bottom:1.5rem;font-size:1.125rem;font-weight:700;">{{ cat.name }}</h3>
+        <ul role="list" class="skills-row">
+          <sc-for list="{{ cat.items }}" as="s" hint-placeholder-count="6">
+            <li class="skill-item">
+              <iconify-icon icon="{{ s.icon }}" width="48" height="48" aria-hidden="true"></iconify-icon>
+              <span style="margin-top:.5rem;font-size:.75rem;">{{ s.name }}</span>
+            </li>
+          </sc-for>
+        </ul>
+        <sc-if value="{{ cat.divider }}" hint-placeholder-val="{{ true }}">
+          <hr style="margin:0 auto 2rem;width:80%;border:none;border-top:1px solid rgb(0 0 0 / 0.2);">
+        </sc-if>
+      </div>
+    </sc-for>
+  </section>
+
+  <section id="work" class="section-alt" style="padding:0 1rem 4rem;">
+    <h2 class="section-title">Experience</h2>
+    <ol role="list" class="timeline max-3xl">
+      <sc-for list="{{ work }}" as="w" hint-placeholder-count="4">
+        <li style="margin-bottom:3rem;">
+          <span class="timeline-node" aria-hidden="true"><iconify-icon icon="lucide:briefcase" width="24" height="24"></iconify-icon></span>
+          <div class="timeline-card">
+            <ul role="list" class="badge-row" style="margin-bottom:.75rem;">
+              <sc-for list="{{ w.main }}" as="m" hint-placeholder-count="2">
+                <li class="main-badge">{{ m }}</li>
+              </sc-for>
+            </ul>
+            <h3 style="font-size:1.25rem;font-weight:700;margin:0;">{{ w.title }}</h3>
+            <p style="font-size:.875rem;margin:.25rem 0;">{{ w.duration }}</p>
+            <p style="font-size:1.125rem;margin:0 0 .5rem;">{{ w.company }}</p>
+            <div style="font-size:.875rem;"><p style="margin:0;">{{ w.desc }}</p></div>
+            <ul role="list" class="badge-row" style="margin-top:.75rem;">
+              <sc-for list="{{ w.tech }}" as="t" hint-placeholder-count="4">
+                <li class="soft-badge">{{ t }}</li>
+              </sc-for>
+            </ul>
+          </div>
+        </li>
+      </sc-for>
+      <li>
+        <span class="timeline-node" aria-hidden="true"><iconify-icon icon="lucide:hourglass" width="24" height="24"></iconify-icon></span>
+      </li>
+    </ol>
+  </section>
+</main>
+
+<footer class="site-footer" style="padding:2.5rem 1rem;">
+  <ul role="list" style="margin:0 0 1.5rem;display:flex;justify-content:center;gap:2rem;font-size:1.5rem;list-style:none;padding:0;">
+    <li><a href="https://github.com/Rashmil-1999" target="_blank" rel="noopener noreferrer"><iconify-icon icon="simple-icons:github" width="28" height="28" aria-hidden="true"></iconify-icon><span style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);">Github</span></a></li>
+    <li><a href="https://www.instagram.com/rashmeeeeel_/" target="_blank" rel="noopener noreferrer"><iconify-icon icon="simple-icons:instagram" width="28" height="28" aria-hidden="true"></iconify-icon><span style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);">Instagram</span></a></li>
+    <li><a href="https://www.linkedin.com/in/rashmil-panchani/" target="_blank" rel="noopener noreferrer"><iconify-icon icon="simple-icons:linkedin" width="28" height="28" aria-hidden="true"></iconify-icon><span style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);">LinkedIn</span></a></li>
+  </ul>
+  <p style="margin:0 0 1rem;">Contact me: <a style="text-decoration:underline;" href="mailto:rashmilp833@gmail.com">rashmilp833@gmail.com</a></p>
+  <p style="padding:.5rem 0;margin:0;"><small>Copyright © Rashmil Panchani</small></p>
+</footer>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#ff5f05&quot;,&quot;options&quot;:[&quot;#7a73ff&quot;,&quot;#2f6d5b&quot;,&quot;#1e3a8a&quot;,&quot;#ff5f05&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Color&quot;},&quot;sectionStyle&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;soft&quot;,&quot;options&quot;:[&quot;solid&quot;,&quot;soft&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Color&quot;},&quot;darkPalette&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;rich&quot;,&quot;options&quot;:[&quot;flat&quot;,&quot;rich&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Color&quot;},&quot;headingFont&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;Space Grotesk&quot;,&quot;options&quot;:[&quot;Franklin Gothic&quot;,&quot;Space Grotesk&quot;,&quot;Sora&quot;,&quot;Archivo&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Type&quot;},&quot;accentFont&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;JetBrains Mono&quot;,&quot;options&quot;:[&quot;Raleway&quot;,&quot;JetBrains Mono&quot;,&quot;Space Mono&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Type&quot;},&quot;bodyFont&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;IBM Plex Sans&quot;,&quot;options&quot;:[&quot;System&quot;,&quot;Manrope&quot;,&quot;IBM Plex Sans&quot;,&quot;Space Grotesk&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Type&quot;}}">
+const HEADING = {
+  'Franklin Gothic': "'Franklin Gothic Medium','Arial Narrow',Arial,sans-serif",
+  'Space Grotesk': "'Space Grotesk',sans-serif",
+  'Sora': "'Sora',sans-serif",
+  'Archivo': "'Archivo',sans-serif",
+};
+const ACCENT_F = {
+  'Raleway': "'Raleway',sans-serif",
+  'JetBrains Mono': "'JetBrains Mono',monospace",
+  'Space Mono': "'Space Mono',monospace",
+};
+const BODY_F = {
+  'System': "system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif",
+  'Manrope': "'Manrope',sans-serif",
+  'IBM Plex Sans': "'IBM Plex Sans',sans-serif",
+  'Space Grotesk': "'Space Grotesk',sans-serif",
+};
+const PRESETS = {
+  '#7a73ff': { deep: '#635bff', heroText: '#353239' },
+  '#2f6d5b': { deep: '#224f42', heroText: '#f3f5f4' },
+  '#1e3a8a': { deep: '#152b66', heroText: '#eef2fb' },
+  '#ff5f05': { deep: '#d94f04', heroText: '#13294b', text: '#13294b' },
+};
+
+function hx(h) {
+  h = h.replace('#', '');
+  if (h.length === 3) h = h.split('').map((c) => c + c).join('');
+  return [parseInt(h.slice(0, 2), 16), parseInt(h.slice(2, 4), 16), parseInt(h.slice(4, 6), 16)];
+}
+function toHex(rgb) {
+  return '#' + rgb.map((v) => Math.max(0, Math.min(255, Math.round(v))).toString(16).padStart(2, '0')).join('');
+}
+function mix(a, b, t) {
+  const x = hx(a), y = hx(b);
+  return toHex([0, 1, 2].map((i) => x[i] + (y[i] - x[i]) * t));
+}
+function rgba(h, a) {
+  const c = hx(h);
+  return `rgba(${c[0]},${c[1]},${c[2]},${a})`;
+}
+function lum(h) {
+  const c = hx(h).map((v) => {
+    v /= 255;
+    return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+  });
+  return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2];
+}
+
+const TYPE_MS = 70, ERASE_MS = 40, HOLD_MS = 3000, RESTART_MS = 400;
+
+class Component extends DCLogic {
+  state = { dark: false, typed: '', openIndex: null, slide: 0 };
+
+  componentDidMount() {
+    this.applyTheme();
+    this.startType();
+  }
+  componentDidUpdate() {
+    this.applyTheme();
+  }
+  componentWillUnmount() {
+    clearTimeout(this._t);
+  }
+
+  startType() {
+    const titles = ['RESEARCH SOFTWARE ENGINEER'];
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      this.setState({ typed: titles[0] });
+      return;
+    }
+    let index = 0, length = 0, erasing = false;
+    const tick = () => {
+      const cur = titles[index] || '';
+      let delay = erasing ? ERASE_MS : TYPE_MS;
+      if (erasing) {
+        length -= 1;
+        if (length === 0) { erasing = false; index = (index + 1) % titles.length; delay = RESTART_MS; }
+      } else {
+        length += 1;
+        if (length === cur.length) { erasing = true; delay = HOLD_MS; }
+      }
+      this.setState({ typed: (titles[index] || '').slice(0, length) });
+      this._t = setTimeout(tick, delay);
+    };
+    this._t = setTimeout(tick, RESTART_MS);
+  }
+
+  toggleTheme = () => {
+    this.setState((s) => ({ dark: !s.dark }));
+  };
+
+  _dialog() {
+    return document.querySelector('.project-dialog');
+  }
+  openModal = (i) => {
+    this.setState({ openIndex: i, slide: 0 });
+    const d = this._dialog();
+    if (d && !d.open) d.showModal();
+  };
+  closeModal = () => {
+    const d = this._dialog();
+    if (d && d.open) d.close();
+    this.setState({ openIndex: null });
+  };
+  onDialogClose = () => {
+    this.setState({ openIndex: null });
+  };
+  prevSlide = () => this.setState((s) => {
+    const p = this._projects && this._projects[s.openIndex];
+    const n = p ? p.images.length : 1;
+    return { slide: (s.slide - 1 + n) % n };
+  });
+  nextSlide = () => this.setState((s) => {
+    const p = this._projects && this._projects[s.openIndex];
+    const n = p ? p.images.length : 1;
+    return { slide: (s.slide + 1) % n };
+  });
+
+  applyTheme() {
+    const p = this.props;
+    const dark = this.state.dark;
+    const accent = p.accent || '#7a73ff';
+    const preset = PRESETS[accent] || {};
+    const deep = preset.deep || mix(accent, '#000000', 0.16);
+    const softBadge = mix(accent, '#ffffff', 0.72);
+    const altSoft = mix(accent, '#ffffff', 0.9);
+    const heroTextLight = preset.heroText || (lum(accent) > 0.42 ? '#353239' : '#f4f3ee');
+    const soft = p.sectionStyle === 'soft';
+    let t = {};
+    if (!dark) {
+      t = {
+        '--color-brand': accent,
+        '--color-brand-deep': deep,
+        '--color-hero': accent,
+        '--color-surface': '#ffffff',
+        '--color-card': '#ffffff',
+        '--color-card-text': preset.text || '#212529',
+        '--color-heading-on-surface': preset.text || '#000000',
+        '--color-footer': '#1f1f1f',
+        '--color-alt': soft ? altSoft : accent,
+        '--color-node': soft ? accent : deep,
+        '--color-node-ring': soft ? altSoft : accent,
+        '--color-badge-soft-bg': soft ? mix(accent, '#ffffff', 0.82) : softBadge,
+        '--color-badge-soft-text': '#212529',
+        '--hero-text': heroTextLight,
+        '--title-styles-color': heroTextLight,
+        '--title-alt-color': soft ? '#111111' : '#ffffff',
+        '--rail-color': soft ? rgba(accent, 0.35) : 'rgba(255,255,255,0.5)',
+        '--card-border': soft ? '1px solid ' + rgba(accent, 0.16) : '1px solid transparent',
+      };
+    } else if (p.darkPalette === 'rich') {
+      t = {
+        '--color-brand': accent,
+        '--color-brand-deep': deep,
+        '--color-hero': '#16161c',
+        '--color-alt': '#20202a',
+        '--color-surface': '#121217',
+        '--color-card': '#26262f',
+        '--color-card-text': '#f2f2f5',
+        '--color-heading-on-surface': '#ffffff',
+        '--color-footer': '#0e0e12',
+        '--color-node': accent,
+        '--color-node-ring': '#20202a',
+        '--color-badge-soft-bg': '#3a3a46',
+        '--color-badge-soft-text': '#f2f2f5',
+        '--hero-text': '#ffffff',
+        '--title-styles-color': mix(accent, '#ffffff', 0.5),
+        '--title-alt-color': '#ffffff',
+        '--rail-color': 'rgba(255,255,255,0.18)',
+        '--card-border': '1px solid rgba(255,255,255,0.06)',
+      };
+    } else {
+      t = {
+        '--color-brand': accent,
+        '--color-brand-deep': deep,
+        '--color-hero': '#494949',
+        '--color-alt': '#5b5b5b',
+        '--color-surface': '#7f7f7f',
+        '--color-card': '#6d6d6d',
+        '--color-card-text': '#ffffff',
+        '--color-heading-on-surface': '#ffffff',
+        '--color-footer': '#1f1f1f',
+        '--color-node': '#919191',
+        '--color-node-ring': '#5b5b5b',
+        '--color-badge-soft-bg': '#919191',
+        '--color-badge-soft-text': '#ffffff',
+        '--hero-text': '#ffffff',
+        '--title-styles-color': '#ffffff',
+        '--title-alt-color': '#ffffff',
+        '--rail-color': 'rgba(255,255,255,0.5)',
+        '--card-border': '1px solid transparent',
+      };
+    }
+    t['--font-heading'] = HEADING[p.headingFont] || HEADING['Franklin Gothic'];
+    t['--font-accent'] = ACCENT_F[p.accentFont] || ACCENT_F['Raleway'];
+    t['--font-body'] = BODY_F[p.bodyFont] || BODY_F['System'];
+    t['--title-weight'] = p.accentFont === 'Raleway' ? '300' : '400';
+    const root = document.documentElement.style;
+    for (const k in t) root.setProperty(k, t[k]);
+    document.body.setAttribute('data-theme', dark ? 'dark' : 'light');
+  }
+
+  renderVals() {
+    if (typeof document !== 'undefined') this.applyTheme();
+    const A = 'assets/projects/';
+    const T = (name, icon) => ({ name, icon });
+    const projects = [
+      { title: 'Garduino - Smart Garden', date: '2021', url: 'https://github.com/Rashmil-1999/Garduino', img: A + 'garduino.jpeg', images: [A + 'garduino.jpeg', A + 'garduino2.jpeg', A + 'garduino3.jpeg', A + 'garduino4.jpeg', A + 'garduino5.jpeg'], tech: [T('React', 'devicon:react'), T('Graph QL', 'logos:graphql'), T('Heroku', 'devicon:heroku'), T('Hasura GraphQL', 'logos:hasura'), T('RaspberryPi', 'devicon:raspberrypi'), T('Arduino', 'devicon:arduino'), T('C', 'devicon:c'), T('Python', 'devicon:python'), T('Javascript', 'devicon:javascript')], desc: 'My final year BE project. This project uses IoT to smartly take care of the plants as well as provide Information on the plants who wants to know about them. Main features include Realtime sensor updates, Live Video feed of the garden, Plant Disease detection through OpenCV. It is a React based web app that leverages the power of cloud computing to keep the production code managable.', open: () => this.openModal(0) },
+      { title: 'Stack-Overflow Chatbot', date: '2021', url: 'https://github.com/Rashmil-1999/Chatbot', img: A + 'stack-overflow.png', images: [A + 'stack-overflow.png'], tech: [T('Numpy', 'devicon:numpy'), T('Pandas', 'devicon:pandas'), T('Keras', 'devicon:keras'), T('Tensorflow', 'devicon:tensorflow'), T('Python', 'devicon:python')], desc: 'This was the end project for the HSE NLP course on Coursera. I was tasked to build a chatbot which was able to understand the users input and classify the intent and then based on the question, give appropriate responses. The bot was made to be run on Telegram and hosted on an online instance such as AWS. Currently it is not hosted anywhere ans is available for use and training on Github.', open: () => this.openModal(1) },
+      { title: 'Smart India Hackathon - Attention Span detection and detailed analysis of Dialogue.', date: '2019', url: 'https://github.com/Rashmil-1999/sih-2020-qualification-hackathon', img: A + 'sih.png', images: [A + 'sih.png'], tech: [T('Numpy', 'devicon:numpy'), T('OpenCV', 'devicon:opencv'), T('Django', 'simple-icons:django'), T('HTML', 'devicon:html5'), T('CSS', 'devicon:css3'), T('Python', 'devicon:python'), T('Javascript', 'devicon:javascript')], desc: 'This project was built in the qualification round fron the college, so that we can send our proposals to the SIH committee. The project goal was to create system for online lectures that will help the teacher in improving their lectures and provide the students with more engaging content. The project leverages the power of high speed of WebRTC and AioRTC in Python to provide real time analysis for the realtime streaming and processing the video feed.', open: () => this.openModal(2) },
+      { title: 'Age Of Warring Empire tower bot', date: '2019', url: 'https://github.com/Rashmil-1999/Aowe_Tower-Hydra-Bot', img: A + 'aowe.jpg', images: [A + 'aowe.jpg'], tech: [T('Numpy', 'devicon:numpy'), T('OpenCV', 'devicon:opencv'), T('Pyautogui', 'lucide:code'), T('Python', 'devicon:python')], desc: 'The tower of age of warring empire game has 10 levels and spawns a random map every time. Using OpenCV and template matching, I designed a bot that, given certain restrictions, utilizes gold coins or energy cards accordingly and automates the attacking process. This reduced my efforts as my heroes get levelled up to 400 in a matter of a few hours. I also developed a Hydra bot for the 10000-attack Hydra event using similar strategies with deadlock conditions.', open: () => this.openModal(3) },
+      { title: 'American Sign Language Detection', date: '2019', url: 'https://github.com/Rashmil-1999/ASL_Detection', img: A + 'asl.png', images: [A + 'asl.png'], tech: [T('Numpy', 'devicon:numpy'), T('OpenCV', 'devicon:opencv'), T('Keras', 'devicon:keras'), T('Tensorflow', 'devicon:tensorflow'), T('Python', 'devicon:python')], desc: 'The main goal of the project was to develop a model that was able to detect various signs used by the mute people to communicate with people who do not know how to interpret it. Hence I thought of developing a model that can be integrated in the mobile app and can help the user to decipher what the other person is trying to say without the help of a translator.', open: () => this.openModal(4) },
+      { title: 'Emotion Recognizer', date: '2018', url: 'https://github.com/Rashmil-1999/Emotion-Recognizer', img: A + 'emotion.png', images: [A + 'emotion.png'], tech: [T('Numpy', 'devicon:numpy'), T('OpenCV', 'devicon:opencv'), T('Keras', 'devicon:keras'), T('Tensorflow', 'devicon:tensorflow'), T('Python', 'devicon:python')], desc: 'I made an emotion recognizer that scans the frontal face using Haar Cascade and then uses the faces detected to look for what emotion class does it belong to. The detection is fast enough to be run at ~30fps.', open: () => this.openModal(5) },
+      { title: 'E - Yantra Competition (Theme - Nutty Squirrel)', date: '2018', url: 'https://github.com/Rashmil-1999/E-Yantra2018-semifinals', img: A + 'eyantra.jpg', images: [A + 'eyantra.jpg'], tech: [T('C', 'devicon:c'), T('Arduino', 'devicon:arduino')], desc: "e - Yantra Robotics competition: I was the team leader and we built a line following, color sensing bot with picking and releasing mechanism using Atmega2560 which traversed the arena using Djikstra's algorithm. The robot follows black lines and picks and places boxes in their desired locations while avoiding collisions. We ended up being the runner ups of the competition.", open: () => this.openModal(6) },
+      { title: 'Personal Website', date: '2018', url: 'https://github.com/Rashmil-1999/Rashmil-1999.github.io', img: A + 'website.png', images: [A + 'website.png'], tech: [T('React', 'devicon:react'), T('Bootstrap', 'devicon:bootstrap'), T('Javascript', 'devicon:javascript')], desc: 'This project was aimed at creating my own personal website where I get to showcase my skills and projects.', open: () => this.openModal(7) },
+    ];
+    this._projects = projects;
+    const oi = this.state.openIndex;
+    const mp = oi != null ? projects[oi] : null;
+    const ms = this.state.slide || 0;
+    return {
+      modalProject: mp,
+      modalTitle: mp ? mp.title : '',
+      modalDesc: mp ? mp.desc : '',
+      modalUrl: mp ? mp.url : '',
+      modalTech: mp ? mp.tech : [],
+      modalImgEl: mp ? React.createElement('img', { src: mp.images[ms], alt: mp.title, style: { margin: '0 auto', maxHeight: '28rem', objectFit: 'contain', display: 'block', maxWidth: '100%' } }) : null,
+      modalHasMany: mp ? mp.images.length > 1 : false,
+      modalCounter: mp ? (ms + 1) + ' / ' + mp.images.length : '',
+      closeModal: this.closeModal,
+      onDialogClose: this.onDialogClose,
+      prevSlide: this.prevSlide,
+      nextSlide: this.nextSlide,
+      typed: this.state.typed,
+      dark: this.state.dark,
+      owl: this.state.dark ? '' : '🦉',
+      sun: this.state.dark ? '🌞' : '',
+      toggleTheme: this.toggleTheme,
+      projects: projects,
+      skillCats: [
+        { name: 'Programming Languages & Operating Systems', divider: true, items: [
+          { name: 'Python', icon: 'devicon:python' }, { name: 'Java', icon: 'devicon:java' }, { name: 'Javascript', icon: 'devicon:javascript' }, { name: 'Typescript', icon: 'devicon:typescript' }, { name: 'C', icon: 'devicon:c' }, { name: 'C++', icon: 'devicon:cplusplus' }, { name: 'Go', icon: 'devicon:go' }, { name: 'Windows', icon: 'devicon:windows8' }, { name: 'Linux', icon: 'devicon:linux' }, { name: 'macOS', icon: 'devicon:apple' },
+        ] },
+        { name: 'Database Technologies', divider: true, items: [
+          { name: 'My SQL', icon: 'devicon:mysql' }, { name: 'Postgre SQL', icon: 'devicon:postgresql' }, { name: 'MongoDB', icon: 'devicon:mongodb' }, { name: 'Redis', icon: 'devicon:redis' }, { name: 'Graph QL', icon: 'logos:graphql' },
+        ] },
+        { name: 'Web Development', divider: true, items: [
+          { name: 'HTML5', icon: 'devicon:html5' }, { name: 'CSS3', icon: 'devicon:css3' }, { name: 'Django', icon: 'simple-icons:django' }, { name: 'Flask', icon: 'devicon:flask' }, { name: 'FastAPI', icon: 'devicon:fastapi' }, { name: 'Spring Boot', icon: 'devicon:spring' }, { name: 'NodeJS', icon: 'devicon:nodejs' }, { name: 'React', icon: 'devicon:react' }, { name: 'Material UI', icon: 'devicon:materialui' }, { name: 'Bootstrap', icon: 'devicon:bootstrap' },
+        ] },
+        { name: 'Dev Ops', divider: true, items: [
+          { name: 'Heroku', icon: 'devicon:heroku' }, { name: 'AWS', icon: 'devicon:amazonwebservices' }, { name: 'Docker', icon: 'devicon:docker' }, { name: 'Google Cloud Platform', icon: 'devicon:googlecloud' },
+        ] },
+        { name: 'Tools and Frameworks', divider: true, items: [
+          { name: 'Numpy', icon: 'devicon:numpy' }, { name: 'Pandas', icon: 'devicon:pandas' }, { name: 'Matplotlib', icon: 'devicon:matplotlib' }, { name: 'Arduino', icon: 'devicon:arduino' }, { name: 'Tensorflow', icon: 'devicon:tensorflow' }, { name: 'Pytorch', icon: 'devicon:pytorch' }, { name: 'Keras', icon: 'devicon:keras' }, { name: 'NLTK', icon: 'lucide:code' }, { name: 'OpenCV', icon: 'devicon:opencv' }, { name: 'NetworkX', icon: 'devicon:networkx' },
+        ] },
+        { name: 'Version Control', divider: false, items: [
+          { name: 'Git', icon: 'devicon:git' },
+        ] },
+      ],
+      work: [
+        { title: 'Research Programmer', company: 'National Center for Supercomputing Applications (NCSA)', duration: 'August 2022 - Present', icon: 'devicon:python', main: ['React', 'Python', 'Java'], tech: ['REST API', 'Python', 'React JS', 'JavaScript', 'TypeScript', 'Java', 'Microservices'], desc: 'Maintaining and building the pyincore python package. IN-CORE is a Hazard and Disaster Management planning tool that helps users plan their management strategies by providing powerful visualization tools and datasets. The main goal of IN-CORE is to manage and mitigate the community from Natural Hazards and Disasters by creating management policies that are fueled by state-of-the-art algorithms designed to strengthen the Resilience curve.' },
+        { title: 'Research Programmer', company: 'National Center for Supercomputing Applications (NCSA)', duration: 'August 2021 - August 2022', icon: 'devicon:react', main: ['React', 'FastAPI'], tech: ['FastAPI', 'REST API', 'Python', 'React JS', 'JavaScript', 'Material UI'], desc: 'Worked as a researcher and full-stack web developer on a visualization and analytics tool for studying Oceanography and Marine biology — helping researchers visualize species distribution in the ocean and study the changes that have happened from 1873 to present.' },
+        { title: 'Research Assistant', company: 'Department of Computer Science, UIUC', duration: 'January 2022 - May 2022', icon: 'devicon:python', main: ['Python', 'VOSviewer'], tech: ['Python', 'NetworkX', 'VOSviewer', 'Jupyter Notebook'], desc: 'Formulated algorithms to model data in Python to generate multi-dimensional graphs containing 200,000 nodes. Devised an end-to-end system that visualizes bibliographic networks and helps conference/journal panelists infer possible conflicts between paper reviewers — enabling informed decisions in reviewer allocation.' },
+        { title: 'Research and Development Intern', company: 'Phionike Solutions: Design-Tech Studio', duration: 'May 2019 - July 2019', icon: 'devicon:nodejs', main: ['Amazon Alexa'], tech: ['JavaScript', 'Node JS', 'AWS S3', 'AWS Lambda'], desc: 'My work at Phionike at first involved laying down the foundation of Research & Development of AI department in the company. During my time there I did a research in the VUI(Voice user interface) sector and what impact does it have on the various sections of the society. I also built a skill which fetches blogs and reads them out for you.' },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>
