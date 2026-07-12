@@ -5,52 +5,78 @@
 
 @import 'tailwindcss';
 
-/* Fontsource — Raleway drives the hero rotating titles (live App.scss). */
-@import '@fontsource/raleway/200.css';
-@import '@fontsource/raleway/300.css';
+/* Fontsource (self-hosted fonts) — Space Grotesk for headings, JetBrains Mono
+   for the rotating hero title + Resume link, IBM Plex Sans for body copy. */
+@import '@fontsource/space-grotesk/500.css';
+@import '@fontsource/space-grotesk/700.css';
+@import '@fontsource/jetbrains-mono/400.css';
+@import '@fontsource/jetbrains-mono/500.css';
+@import '@fontsource/ibm-plex-sans/400.css';
+@import '@fontsource/ibm-plex-sans/600.css';
 
 @theme {
-    /* Brand constants (identical in both themes) */
-    --color-brand: #7a73ff;
-    --color-brand-deep: #635bff;
-    --color-badge-soft: #d7d6fc;
-    --color-footer: #1f1f1f;
+    /* Brand constants (identical in both themes) — Illini Orange accent */
+    --color-brand: #ff5f05;
+    --color-brand-deep: #d94f04;
 
     /* Semantic, theme-switched tokens (light defaults; dark overrides below).
-       Declared in @theme so bg-hero / bg-alt / bg-card etc. exist as utilities. */
-    --color-hero: #7a73ff;
-    --color-alt: #7a73ff; /* education / projects / experience section bg */
-    --color-surface: #ffffff; /* about section bg */
+       Declared in @theme so bg-hero / bg-alt / bg-card etc. exist as utilities.
+       Light = "soft": pale accent-tinted sections, Industrial Blue text,
+       white cards with a hairline accent border. */
+    --color-hero: #ff5f05; /* hero background stays full accent */
+    --color-alt: #ffefe6; /* education / projects / experience: pale orange tint */
+    --color-surface: #ffffff; /* about + skills sections */
     --color-card: #ffffff; /* polaroid, terminal card, timeline cards, project cards */
-    --color-card-text: #212529;
-    --color-node: #635bff; /* timeline icon nodes + main badges */
-    --color-badge-soft-bg: #d7d6fc;
+    --color-card-text: #13294b; /* Industrial Blue body text (UIUC pairing) */
+    --color-node: #ff5f05; /* timeline icon nodes + main badges */
+    --color-node-ring: #ffefe6; /* 4px ring around nodes = the alt tint */
+    --color-badge-soft-bg: #ffe2d2; /* experience "soft" tech chips */
     --color-badge-soft-text: #212529;
-    --color-heading-on-surface: #000000;
+    --color-heading-on-surface: #13294b; /* "About me" / "Skills" headings */
+    --color-footer: #1f1f1f;
 
-    --font-titles: 'Raleway', sans-serif;
-    --font-display:
-        'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; /* hero name (live) */
+    --font-display: 'Space Grotesk', sans-serif; /* hero name + section titles + card headings */
+    --font-titles: 'JetBrains Mono', monospace; /* rotating hero title + Resume link */
 }
 
-/* Dark theme (live theme-dark.scss). Utilities resolve var() at runtime,
+/* Helper tokens for the "soft" treatment. Plain custom properties (not @theme):
+   nothing needs them as Tailwind utilities, and :root keeps them overridable
+   by the body[data-theme='dark'] block below. */
+:root {
+    --hero-text: #13294b; /* hero name, laptop icon, Resume link, rotating title */
+    --title-alt-color: #111111; /* section titles ON the tinted alt sections */
+    --title-styles-color: #13294b; /* rotating hero title (light = hero text) */
+    --rail-color: rgba(255, 95, 5, 0.35); /* vertical timeline rail */
+    --card-border: 1px solid rgba(255, 95, 5, 0.16); /* hairline on cards in soft mode */
+}
+
+/* Dark theme — "rich" tinted charcoal. Utilities resolve var() at runtime,
    so re-declaring the semantic tokens here re-skins every component. */
 body[data-theme='dark'] {
-    --color-hero: #494949;
-    --color-alt: #5b5b5b;
-    --color-surface: #7f7f7f;
-    --color-card: #6d6d6d;
-    --color-card-text: #ffffff;
-    --color-node: #919191;
-    --color-badge-soft-bg: #919191;
-    --color-badge-soft-text: #ffffff;
+    --color-hero: #16161c;
+    --color-alt: #20202a;
+    --color-surface: #121217;
+    --color-card: #26262f;
+    --color-card-text: #f2f2f5;
+    --color-node: #ff5f05; /* accent pops against charcoal */
+    --color-node-ring: #20202a;
+    --color-badge-soft-bg: #3a3a46;
+    --color-badge-soft-text: #f2f2f5;
     --color-heading-on-surface: #ffffff;
+    --color-footer: #0e0e12;
+
+    --hero-text: #ffffff;
+    --title-alt-color: #ffffff;
+    --title-styles-color: #ffaf82; /* rotating title in dark = a light orange */
+    --rail-color: rgba(255, 255, 255, 0.18);
+    --card-border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 body {
     background-color: var(--color-surface);
     color: var(--color-card-text);
     font-family:
+        'IBM Plex Sans',
         system-ui,
         -apple-system,
         'Segoe UI',
@@ -59,6 +85,13 @@ body {
         Arial,
         sans-serif;
     line-height: 1.5;
+}
+
+/* Headings (hero name, section titles, card headings) use the display font. */
+h1,
+h2,
+h3 {
+    font-family: var(--font-display);
 }
 
 /* Smooth scroll with prefers-reduced-motion guard */
@@ -84,32 +117,32 @@ html {
 .hero-name {
     font-family: var(--font-display);
     font-size: clamp(2.5rem, 8vw, 4rem);
-    font-weight: 600;
-    color: #353239;
-}
-body[data-theme='dark'] .hero-name {
-    color: #ffffff;
+    font-weight: 700;
+    color: var(--hero-text);
 }
 .title-styles {
     font-family: var(--font-titles);
-    font-weight: 300;
+    font-weight: 400; /* JetBrains Mono — 300 is not loaded */
     font-size: clamp(1.25rem, 4vw, 1.75rem);
-    color: #353239;
+    color: var(--hero-text);
     letter-spacing: 0.05em;
 }
-body[data-theme='dark'] .title-styles {
-    color: #ffffff;
+/* Only the rotating title (inside .title-container) takes the dark-mode light
+   orange; the Resume link shares .title-styles but stays on --hero-text. */
+.title-container .title-styles {
+    color: var(--title-styles-color);
 }
 
 /* --- Section scaffolding (live .section-title) --- */
 .section-title {
     padding: 3rem 0;
-    font-size: 1.5rem; /* large text — white on brand purple passes AA at 3:1+ */
+    font-size: 1.5rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 3px;
     text-align: center;
-    color: #ffffff;
+    /* Dark on the pale tinted sections (was white on the old solid accent). */
+    color: var(--title-alt-color);
 }
 .section-title-dark {
     color: var(--color-heading-on-surface);
@@ -132,6 +165,7 @@ body[data-theme='dark'] .title-styles {
 .terminal-card {
     background: var(--color-card);
     color: var(--color-card-text);
+    border: var(--card-border);
     border-radius: 0.375rem;
     box-shadow: 0 4px 6px rgb(0 0 0 / 0.3);
     text-align: justify;
@@ -173,7 +207,7 @@ body[data-theme='dark'] .title-styles {
     left: 1.5rem;
     width: 4px;
     transform: translateX(-50%);
-    background: rgb(255 255 255 / 0.5);
+    background: var(--rail-color);
 }
 .timeline > li {
     padding-left: 4.5rem;
@@ -191,11 +225,12 @@ body[data-theme='dark'] .title-styles {
     border-radius: 9999px;
     background-color: var(--color-node);
     color: #ffffff;
-    box-shadow: 0 0 0 4px var(--color-alt);
+    box-shadow: 0 0 0 4px var(--color-node-ring);
 }
 .timeline-card {
     background: var(--color-card);
     color: var(--color-card-text);
+    border: var(--card-border);
     border-radius: 0.5rem;
     padding: 1.25rem;
     box-shadow: 0 3px 0 var(--color-node);
@@ -238,6 +273,7 @@ body[data-theme='dark'] .title-styles {
 .project-card {
     background: var(--color-card);
     color: var(--color-card-text);
+    border: var(--card-border);
     border-radius: 0.5rem;
     box-shadow: 0 4px 6px rgb(0 0 0 / 0.3);
     transition:
@@ -249,6 +285,7 @@ body[data-theme='dark'] .title-styles {
     transform: scale(1.01);
     box-shadow: 0 10px 20px rgb(0 0 0 / 0.5);
 }
+/* Accent-bordered carousel frame — the accent stays orange in both themes. */
 .slider-tab {
     background-color: var(--color-brand);
     height: 25px;
@@ -257,14 +294,8 @@ body[data-theme='dark'] .title-styles {
     gap: 0.5rem;
     padding-left: 0.5rem;
 }
-body[data-theme='dark'] .slider-tab {
-    background-color: #8c8c8c;
-}
 .slider-frame {
     border: 5px solid var(--color-brand);
-}
-body[data-theme='dark'] .slider-frame {
-    border-color: #8c8c8c;
 }
 
 /* --- Theme switch (live react-switch: 90x40, owl/sun) --- */
@@ -314,15 +345,16 @@ body[data-theme='dark'] .theme-switch-thumb {
     color: #ffffff;
 }
 
-/* Focus visibility (WCAG 2.4.7) — consistent ring on every interactive element */
+/* Focus visibility (WCAG 2.4.7) — consistent ring on every interactive element.
+   --hero-text is dark blue on the light theme's pale/white sections and white on
+   the dark theme's charcoal, so the ring stays visible on both. */
 a:focus-visible,
 button:focus-visible {
-    outline: 3px solid #ffffff;
+    outline: 3px solid var(--hero-text);
     outline-offset: 2px;
 }
-.section-surface a:focus-visible,
-.section-surface button:focus-visible {
-    outline-color: var(--color-brand-deep);
+.site-footer a:focus-visible {
+    outline-color: #ffffff; /* footer band is dark in both themes */
 }
 
 /* GitHub corner (live index.html) */
